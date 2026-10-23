@@ -565,3 +565,34 @@ nav.hide~.ctabs{top:0}
 .cs-real .ckt .ck{font-family:Geist,Inter,system-ui,sans-serif;font-variant-numeric:tabular-nums}
 .cs-real main>section.band{background:#f4f6f9}
 .cs-real .hero h1 .mu{color:var(--mute)}
+/* v6.1: hero meta row spans the stepper track */
+.cs-real .hero.mk .overview,.cs-real .hero.mk .overview.wide{max-width:none;margin-left:calc(100%/14);margin-right:calc(100%/14);grid-template-columns:auto auto minmax(0,max-content) auto;justify-content:space-between;column-gap:32px;row-gap:24px}
+.cs-real .hero.mk .overview div{padding-right:0}
+.cs-real .hero.mk .overview b{font-size:15px}
+@media(max-width:720px){.cs-real .hero.mk .overview,.cs-real .hero.mk .overview.wide{margin-left:0;margin-right:0;grid-template-columns:repeat(2,minmax(0,1fr));justify-content:stretch;column-gap:24px;row-gap:22px}}
+/* v6.1: challenge as an open editorial row with one shared, segmented track */
+.cs-real .tl3{grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin-top:44px}
+.cs-real .tl3>div{background:none;border:0;border-radius:0;box-shadow:none;padding:30px 36px 4px}
+.cs-real .tl3>div:first-child{padding-left:0}
+.cs-real .tl3>div:last-child{padding-right:0}
+.cs-real .tl3>div+div{border-left:0}
+.cs-real .tl3>div+div::after{content:""!important;display:block!important;position:absolute;left:0;top:30px;bottom:4px;width:1px;background:var(--line2)}
+.tl3 .trk{position:absolute;top:0;left:0;right:4px;height:2px;border-radius:2px;background:var(--acc);transform-origin:left center}
+.tl3>div+div .trk{left:4px}
+.tl3>div:last-child .trk{right:0}
+.tl3>.rv .trk{transform:scaleX(0);transition:transform .9s cubic-bezier(.2,.7,.2,1) calc(var(--d,0ms) + 250ms)}
+.tl3>.rv.in .trk{transform:none}
+.cs-real .tl3 .eb{margin-bottom:10px}
+.cs-real .tl3 h4{font-size:20px;font-weight:500;letter-spacing:-.02em;line-height:1.25;margin:0 0 10px}
+.cs-real .chap .body .tl3 p{max-width:34ch;font-size:15.5px;line-height:1.6}
+@media(max-width:960px){
+.cs-real .tl3{grid-template-columns:minmax(0,1fr);gap:0;margin-top:34px}
+.cs-real .tl3>div,.cs-real .tl3>div:first-child,.cs-real .tl3>div:last-child{padding:0 0 26px 22px}
+.cs-real .tl3>div:last-child{padding-bottom:2px}
+.cs-real .tl3>div+div::after{content:none!important;display:none!important}
+.tl3 .trk,.tl3>div+div .trk,.tl3>div:last-child .trk{top:3px;left:0;right:auto;bottom:6px;width:2px;height:auto;transform-origin:center top}
+.tl3>div:last-child .trk{bottom:2px}
+.tl3>.rv .trk{transform:scaleY(0)}
+.tl3>.rv.in .trk{transform:none}
+.cs-real .chap .body .tl3 p{max-width:none}}
+@media(prefers-reduced-motion:reduce){.tl3>.rv .trk{transform:none!important;transition:none!important}}
