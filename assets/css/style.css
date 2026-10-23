@@ -434,52 +434,54 @@ nav.hide~.ctabs{top:0}
 .refl{margin-top:28px;gap:22px}.refl .cr{max-height:300px}
 .cmp-t h3{font-size:19px}
 }
-@media(prefers-reduced-motion:reduce){.mk-grid span{animation:none}.cfg *,.cfg-d circle,.jr li,.jr .ck,.ctabs,.ctl a::after{transition:none!important}.cks.js .ckp.on{animation:none}.cover .hero-shot{transform:none}.gal>div:hover .shot .cr img,.si:hover .shot .cr img{transform:none}}
+@media(prefers-reduced-motion:reduce){.mk-grid span{animation:none}.cfg *,.cfg-d circle,.jr li,.jr .ck,.ctabs,.ctl a::after{transition:none!important}.tlp.js .tlp-p:not([hidden]){animation:none}.cover .hero-shot{transform:none}.gal>div:hover .shot .cr img,.si:hover .shot .cr img{transform:none}}
 
 /* v5: step indicators (hero checkout progress + process), challenge position segments */
 .tl3>div{position:relative;padding-top:24px;--s1:var(--line2);--s2:var(--line2);--s3:var(--line2)}
 .tl3>div:nth-child(1){--s1:var(--acc)}.tl3>div:nth-child(2){--s2:var(--acc)}.tl3>div:nth-child(3){--s3:var(--acc)}
 .tl3>div::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:linear-gradient(90deg,var(--s1) 0 calc(33.333% - 3px),transparent 0 calc(33.333% + 3px),var(--s2) 0 calc(66.667% - 3px),transparent 0 calc(66.667% + 3px),var(--s3) 0)}
-.ckt .ck{flex:none;position:relative;width:28px;height:28px;border-radius:50%;border:1.5px solid var(--line2);background:#fff;display:grid;place-items:center;font:500 11.5px/1 "Geist Mono",ui-monospace,monospace;color:var(--mute);transition:background .35s,border-color .35s,color .35s,box-shadow .35s}
-.ckt .ck em{font-style:normal;transition:opacity .25s}
-.ckt button.done .ck{background:var(--acc);border-color:var(--acc)}
-.ckt button.done .ck em{opacity:0}
-.ckt button.done .ck::after{content:"";position:absolute;left:50%;top:50%;width:5px;height:10px;margin:-7px 0 0 -3px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
-.ckt button[aria-selected=true] .ck{border-color:var(--acc);color:var(--acc);box-shadow:0 0 0 5px rgba(43,98,255,.12)}
 /* hero: checkout progress */
-/* process: horizontal step indicator + one detail panel (stacked so height never jumps) */
-.cks{margin-top:38px}
-.ckt{display:grid;grid-template-columns:repeat(5,minmax(0,1fr))}
-.ckt button{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:5px;padding:0 22px 22px 0;margin:0;border:0;background:none;text-align:left;font:inherit;color:var(--fg);cursor:pointer;-webkit-tap-highlight-color:transparent}
-.ckt .ck{margin-bottom:10px}
-.ckt button:not(:last-child)::before,.ckt button:not(:last-child)::after{content:"";position:absolute;top:13px;left:40px;right:12px;height:2px;border-radius:2px;background:var(--line2)}
-.ckt button:not(:last-child)::after{background:var(--acc);transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.2,.7,.2,1)}
-.ckt button.done::after{transform:none}
-.ckt .nm{font-size:15px;font-weight:500;letter-spacing:-.01em;transition:color .25s}
-.ckt .sm{font-size:13px;line-height:1.45;color:var(--mute);max-width:210px}
-.ckt button:hover .ck{border-color:var(--mute2)}
-.ckt button.done:hover .ck,.ckt button[aria-selected=true]:hover .ck{border-color:var(--acc)}
-.ckt button[aria-selected=true] .nm{color:var(--acc)}
-.ckt button:focus-visible{outline:none}.ckt button:focus-visible .ck{outline:2px solid var(--acc);outline-offset:3px}
-.ckps{display:grid;border-top:1px solid var(--line2);padding-top:28px;margin-top:4px}
-.ckp{display:grid;grid-template-columns:180px minmax(0,1fr);column-gap:48px;row-gap:8px;align-items:baseline}
-.ckp+.ckp{margin-top:24px}
-.ckp .m{color:var(--acc)}
-.ckp p{margin:0;font-size:17px;line-height:1.65;color:var(--mute);max-width:760px}
-.cks.js .ckp{grid-area:1/1;margin:0;visibility:hidden;opacity:0;transition:opacity .35s,visibility 0s .35s}
-.cks.js .ckp.on{visibility:visible;opacity:1;transition:opacity .35s}
-@media(max-width:960px){.ckp{grid-template-columns:1fr}.ckt .sm{font-size:12.5px}}
-@media(max-width:720px){
-.ckt{grid-template-columns:1fr}
-.ckt button{display:grid;grid-template-columns:28px minmax(0,1fr);column-gap:14px;row-gap:2px;padding:0 0 20px}
-.ckt .ck{grid-row:1/span 2;margin:0}.ckt .nm{padding-top:4px}.ckt .sm{max-width:none}
-.ckt button:not(:last-child)::before,.ckt button:not(:last-child)::after{left:13px;right:auto;top:34px;bottom:2px;width:2px;height:auto}
-.ckt button:not(:last-child)::after{transform:scaleY(0);transform-origin:top}.ckt button.done::after{transform:none}
-.ckps{padding-top:22px}
+/* process: vertical timeline + detail panel whose pointer follows the selected phase; on mobile the detail opens under its phase */
+.tlp{margin-top:34px}
+.tlp-hint{display:flex;align-items:center;gap:8px;margin:0 0 18px;font-size:14.5px;color:var(--mute)}
+.tlp-hint svg{width:16px;height:16px;flex:none;color:var(--acc)}
+.tlp-g{display:grid;grid-template-columns:minmax(0,400px) minmax(0,1fr);gap:clamp(36px,4.4vw,64px);align-items:start}
+.tlp-list{position:relative;display:flex;flex-direction:column}
+.tlp-list::before{content:"";position:absolute;left:9.25px;top:28px;bottom:var(--lb,48px);width:1.5px;background:var(--line2)}
+.tlp-list [role=tab]{position:relative;display:flex;align-items:flex-start;gap:20px;width:100%;padding:16px 0;margin:0;background:none;border:0;font:inherit;text-align:left;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.tlp-mk{flex:none;position:relative;z-index:1;width:20px;height:20px;margin-top:2px;border-radius:50%;background:#fff;border:1.5px solid rgba(10,20,40,.22);transition:border-color .25s,background .25s,box-shadow .3s}
+.tlp-tx{display:flex;flex-direction:column;gap:5px;min-width:0}
+.tlp-l{font-size:19px;font-weight:600;letter-spacing:-.015em;line-height:1.25;color:var(--fg);transition:color .2s}
+.tlp-h{font-size:15px;line-height:1.45;color:#2a3242}
+.tlp-list [role=tab]:hover .tlp-mk{border-color:var(--acc)}
+.tlp-list [role=tab]:hover .tlp-l,.tlp-list [role=tab][aria-selected=true] .tlp-l{color:var(--acc)}
+.tlp-list [role=tab][aria-selected=true] .tlp-mk{background:var(--acc);border-color:var(--acc);box-shadow:0 0 0 6px rgba(43,98,255,.14)}
+.tlp-list [role=tab]:focus-visible{outline:none}.tlp-list [role=tab]:focus-visible .tlp-mk{outline:2px solid var(--acc);outline-offset:4px}
+.tlp-pan{position:relative;align-self:stretch;border:1px solid var(--line2);border-radius:16px;padding:clamp(28px,3.4vw,44px);background:#fff}
+.tlp-ptr{position:absolute;left:-8px;top:var(--y,44px);width:14px;height:14px;background:#fff;border-left:1px solid var(--line2);border-bottom:1px solid var(--line2);transform:translateY(-50%) rotate(45deg);transition:top .35s cubic-bezier(.2,.7,.2,1)}
+.tlp-p{outline:none}
+.tlp-p+.tlp-p{margin-top:36px}
+.cs-real .tlp-p .eb{font-size:15px}
+.cs-real .tlp-p h3{margin:10px 0 0;font-size:clamp(26px,2.4vw,32px);font-weight:500;line-height:1.15;letter-spacing:-.03em;color:var(--fg);text-wrap:balance}
+.cs-real .tlp-p p{margin:16px 0 0;font-size:17px;line-height:1.65;color:#2a3242;max-width:600px}
+.tlp-nx{margin-top:28px;padding:0;border:0;background:none;font:inherit;font-size:15px;font-weight:500;color:var(--acc);cursor:pointer;display:inline-flex;gap:8px;align-items:center}
+.tlp-nx span{transition:transform .25s}.tlp-nx:hover span{transform:translateX(3px)}
+.tlp-nx:focus-visible,.tlp-p:focus-visible{outline:2px solid var(--acc);outline-offset:3px;border-radius:4px}
+.tlp.js .tlp-p+.tlp-p{margin-top:0}
+.tlp.js .tlp-p:not([hidden]){animation:pIn .4s cubic-bezier(.2,.7,.2,1)}
+@media(max-width:960px){
+.tlp{margin-top:26px}
+.tlp-g{grid-template-columns:minmax(0,1fr)}
+.tlp-pan.inl{border:0;border-radius:0;background:none;padding:0 0 26px 40px}
+.tlp-pan.inl .tlp-ptr,.tlp-pan.inl .eb{display:none}
+.cs-real .tlp-pan.inl h3{margin-top:0;font-size:23px}
+.cs-real .tlp-pan.inl p{margin-top:12px;font-size:16.5px}
+.tlp-pan.inl .tlp-nx{margin-top:18px}
+.tlp.js [role=tab][aria-selected=true] .tlp-h{display:none}
 }
 /* reset happens off-screen and without transitions, so nothing visibly unwinds */
 .cfg.nt,.cfg.nt *,.cfg.nt circle,.jr.nt li,.jr.nt li::after,.jr.nt .ck,.jr.nt .ck em{transition:none!important}
-@media(prefers-reduced-motion:reduce){.jr li,.jr li::after,.jr .ck,.ckt .ck,.ckt button::after,.cks.js .ckp{transition:none!important}}
+@media(prefers-reduced-motion:reduce){.jr li,.jr li::after,.jr .ck,.tlp-mk,.tlp-ptr{transition:none!important}.tlp.js .tlp-p:not([hidden]){animation:none}}
 
 /* ===== v6: refined stepper, cards, quote, solution, takeaway; sans eyebrows; section rhythm ===== */
 /* page-wide: sans labels instead of mono uppercase (case page content only) */
@@ -562,7 +564,6 @@ nav.hide~.ctabs{top:0}
 @media(prefers-reduced-motion:reduce){.jr::after,.jr li,.jr .ck,.tl2 a.anc i{transition:none!important}}
 .cs-real main .idx.m,.cs-real main .ol .m,.cs-real main .ft .m{color:var(--acc)}
 .cs-real .shot .bb{font:400 11px Geist,Inter,system-ui,sans-serif;letter-spacing:0}
-.cs-real .ckt .ck{font-family:Geist,Inter,system-ui,sans-serif;font-variant-numeric:tabular-nums}
 .cs-real main>section.band{background:#f4f6f9}
 .cs-real .hero h1 .mu{color:var(--mute)}
 /* v6.1: hero meta row spans the stepper track */

@@ -109,10 +109,14 @@ if(cf&&!RM){const S=[1,2,3,4].map(i=>$('.s'+i,cf)),ctv=$('.ct',cf);let cur=28000
  const run=()=>{clr();st=1;T.forEach(([t,f])=>tm.push(setTimeout(f,t)));tm.push(setTimeout(()=>{st=2},6400))};
  reset();
  new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){if(st===0){st=1;tm.push(setTimeout(run,performance.now()<2000?900:350))}}else if(st!==0){clr();reset();st=0}}),{threshold:0}).observe(cf)}
-/* process: checkout-style stepper (tabs) */
-$$('.cks').forEach(w=>{const tb=$$('[role=tab]',w),pp=$$('[role=tabpanel]',w);w.classList.add('js');
- const sel=(k,f)=>{tb.forEach((b,i)=>{const on=i===k;b.setAttribute('aria-selected',on);b.tabIndex=on?0:-1;b.classList.toggle('done',i<k)});pp.forEach((p,i)=>p.classList.toggle('on',i===k));f&&tb[k].focus()};
- tb.forEach((b,i)=>{b.addEventListener('click',()=>sel(i));b.addEventListener('keydown',e=>{const n=tb.length;let k=null;if(e.key==='ArrowRight'||e.key==='ArrowDown')k=(i+1)%n;else if(e.key==='ArrowLeft'||e.key==='ArrowUp')k=(i-1+n)%n;else if(e.key==='Home')k=0;else if(e.key==='End')k=n-1;if(k!==null){e.preventDefault();sel(k,1)}})});sel(0)});
+/* process: vertical timeline tabs; panel pointer follows the selected marker; on mobile the panel moves under its phase */
+$$('.tlp').forEach(w=>{const tb=$$('[role=tab]',w),pp=$$('[role=tabpanel]',w),box=$('.tlp-pan',w),ptr=$('.tlp-ptr',w),list=$('.tlp-list',w),home=box.parentElement,mq=matchMedia('(max-width:960px)');let cur=0;w.classList.add('js');
+ const place=()=>{if(mq.matches){if(tb[cur].nextElementSibling!==box)tb[cur].after(box);box.classList.add('inl')}else{if(box.parentElement!==home)home.appendChild(box);box.classList.remove('inl');const m=$('.tlp-mk',tb[cur]).getBoundingClientRect(),pt=box.getBoundingClientRect();ptr.style.setProperty('--y',Math.max(22,Math.min(pt.height-22,m.top+m.height/2-pt.top))+'px')}
+  const last=tb[tb.length-1],lm=$('.tlp-mk',last);list.style.setProperty('--lb',(last.offsetHeight-(lm.offsetTop+lm.offsetHeight/2))+'px')};
+ const sel=(k,f)=>{cur=k;tb.forEach((b,i)=>{const on=i===k;b.setAttribute('aria-selected',on);b.tabIndex=on?0:-1});pp.forEach((p,i)=>p.hidden=i!==k);place();if(f)tb[k].focus({preventScroll:true})};
+ tb.forEach((b,i)=>{b.addEventListener('click',()=>sel(i));b.addEventListener('keydown',e=>{const n=tb.length;let k=null;if(e.key==='ArrowDown'||e.key==='ArrowRight')k=(i+1)%n;else if(e.key==='ArrowUp'||e.key==='ArrowLeft')k=(i-1+n)%n;else if(e.key==='Home')k=0;else if(e.key==='End')k=n-1;if(k!==null){e.preventDefault();sel(k,1)}})});
+ $$('[data-go]',w).forEach(b=>b.addEventListener('click',()=>{const k=+b.dataset.go;sel(k,1);if(mq.matches){const r=tb[k].getBoundingClientRect();if(r.top<70||r.bottom>innerHeight)tb[k].scrollIntoView({block:'start',behavior:RM?'auto':'smooth'})}}));
+ addEventListener('resize',place);mq.addEventListener&&mq.addEventListener('change',place);if(document.fonts)document.fonts.ready.then(place);sel(0)});
 /* spotlight on frames */
 if(matchMedia('(hover:hover)').matches)$$('.frame.real,.cmpw').forEach(f=>{f.addEventListener('pointermove',e=>{const b=f.getBoundingClientRect();f.style.setProperty('--mx',(e.clientX-b.left)+'px');f.style.setProperty('--my',(e.clientY-b.top)+'px')});f.addEventListener('pointerleave',()=>{f.style.setProperty('--mx','-400px')})});
 /* compare slider + one-time hint sweep */
