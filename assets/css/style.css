@@ -339,19 +339,7 @@ body.lb-open{overflow:hidden}
 .cfg .bt.c{border:1px solid var(--line2);color:var(--mute)}
 .cfg .bt.p{background:var(--acc);color:#fff;transition:box-shadow .4s,opacity .4s;opacity:.55}
 .cfg.agr .bt.p{opacity:1}
-.cfg.go .bt.p{box-shadow:0 0 0 5px rgba(43,98,255,.16)}
-.cfg-n{margin:10px 2px 0;text-align:right;font:500 10px/1.3 "Geist Mono",ui-monospace,monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--mute2)}
-/* hero: buyer journey as a checkout breadcrumb */
-.jr{list-style:none;margin:40px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px 22px;align-items:center}
-.jr li{position:relative;display:flex;align-items:center;gap:8px;padding:7px 13px 7px 9px;border-radius:99px;border:1px solid var(--line2);background:rgba(255,255,255,.9);font-size:13px;color:var(--mute);white-space:nowrap;transition:color .35s,border-color .35s,background .35s}
-.jr li:not(:last-child)::after{content:"";position:absolute;right:-14px;top:50%;width:5px;height:5px;border-top:1.5px solid var(--mute2);border-right:1.5px solid var(--mute2);transform:translateY(-50%) rotate(45deg)}
-.jr .ck,.ckt .ck{flex:none;position:relative;width:15px;height:15px;border-radius:50%;border:1.5px solid var(--line2);background:#fff;transition:background .35s,border-color .35s}
-.jr li.done{color:var(--fg)}
-.jr li.done .ck,.ckt button.done .ck{background:var(--acc);border-color:var(--acc)}
-.jr li.done .ck::after,.ckt button.done .ck::after{content:"";position:absolute;left:3.6px;top:1.2px;width:3px;height:6.5px;border:solid #fff;border-width:0 1.5px 1.5px 0;transform:rotate(45deg)}
-.jr li.on{color:var(--acc);border-color:rgba(43,98,255,.45);background:#f3f6ff}
-.jr li.on .ck,.ckt button[aria-selected=true] .ck{border-color:var(--acc)}
-.jr li.on .ck::after,.ckt button[aria-selected=true] .ck::after{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--acc)}
+.cfg.cfg-go .bt.p{box-shadow:0 0 0 5px rgba(43,98,255,.16)}
 .cs-real .hero.mk .overview{margin-top:34px}
 /* storefront category tabs (replaces the node rail) */
 .ctabs{position:fixed;top:64px;left:0;right:0;z-index:29;background:color-mix(in srgb,var(--bg) 88%,transparent);-webkit-backdrop-filter:blur(14px) saturate(1.3);backdrop-filter:blur(14px) saturate(1.3);border-bottom:1px solid var(--line);opacity:0;transform:translateY(-8px);pointer-events:none;transition:opacity .35s,transform .35s,top .5s cubic-bezier(.2,.7,.2,1)}
@@ -367,8 +355,8 @@ nav.hide~.ctabs{top:0}
 .ctl a:focus-visible{outline:2px solid var(--acc);outline-offset:-4px;border-radius:8px}
 /* challenge + solution + outcomes: typographic lists with hairlines (no icon tiles, no boxes) */
 .tl3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:36px;margin-top:40px}
-.tl3>div,.tl2>div{position:relative;border-top:1px solid var(--line2);padding-top:20px}
-.tl3>div::before,.tl2>div::before{content:"";position:absolute;left:0;top:-1px;width:28px;height:2px;background:var(--acc)}
+.tl2>div{position:relative;border-top:1px solid var(--line2);padding-top:20px}
+.tl2>div::before{content:"";position:absolute;left:0;top:-1px;width:28px;height:2px;background:var(--acc)}
 .tl3 .m{color:var(--acc)}
 .tl3 h4,.tl2 h4{font-size:19px;line-height:1.25;margin:8px 0 8px;color:var(--fg);font-weight:500;letter-spacing:-.015em}
 .cs-real .chap .body .tl3 p,.cs-real .chap .body .tl2 p{font-size:15.5px;line-height:1.6;color:var(--mute);margin:0}
@@ -390,33 +378,10 @@ nav.hide~.ctabs{top:0}
 .pq.sm .quote{font-size:clamp(21px,1.9vw,26px);line-height:1.25}
 /* process: checkout-style stepper, click a phase to read it */
 .proc .chap .h2{margin-bottom:0}
-.cks{margin-top:34px}
-.ckt{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border:1px solid var(--line2);border-radius:14px;background:#fff;overflow:hidden;box-shadow:0 18px 40px -38px rgba(20,40,90,.35)}
-.ckt button{position:relative;display:grid;grid-template-columns:15px minmax(0,1fr);column-gap:10px;row-gap:3px;align-items:center;text-align:left;padding:16px 22px 16px 20px;border:0;background:#fff;font:inherit;color:var(--fg);cursor:pointer;transition:background .3s}
-.ckt button:nth-child(1){z-index:5}.ckt button:nth-child(2){z-index:4}.ckt button:nth-child(3){z-index:3}.ckt button:nth-child(4){z-index:2}
-.ckt button:not(:last-child)::before{content:"";position:absolute;right:-10px;top:50%;width:20px;height:20px;background:inherit;border-top:1px solid var(--line2);border-right:1px solid var(--line2);transform:translateY(-50%) rotate(45deg);border-radius:0 3px 0 0}
-.ckt .nm{font-size:14.5px;font-weight:500;letter-spacing:-.01em}
-.ckt .sm{grid-column:2;font-size:12.5px;line-height:1.35;color:var(--mute)}
-.ckt button:hover{background:#fafbfe}
-.ckt button[aria-selected=true]{background:#f3f6ff}
-.ckt button[aria-selected=true] .nm{color:var(--acc)}
-.ckt button[aria-selected=true]::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--acc)}
-.ckt button:focus-visible{outline:2px solid var(--acc);outline-offset:-3px}
-.ckps{padding:26px 0 0}
-.ckp{display:grid;grid-template-columns:180px minmax(0,1fr);gap:48px;align-items:baseline}
-.ckp+.ckp{margin-top:22px}
-.cks.js .ckp+.ckp{margin-top:0}
-.cks.js .ckp:not(.on){display:none}
-.cks.js .ckp.on{animation:pIn .45s cubic-bezier(.2,.7,.2,1)}
 @keyframes pIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-.ckp .m{color:var(--acc)}
-.ckp h4{grid-column:2;margin:0;font-size:21px;font-weight:500;letter-spacing:-.02em}
-.ckp p{grid-column:2;margin:0;font-size:17px;line-height:1.65;color:var(--mute);max-width:760px}
-.ckp>.m{grid-row:1;padding-top:6px}
-.ckp{row-gap:0;column-gap:48px}
 /* galleries */
-.cfgw small{font:inherit;color:inherit}.cfgw small::before{content:" · "}
-@media (max-width:720px){.cfgw small{display:block;opacity:.75}.cfgw small::before{content:none}}
+.lines small{font:inherit;color:inherit}.lines small::before{content:" · "}
+@media (max-width:720px){.lines small{display:block;opacity:.75}.lines small::before{content:none}}
 .cs-real .frame.real::before{display:none}
 #flow .strip-w,#screens .strip-w{margin-top:36px}
 #flow .si,#screens .si{flex-basis:clamp(240px,24vw,330px)}
@@ -447,8 +412,8 @@ nav.hide~.ctabs{top:0}
 .frame.real,.cmpw{background-image:radial-gradient(260px circle at var(--mx,-400px) var(--my,-400px),rgba(43,98,255,.07),transparent 70%),radial-gradient(120% 90% at 50% 0%,#fff 0%,var(--vis) 70%)}
 .gal .shot .cr img,.si .shot .cr img{transition:transform .8s cubic-bezier(.2,.7,.2,1)}
 .gal>div:hover .shot .cr img,.si:hover .shot .cr img{transform:scale(1.035)}
-@media(max-width:1100px){.mk-w{grid-template-columns:minmax(0,1fr) minmax(0,420px)}.ckt .sm{display:none}.ol li{grid-template-columns:150px minmax(0,1fr) minmax(0,1fr);gap:28px}}
-@media(max-width:960px){.cs-real .chap{grid-template-columns:minmax(0,1fr);gap:18px}.mk-w{grid-template-columns:minmax(0,1fr)}.cfgw{max-width:520px}.mk-grid{width:100%;right:-20%;top:40%;opacity:.5}.tl3{grid-template-columns:1fr;gap:24px}.tl2{grid-template-columns:1fr;gap:24px}.cmpw{grid-template-columns:1fr;gap:20px}.ckp{grid-template-columns:1fr}.ckp>*{grid-column:1!important}.ckp>.m{grid-row:auto;padding-top:0}.ckp h4{margin:8px 0 8px}.ckp p{margin:0}.ol li{grid-template-columns:1fr;gap:8px}.ctn{display:none}.ctl{margin-left:0}}
+@media(max-width:1100px){.mk-w{grid-template-columns:minmax(0,1fr) minmax(0,420px)}.ol li{grid-template-columns:150px minmax(0,1fr) minmax(0,1fr);gap:28px}}
+@media(max-width:960px){.cs-real .chap{grid-template-columns:minmax(0,1fr);gap:18px}.mk-w{grid-template-columns:minmax(0,1fr)}.cfgw{max-width:520px}.mk-grid{width:100%;right:-20%;top:40%;opacity:.5}.tl3{grid-template-columns:1fr;gap:24px}.tl2{grid-template-columns:1fr;gap:24px}.cmpw{grid-template-columns:1fr;gap:20px}.ol li{grid-template-columns:1fr;gap:8px}.ctn{display:none}.ctl{margin-left:0}}
 @media(max-width:720px){
 .cs-real main section{padding-top:32px;padding-bottom:32px}
 .cs-real .hero.mk{padding:96px 0 36px}
@@ -459,14 +424,7 @@ nav.hide~.ctabs{top:0}
 .chips span{min-width:0;padding:5px 7px;font-size:11.5px}.seg span{padding:5px 9px;font-size:11.5px}
 .lines li{font-size:10.5px}.lines li b{font-size:12px}
 .cfg .ag{font-size:10.5px}.cfg .bt.c{display:none}
-.jr{gap:8px 6px;margin-top:28px}.jr li{font-size:12px;padding:6px 11px 6px 8px}.jr li:not(:last-child)::after{display:none}
 .ctw{padding:0 10px;height:44px}
-.ckt{grid-template-columns:1fr;border-radius:12px}
-.ckt button{padding:13px 16px;border-bottom:1px solid var(--line)}.ckt button:last-child{border-bottom:0}
-.ckt button:not(:last-child)::before{display:none}
-.ckt button[aria-selected=true]::after{left:0;right:auto;top:0;bottom:0;width:2px;height:auto}
-.ckt .sm{display:block}
-.ckps{padding-top:20px}
 .pq{padding:2px 0 4px 18px}.pq .quote{font-size:22px}
 .pq.sm{padding-left:16px}
 .feat{padding:0 0 32px}.feat .cr{max-height:320px}
@@ -477,3 +435,57 @@ nav.hide~.ctabs{top:0}
 .cmp-t h3{font-size:19px}
 }
 @media(prefers-reduced-motion:reduce){.mk-grid span{animation:none}.cfg *,.cfg-d circle,.jr li,.jr .ck,.ctabs,.ctl a::after{transition:none!important}.cks.js .ckp.on{animation:none}.cover .hero-shot{transform:none}.gal>div:hover .shot .cr img,.si:hover .shot .cr img{transform:none}}
+
+/* v5: step indicators (hero checkout progress + process), challenge position segments */
+.tl3>div{position:relative;padding-top:24px;--s1:var(--line2);--s2:var(--line2);--s3:var(--line2)}
+.tl3>div:nth-child(1){--s1:var(--acc)}.tl3>div:nth-child(2){--s2:var(--acc)}.tl3>div:nth-child(3){--s3:var(--acc)}
+.tl3>div::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:linear-gradient(90deg,var(--s1) 0 calc(33.333% - 3px),transparent 0 calc(33.333% + 3px),var(--s2) 0 calc(66.667% - 3px),transparent 0 calc(66.667% + 3px),var(--s3) 0)}
+.jr .ck,.ckt .ck{flex:none;position:relative;width:28px;height:28px;border-radius:50%;border:1.5px solid var(--line2);background:#fff;display:grid;place-items:center;font:500 11.5px/1 "Geist Mono",ui-monospace,monospace;color:var(--mute);transition:background .35s,border-color .35s,color .35s,box-shadow .35s}
+.jr .ck em,.ckt .ck em{font-style:normal;transition:opacity .25s}
+.jr li.done .ck,.ckt button.done .ck{background:var(--acc);border-color:var(--acc)}
+.jr li.done .ck em,.ckt button.done .ck em{opacity:0}
+.jr li.done .ck::after,.ckt button.done .ck::after{content:"";position:absolute;left:50%;top:50%;width:5px;height:10px;margin:-7px 0 0 -3px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.jr li.on .ck,.ckt button[aria-selected=true] .ck{border-color:var(--acc);color:var(--acc);box-shadow:0 0 0 5px rgba(43,98,255,.12)}
+/* hero: checkout progress */
+.jr{list-style:none;margin:46px 0 0;padding:0;display:grid;grid-template-columns:repeat(7,minmax(0,1fr))}
+.jr li{position:relative;display:flex;flex-direction:column;align-items:center;gap:11px;padding:0 4px;text-align:center;font-size:13px;line-height:1.3;color:var(--mute);transition:color .35s}
+.jr li:not(:first-child)::before,.jr li:not(:first-child)::after{content:"";position:absolute;top:13px;left:calc(-50% + 22px);right:calc(50% + 22px);height:2px;border-radius:2px;background:var(--line2)}
+.jr li:not(:first-child)::after{background:var(--acc);transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.jr li.done::after,.jr li.on::after{transform:none!important}
+.jr li.done{color:var(--fg)}.jr li.on{color:var(--acc);font-weight:500}
+/* process: horizontal step indicator + one detail panel (stacked so height never jumps) */
+.cks{margin-top:38px}
+.ckt{display:grid;grid-template-columns:repeat(5,minmax(0,1fr))}
+.ckt button{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:5px;padding:0 22px 22px 0;margin:0;border:0;background:none;text-align:left;font:inherit;color:var(--fg);cursor:pointer;-webkit-tap-highlight-color:transparent}
+.ckt .ck{margin-bottom:10px}
+.ckt button:not(:last-child)::before,.ckt button:not(:last-child)::after{content:"";position:absolute;top:13px;left:40px;right:12px;height:2px;border-radius:2px;background:var(--line2)}
+.ckt button:not(:last-child)::after{background:var(--acc);transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.2,.7,.2,1)}
+.ckt button.done::after{transform:none}
+.ckt .nm{font-size:15px;font-weight:500;letter-spacing:-.01em;transition:color .25s}
+.ckt .sm{font-size:13px;line-height:1.45;color:var(--mute);max-width:210px}
+.ckt button:hover .ck{border-color:var(--mute2)}
+.ckt button.done:hover .ck,.ckt button[aria-selected=true]:hover .ck{border-color:var(--acc)}
+.ckt button[aria-selected=true] .nm{color:var(--acc)}
+.ckt button:focus-visible{outline:none}.ckt button:focus-visible .ck{outline:2px solid var(--acc);outline-offset:3px}
+.ckps{display:grid;border-top:1px solid var(--line2);padding-top:28px;margin-top:4px}
+.ckp{display:grid;grid-template-columns:180px minmax(0,1fr);column-gap:48px;row-gap:8px;align-items:baseline}
+.ckp+.ckp{margin-top:24px}
+.ckp .m{color:var(--acc)}
+.ckp p{margin:0;font-size:17px;line-height:1.65;color:var(--mute);max-width:760px}
+.cks.js .ckp{grid-area:1/1;margin:0;visibility:hidden;opacity:0;transition:opacity .35s,visibility 0s .35s}
+.cks.js .ckp.on{visibility:visible;opacity:1;transition:opacity .35s}
+@media(max-width:960px){.ckp{grid-template-columns:1fr}.ckt .sm{font-size:12.5px}}
+@media(max-width:720px){
+.jr{margin-top:30px}.jr li{gap:8px;padding:0 1px;font-size:10.5px;line-height:1.25}
+.jr .ck{width:24px;height:24px;font-size:10px}.jr li:not(:first-child)::before,.jr li:not(:first-child)::after{top:11px;left:calc(-50% + 17px);right:calc(50% + 17px)}
+.jr li.on .ck{box-shadow:0 0 0 4px rgba(43,98,255,.12)}
+.ckt{grid-template-columns:1fr}
+.ckt button{display:grid;grid-template-columns:28px minmax(0,1fr);column-gap:14px;row-gap:2px;padding:0 0 20px}
+.ckt .ck{grid-row:1/span 2;margin:0}.ckt .nm{padding-top:4px}.ckt .sm{max-width:none}
+.ckt button:not(:last-child)::before,.ckt button:not(:last-child)::after{left:13px;right:auto;top:34px;bottom:2px;width:2px;height:auto}
+.ckt button:not(:last-child)::after{transform:scaleY(0);transform-origin:top}.ckt button.done::after{transform:none}
+.ckps{padding-top:22px}
+}
+/* reset happens off-screen and without transitions, so nothing visibly unwinds */
+.cfg.nt,.cfg.nt *,.cfg.nt circle,.jr.nt li,.jr.nt li::after,.jr.nt .ck,.jr.nt .ck em{transition:none!important}
+@media(prefers-reduced-motion:reduce){.jr li,.jr li::after,.jr .ck,.ckt .ck,.ckt button::after,.cks.js .ckp{transition:none!important}}

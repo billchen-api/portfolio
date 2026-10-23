@@ -102,10 +102,13 @@ if(cf&&!RM){const S=[1,2,3,4].map(i=>$('.s'+i,cf)),ctv=$('.ct',cf);let cur=28000
  const fmt=n=>'$'+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
  const count=to=>{cancelAnimationFrame(raf);const from=cur,t0=performance.now(),D=850;const st=n=>{const p=Math.min(1,(n-t0)/D),e=1-Math.pow(1-p,3);cur=Math.round(from+(to-from)*e);ctv.textContent=fmt(cur);if(p<1)raf=requestAnimationFrame(st)};raf=requestAnimationFrame(st)};
  const jr=k=>jl.forEach((li,i)=>{li.classList.toggle('done',i<k);li.classList.toggle('on',i===k)});
- const reset=()=>{S.forEach(e=>e.classList.remove('on'));cf.classList.remove('d1','d2','agr','go');cancelAnimationFrame(raf);cur=0;ctv.textContent=fmt(0);jr(3)};
- const T=[[700,()=>S[0].classList.add('on')],[1500,()=>{S[1].classList.add('on');jr(4)}],[2400,()=>{S[2].classList.add('on');cf.classList.add('d1');count(8000)}],[3400,()=>{S[3].classList.add('on');cf.classList.add('d2');count(28000)}],[4600,()=>{cf.classList.add('agr');jr(5)}],[5300,()=>cf.classList.add('go')],[6300,()=>cf.classList.remove('go')]];
- const run=()=>{reset();T.forEach(([t,f])=>setTimeout(f,t))};
- setTimeout(()=>{run();setInterval(()=>{if(!document.hidden&&hero.getBoundingClientRect().bottom>0)run()},9000)},900)}
+ const jo=$('.jr'),nt=[cf,jo].filter(Boolean);const reset=()=>{nt.forEach(e=>e.classList.add('nt'));S.forEach(e=>e.classList.remove('on'));cf.classList.remove('d1','d2','agr','cfg-go');cancelAnimationFrame(raf);cur=0;ctv.textContent=fmt(0);jr(3);void cf.offsetWidth;nt.forEach(e=>e.classList.remove('nt'))};
+ const T=[[700,()=>S[0].classList.add('on')],[1500,()=>{S[1].classList.add('on');jr(4)}],[2400,()=>{S[2].classList.add('on');cf.classList.add('d1');count(8000)}],[3400,()=>{S[3].classList.add('on');cf.classList.add('d2');count(28000)}],[4600,()=>{cf.classList.add('agr');jr(5)}],[5300,()=>cf.classList.add('cfg-go')],[6300,()=>cf.classList.remove('cfg-go')]];
+ let tm=[],st=0;/* st: 0 idle(start state) 1 playing 2 finished(holds final state) */
+ const clr=()=>{tm.forEach(clearTimeout);tm=[]};
+ const run=()=>{clr();st=1;T.forEach(([t,f])=>tm.push(setTimeout(f,t)));tm.push(setTimeout(()=>{st=2},6400))};
+ reset();
+ new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){if(st===0){st=1;tm.push(setTimeout(run,performance.now()<2000?900:350))}}else if(st!==0){clr();reset();st=0}}),{threshold:0}).observe(cf)}
 /* process: checkout-style stepper (tabs) */
 $$('.cks').forEach(w=>{const tb=$$('[role=tab]',w),pp=$$('[role=tabpanel]',w);w.classList.add('js');
  const sel=(k,f)=>{tb.forEach((b,i)=>{const on=i===k;b.setAttribute('aria-selected',on);b.tabIndex=on?0:-1;b.classList.toggle('done',i<k)});pp.forEach((p,i)=>p.classList.toggle('on',i===k));f&&tb[k].focus()};
