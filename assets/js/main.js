@@ -70,7 +70,7 @@ function scrub(){const vh=innerHeight;sc.forEach(f=>{const cr=f.querySelector('.
 if(sc.length){let tk=0;addEventListener('scroll',()=>{if(!tk){tk=1;requestAnimationFrame(()=>{scrub();tk=0})}},{passive:true});addEventListener('resize',scrub);addEventListener('load',scrub);scrub()}
 /* spec strip */
 $$('.strip-w').forEach(sw=>{const st=sw.querySelector('.strip');if(!st)return;const bar=sw.querySelector('.sbar'),sn=sw.querySelector('.sn'),its=$$('.si',st);
- const up=()=>{const m=st.scrollWidth-st.clientWidth;bar&&bar.style.setProperty('--sx',m>0?(st.scrollLeft/m).toFixed(3):1);const w=its[0].offsetWidth+20;sn&&(sn.textContent=String(Math.min(its.length,Math.round(st.scrollLeft/w)+1)).padStart(2,'0'))};
+ const up=()=>{const m=st.scrollWidth-st.clientWidth;bar&&bar.style.setProperty('--sx',m>0?(st.scrollLeft/m).toFixed(3):1);const w=its[0].offsetWidth+20;sn&&(sn.textContent=String(Math.min(its.length,Math.round(st.scrollLeft/w)+1)))};
  st.addEventListener('scroll',up,{passive:true});up();
  $$('.sbtn',sw).forEach(b=>b.addEventListener('click',()=>st.scrollBy({left:(+b.dataset.d)*(its[0].offsetWidth+20)*2,behavior:RM?'auto':'smooth'})))});
 /* lightbox */
@@ -86,27 +86,34 @@ document.addEventListener('keydown',e=>{if(lb.hidden)return;if(e.key==='Escape')
  else if(e.key==='Tab'){const f=$$('button',lb).filter(b=>b.offsetParent);const a=f.indexOf(document.activeElement);if(e.shiftKey&&a<=0){e.preventDefault();f[f.length-1].focus()}else if(!e.shiftKey&&a===f.length-1){e.preventDefault();f[0].focus()}}});
 })();
 
-/* Case Study 01 v2: section route rail, hero buyer-route packet, tilt-settle, spotlight, compare slider */
-(()=>{const RM=window.RM,$$=(s,r=document)=>[...r.querySelectorAll(s)],cl=t=>Math.max(0,Math.min(1,t));
-const rr=document.querySelector('.rroute');if(!rr)return;const links=$$('a',rr),secs=links.map(a=>document.getElementById(a.dataset.s)),rl=rr.querySelector('.rl');
-const hero=document.querySelector('.hero'),cov=document.querySelector('.cover .hero-shot');
-function tick(){const vh=innerHeight;let k=-1;secs.forEach((s,i)=>{if(s&&s.getBoundingClientRect().top<vh*.45)k=i});
- rr.classList.toggle('shown',hero.getBoundingClientRect().bottom<vh*.35&&document.querySelector('.pn').getBoundingClientRect().top>vh*.5);
- links.forEach((a,i)=>{a.classList.toggle('on',i===k);a.classList.toggle('done',i<k);i===k?a.setAttribute('aria-current','true'):a.removeAttribute('aria-current')});
- rl.style.setProperty('--rp',k<0?0:(k/(links.length-1)).toFixed(3));
+/* Case Study 01 v4: category tabs, hero configurator, checkout-stepper process, tilt-settle, spotlight, compare slider */
+(()=>{const RM=window.RM,$=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)],cl=t=>Math.max(0,Math.min(1,t));
+const ct=$('.ctabs');if(!ct)return;const links=$$('a',ct),secs=links.map(a=>document.getElementById(a.dataset.s)),ctl=$('.ctl',ct);
+const hero=$('.hero'),cov=$('.cover .hero-shot'),pn=$('.pn');let lk=-2;
+function tick(){const vh=innerHeight;let k=-1;secs.forEach((s,i)=>{if(s&&s.getBoundingClientRect().top<vh*.4)k=i});
+ ct.classList.toggle('shown',hero.getBoundingClientRect().bottom<70&&pn.getBoundingClientRect().top>vh*.4);
+ if(k!==lk){lk=k;links.forEach((a,i)=>{a.classList.toggle('on',i===k);i===k?a.setAttribute('aria-current','true'):a.removeAttribute('aria-current')});
+  const a=links[k];if(a&&ctl.scrollWidth>ctl.clientWidth){ctl.scrollTo({left:a.offsetLeft-ctl.clientWidth/2+a.offsetWidth/2,behavior:RM?'auto':'smooth'})}}
  if(cov&&!RM){const b=cov.getBoundingClientRect();cov.style.setProperty('--t',cl((b.top-vh*.18)/(vh*.7)).toFixed(3))}}
 let tk=0;addEventListener('scroll',()=>{if(!tk){tk=1;requestAnimationFrame(()=>{tick();tk=0})}},{passive:true});addEventListener('resize',tick);tick();
-/* hero packet: travels the buyer route, lighting each stop */
-const hr=document.querySelector('.hroute');if(hr&&!RM&&hr.animate){const ol=hr.querySelector('ol'),pk=hr.querySelector('.hpk'),lis=$$('li',ol);
- const run=()=>{if(getComputedStyle(pk).display==='none')return;const o=ol.offsetLeft,w=ol.offsetWidth-8,T=5200;
-  pk.animate([{transform:`translateX(${o}px)`,opacity:0},{opacity:1,offset:.06},{opacity:1,offset:.94},{transform:`translateX(${o+w}px)`,opacity:0}],{duration:T,easing:'cubic-bezier(.45,0,.35,1)'});
-  lis.forEach((li,i)=>{const b=li.querySelector('b');setTimeout(()=>{b.style.borderColor='var(--acc)';b.style.background=i===lis.length-1?'var(--acc)':'#fff'},T*(.06+.88*i/(lis.length-1)))});
-  setTimeout(()=>{lis.forEach(li=>{const b=li.querySelector('b');b.style.borderColor='';b.style.background=''})},T+1400)};
- setTimeout(()=>{run();setInterval(()=>{if(!document.hidden&&hero.getBoundingClientRect().bottom>0)run()},8200)},1100)}
+/* hero configurator: plan → region → line items → yearly-cost ring → place order, mirrored on the journey breadcrumb */
+const cf=$('.cfg'),jl=$$('.jr li');
+if(cf&&!RM){const S=[1,2,3,4].map(i=>$('.s'+i,cf)),ctv=$('.ct',cf);let cur=28000,raf=0;
+ const fmt=n=>'$'+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+ const count=to=>{cancelAnimationFrame(raf);const from=cur,t0=performance.now(),D=850;const st=n=>{const p=Math.min(1,(n-t0)/D),e=1-Math.pow(1-p,3);cur=Math.round(from+(to-from)*e);ctv.textContent=fmt(cur);if(p<1)raf=requestAnimationFrame(st)};raf=requestAnimationFrame(st)};
+ const jr=k=>jl.forEach((li,i)=>{li.classList.toggle('done',i<k);li.classList.toggle('on',i===k)});
+ const reset=()=>{S.forEach(e=>e.classList.remove('on'));cf.classList.remove('d1','d2','agr','go');cancelAnimationFrame(raf);cur=0;ctv.textContent=fmt(0);jr(3)};
+ const T=[[700,()=>S[0].classList.add('on')],[1500,()=>{S[1].classList.add('on');jr(4)}],[2400,()=>{S[2].classList.add('on');cf.classList.add('d1');count(8000)}],[3400,()=>{S[3].classList.add('on');cf.classList.add('d2');count(28000)}],[4600,()=>{cf.classList.add('agr');jr(5)}],[5300,()=>cf.classList.add('go')],[6300,()=>cf.classList.remove('go')]];
+ const run=()=>{reset();T.forEach(([t,f])=>setTimeout(f,t))};
+ setTimeout(()=>{run();setInterval(()=>{if(!document.hidden&&hero.getBoundingClientRect().bottom>0)run()},9000)},900)}
+/* process: checkout-style stepper (tabs) */
+$$('.cks').forEach(w=>{const tb=$$('[role=tab]',w),pp=$$('[role=tabpanel]',w);w.classList.add('js');
+ const sel=(k,f)=>{tb.forEach((b,i)=>{const on=i===k;b.setAttribute('aria-selected',on);b.tabIndex=on?0:-1;b.classList.toggle('done',i<k)});pp.forEach((p,i)=>p.classList.toggle('on',i===k));f&&tb[k].focus()};
+ tb.forEach((b,i)=>{b.addEventListener('click',()=>sel(i));b.addEventListener('keydown',e=>{const n=tb.length;let k=null;if(e.key==='ArrowRight'||e.key==='ArrowDown')k=(i+1)%n;else if(e.key==='ArrowLeft'||e.key==='ArrowUp')k=(i-1+n)%n;else if(e.key==='Home')k=0;else if(e.key==='End')k=n-1;if(k!==null){e.preventDefault();sel(k,1)}})});sel(0)});
 /* spotlight on frames */
 if(matchMedia('(hover:hover)').matches)$$('.frame.real,.cmpw').forEach(f=>{f.addEventListener('pointermove',e=>{const b=f.getBoundingClientRect();f.style.setProperty('--mx',(e.clientX-b.left)+'px');f.style.setProperty('--my',(e.clientY-b.top)+'px')});f.addEventListener('pointerleave',()=>{f.style.setProperty('--mx','-400px')})});
 /* compare slider + one-time hint sweep */
 $$('.cmp').forEach(c=>{const r=c.querySelector('input'),set=v=>c.style.setProperty('--x',v+'%');r.addEventListener('input',()=>set(r.value));
- if(RM||!c.animate)return;const io=new IntersectionObserver(es=>{if(es[0].isIntersecting){io.disconnect();let t0=null;const D=1800;const st=n=>{t0=t0||n;const p=Math.min(1,(n-t0)/D);if(r.dataset.touched)return;const v=50+Math.sin(p*Math.PI*2)*-22*(1-p*.2);set(v.toFixed(1));r.value=v;if(p<1)requestAnimationFrame(st);else{set(50);r.value=50}};setTimeout(()=>requestAnimationFrame(st),500)}},{threshold:.5});io.observe(c);
+ if(RM)return;const io=new IntersectionObserver(es=>{if(es[0].isIntersecting){io.disconnect();let t0=null;const D=1800;const st=n=>{t0=t0||n;const p=Math.min(1,(n-t0)/D);if(r.dataset.touched)return;const v=50+Math.sin(p*Math.PI*2)*-22*(1-p*.2);set(v.toFixed(1));r.value=v;if(p<1)requestAnimationFrame(st);else{set(50);r.value=50}};setTimeout(()=>requestAnimationFrame(st),500)}},{threshold:.4});io.observe(c);
  r.addEventListener('pointerdown',()=>r.dataset.touched=1,{once:true})});
 })();
