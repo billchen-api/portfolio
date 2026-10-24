@@ -754,3 +754,38 @@ html:not(.js) .cx path{stroke-dashoffset:0}html:not(.js) .cx-dn{clip-path:none}
 @media(max-width:1100px){.cs-real .ol li{grid-template-columns:116px minmax(0,1fr) minmax(0,1fr);gap:28px}.oi{width:116px;height:78px}}
 @media(max-width:960px){.cs-real .ol li{grid-template-columns:96px minmax(0,1fr);grid-template-areas:"i t" "i p";gap:8px 20px;align-items:start;padding:20px 0}.cs-real .ol .oi{grid-area:i;width:96px;height:72px}.cs-real .ol .oi>div{transform:none}.cs-real .ol .ot{grid-area:t}.cs-real .ol li>p{grid-area:p}}
 @media(max-width:380px){.cs-real .ol li{grid-template-columns:80px minmax(0,1fr);gap:8px 16px}.cs-real .ol .oi{width:80px;height:64px}.cs-real .ol .oi>div{transform:scale(.84)}}
+/* ===== v9: one section title per section, tighter vertical rhythm ===== */
+.cs-real main>section{padding:64px 0!important}
+.cs-real main>section#challenge{padding-bottom:56px!important}
+.cs-real main h2.h2,.cs-real .sh h2{margin:0}
+.cs-real .sh{margin-bottom:32px;gap:0}
+.cs-real .chap .body>h2.h2,.cs-real .proc .chap .h2{margin-bottom:32px}
+.cs-real .cxi-t h2.h2{margin-bottom:24px}
+.cs-real .cxi{align-items:start}
+.cs-real .cx{margin-top:40px}
+.cs-real .sys2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(32px,5vw,72px);align-items:start;border-top:0;padding-top:0}
+.cs-real .sys2 p{max-width:none}
+.cs-real .sys2 p:first-child{margin-top:4px}
+.cs-real .tl2{margin-top:36px}
+.cs-real .strip-w{margin-top:28px}
+.cs-real #system .strip-w{margin-top:32px}
+.cs-real #flow .frame.flow{padding:clamp(14px,1.8vw,24px)}
+.cs-real .cmpw{margin-top:32px;padding:clamp(16px,2vw,28px)}
+.cs-real .feat{align-items:start;padding:0 0 48px}
+.cs-real .feat:last-of-type{padding-bottom:16px}
+.cs-real .feat h3{margin:10px 0 14px}
+.cs-real .feat .frame.real,.cs-real .refl .frame.real{padding:0;border:0;border-radius:12px;background:none;overflow:visible}
+.cs-real .feat .cr{max-height:480px}
+.cs-real .tkx{margin-top:clamp(48px,5vw,72px)}
+.cs-real .refl{margin-top:40px}
+.cs-real .pn{margin-top:0}
+.cs-real .pn h3{font-size:clamp(26px,2.5vw,34px);letter-spacing:-.035em;line-height:1.12}
+@media(max-width:960px){.cs-real .sys2{grid-template-columns:minmax(0,1fr);gap:20px}.cs-real .sys2 p:first-child{margin-top:0}}
+@media(max-width:760px){.cs-real main>section{padding:44px 0!important}.cs-real main>section#challenge{padding-bottom:44px!important}.cs-real .sh{margin-bottom:24px}.cs-real .chap .body>h2.h2,.cs-real .proc .chap .h2{margin-bottom:24px}.cs-real .feat{padding:0 0 36px;gap:20px}.cs-real .tl2{margin-top:28px}.cs-real .strip-w,.cs-real #system .strip-w{margin-top:24px}.cs-real .cmpw{margin-top:24px}.cs-real .tkx{margin-top:44px}.cs-real .refl{margin-top:28px}}
+.cs-real .tl2>div{padding:22px 24px 18px}
+.cs-real .tl2 a.anc{margin-top:14px;padding-top:12px}
+.cs-real .pn a{padding:40px 40px 44px}
+@media(min-width:1100px){.cs-real .cmpw{grid-template-columns:220px minmax(0,1fr);gap:36px;align-items:start}}
+@media(max-width:760px){.cs-real .cx-il{height:88px}.cs-real .cx-cat{height:124px}.cs-real .refl .frame{max-width:300px}.cs-real .pn a{padding:28px 22px 30px}.cs-real .tl2>div{padding:18px 20px 16px}}
+@media(min-width:1100px){.cs-real .cmp{max-width:680px}.cs-real .refl .frame{max-width:380px}}
+@media(max-width:760px){.cs-real .feat .cr{max-height:320px}}
