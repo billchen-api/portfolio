@@ -696,3 +696,61 @@ nav.hide~.ctabs{top:0}
 html:not(.js) .tkx .tkw,html:not(.js) .tkx-r,html:not(.js) .cx-win i,html:not(.js) .cx-end b{opacity:1;transform:none}
 html:not(.js) .cx path{stroke-dashoffset:0}html:not(.js) .cx-dn{clip-path:none}
 @media(prefers-reduced-motion:reduce){.jt li{animation:none!important}.cx path{stroke-dashoffset:0!important;transition:none!important}.cx-dn{clip-path:none!important;transition:none!important}.cx-win i,.cx-end b,.tkx .tkw{opacity:1!important;transform:none!important;transition:none!important}.tkx-r{transform:none!important;transition:none!important}}
+/* ===== v8: strict type hierarchy =====
+   section title .sect 20/600 ink + cobalt rule | headline h2 46/500 | subsection h3 34/500
+   item title 21/500 | item label .eb 14/500 cobalt | field label 15/400 grey | meta .m 13/500 grey */
+.cs-real .sect{display:block;font:600 22px/1.2 Geist,Inter,system-ui,sans-serif;letter-spacing:-.015em;color:var(--fg);margin:0}
+.cs-real .sect::before{content:"";display:block;width:24px;height:2px;border-radius:1px;background:var(--acc);margin-bottom:12px}
+.cs-real .chap .side{margin:0 0 20px}
+.cs-real .sh{gap:20px}
+.cs-real .sys2 .sect{margin-bottom:20px}
+.cs-real main .eb,.cs-real main .eb.idx,.cs-real .tlp-p .eb,.cs-real .tkx figcaption.eb,.cs-real .ins .eb{font:500 14px/1.3 Geist,Inter,system-ui,sans-serif;letter-spacing:-.005em;color:var(--acc);text-transform:none}
+.cs-real main .ft h3,.cs-real main .refl h3,.cs-real main .tlp-p h3{font-size:clamp(26px,2.5vw,34px);font-weight:500;letter-spacing:-.035em;line-height:1.12}
+.cs-real main .cx h4,.cs-real main #solution h4,.cs-real main #flow h3,.cs-real main .ol b{font-size:21px;font-weight:500;letter-spacing:-.02em;line-height:1.25;color:var(--fg)}
+.cs-real .jt-lb{font-size:15px;font-weight:400;color:var(--mute)}
+.cs-real .tkx{margin-top:clamp(56px,7vw,96px)}
+.cs-real .tkx figcaption.eb{margin-top:0}
+/* ===== v8: challenge — intro beside key insight, tighter rows ===== */
+.cxi{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,1fr);gap:clamp(32px,4.5vw,64px);align-items:start}
+.cxi-t>p:first-child{margin-top:0}
+.cs-real .cxi .ins{max-width:none;margin:0;padding:28px 32px 30px;border-radius:16px;box-shadow:none;border:1px solid var(--line2);background:#fff}
+.cs-real .cxi .ins .eb{margin-bottom:14px}
+.cs-real .cxi .ins blockquote p{font-size:clamp(19px,1.55vw,22px);line-height:1.42;max-width:none}
+.cs-real .cx{margin-top:44px}
+.cs-real .cx-r{padding:16px 0;gap:28px}
+.cs-real .cx-il{width:168px;height:104px}
+.cs-real .cx .il1{width:76%;gap:11px}.cs-real .cx .il1 span{height:10px}
+.cs-real .cx .il2{transform:scale(.84)}
+.cs-real .cx .il3{grid-template-columns:repeat(4,18px);gap:7px}.cs-real .cx .il3 i{height:18px}
+.cs-real .cx{grid-template-columns:minmax(0,680px) minmax(64px,1fr) 230px}
+.cs-real .cx-cat{height:128px}
+@media(max-width:1200px){.cs-real .cx{grid-template-columns:minmax(0,1fr) minmax(56px,110px) 200px}.cs-real .cx-il{width:150px;height:100px}.cs-real .cx-cat{height:118px}}
+@media(max-width:960px){.cxi{grid-template-columns:minmax(0,1fr);gap:28px}.cs-real .cx{grid-template-columns:minmax(0,1fr);margin-top:36px}.cs-real .cx-r{padding:0 0 24px;gap:14px}.cs-real .cx-r:last-child{padding-bottom:0}.cs-real .cx-il{width:100%;height:112px}.cs-real .cx-cat{height:150px}}
+@media(max-width:560px){.cs-real .cxi .ins{padding:22px 20px 24px}.cs-real .cxi .ins blockquote p{font-size:19px}.cs-real .sect{font-size:18px}.cs-real main .cx h4,.cs-real main #solution h4,.cs-real main #flow h3,.cs-real main .ol b{font-size:19px}}
+/* ===== v8: outcomes — small illustrations ===== */
+.cs-real .ol li{grid-template-columns:132px minmax(0,1fr) minmax(0,1.1fr);gap:36px;align-items:center;padding:20px 0}
+.cs-real .ol .ot .eb{margin-bottom:8px}
+.cs-real .ol b{display:block}
+.oi{width:132px;height:84px;border-radius:12px;background:var(--vis);display:grid;place-items:center}
+.oi>div{transform:scale(1.15)}
+.oi1{width:52px;height:60px;background:#fff;border:1px solid var(--line2);border-radius:7px;padding:6px;display:flex;flex-direction:column;gap:4px}
+.oi1 span:nth-child(1){height:6px;border-radius:3px;background:#c9d6f7}
+.oi1 span:nth-child(2){flex:1;border-radius:4px;background:#eef2fa;border:1px solid #dde3ee}
+.oi1 span:nth-child(3){height:8px;width:55%;align-self:flex-end;border-radius:3px;background:var(--acc)}
+.oi2{width:78px;background:#fff;border:1px solid var(--line2);border-radius:7px;padding:8px 8px 7px;display:grid;gap:6px}
+.oi2 span{display:flex;justify-content:space-between;align-items:center}
+.oi2 i{display:block;height:4px;border-radius:2px;background:#dde3ee;width:30px}
+.oi2 i+i{width:12px;background:#c9d6f7}
+.oi2 span:last-child{border-top:1px solid var(--line);padding-top:6px}
+.oi2 span:last-child i{background:#c9d6f7;width:22px}.oi2 span:last-child i+i{width:20px;height:6px;background:var(--acc)}
+.oi3{display:flex;align-items:flex-end;gap:6px;height:56px}
+.oi3 span{display:flex;flex-direction:column-reverse;gap:4px}
+.oi3 i{display:block;width:18px;height:13px;border-radius:3px;background:#c9d6f7}
+.oi3 span i:first-child{background:var(--acc)}
+.oi4{position:relative;width:78px;display:flex;flex-direction:column;align-items:flex-end;gap:7px;padding-right:9px}
+.oi4 i{display:block;width:var(--w);height:6px;border-radius:3px;background:#c9d6f7}
+.oi4 i:nth-child(2){background:var(--acc)}
+.oi4::after{content:"";position:absolute;right:3px;top:-6px;bottom:-6px;width:1.5px;border-radius:1px;background:var(--acc)}
+@media(max-width:1100px){.cs-real .ol li{grid-template-columns:116px minmax(0,1fr) minmax(0,1fr);gap:28px}.oi{width:116px;height:78px}}
+@media(max-width:960px){.cs-real .ol li{grid-template-columns:96px minmax(0,1fr);grid-template-areas:"i t" "i p";gap:8px 20px;align-items:start;padding:20px 0}.cs-real .ol .oi{grid-area:i;width:96px;height:72px}.cs-real .ol .oi>div{transform:none}.cs-real .ol .ot{grid-area:t}.cs-real .ol li>p{grid-area:p}}
+@media(max-width:380px){.cs-real .ol li{grid-template-columns:80px minmax(0,1fr);gap:8px 16px}.cs-real .ol .oi{width:80px;height:64px}.cs-real .ol .oi>div{transform:scale(.84)}}
