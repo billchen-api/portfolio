@@ -97,11 +97,11 @@ function tick(){const vh=innerHeight;let k=-1;secs.forEach((s,i)=>{if(s&&s.getBo
  if(cov&&!RM){const b=cov.getBoundingClientRect();cov.style.setProperty('--t',cl((b.top-vh*.18)/(vh*.7)).toFixed(3))}}
 let tk=0;addEventListener('scroll',()=>{if(!tk){tk=1;requestAnimationFrame(()=>{tick();tk=0})}},{passive:true});addEventListener('resize',tick);tick();
 /* hero configurator: plan → region → line items → yearly-cost ring → place order, mirrored on the journey breadcrumb */
-const cf=$('.cfg'),jl=$$('.jr li'),jo=$('.jr');
+const cf=$('.cfg'),jl=$$('.jt li'),jo=$('.jt');
 if(cf&&!RM){const S=[1,2,3,4].map(i=>$('.s'+i,cf)),ctv=$('.ct',cf);let cur=28000,raf=0;
  const fmt=n=>'$'+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
  const count=to=>{cancelAnimationFrame(raf);const from=cur,t0=performance.now(),D=850;const st=n=>{const p=Math.min(1,(n-t0)/D),e=1-Math.pow(1-p,3);cur=Math.round(from+(to-from)*e);ctv.textContent=fmt(cur);if(p<1)raf=requestAnimationFrame(st)};raf=requestAnimationFrame(st)};
- const jr=k=>{jl.forEach((li,i)=>{li.classList.toggle('done',i<k);li.classList.toggle('on',i===k);i===k?li.setAttribute('aria-current','step'):li.removeAttribute('aria-current')});jo&&jo.style.setProperty('--p',(k/(jl.length-1)).toFixed(4))};
+ const jr=k=>{jl.forEach((li,i)=>{li.classList.toggle('done',i<k);li.classList.toggle('on',i===k);li.classList.toggle('prev',i===k-1);li.classList.toggle('next',i===k+1);i===k?li.setAttribute('aria-current','step'):li.removeAttribute('aria-current')})};
  const nt=[cf,jo].filter(Boolean);const reset=()=>{nt.forEach(e=>e.classList.add('nt'));S.forEach(e=>e.classList.remove('on'));cf.classList.remove('d1','d2','agr','cfg-go');cancelAnimationFrame(raf);cur=0;ctv.textContent=fmt(0);jr(3);void cf.offsetWidth;nt.forEach(e=>e.classList.remove('nt'))};
  const T=[[700,()=>S[0].classList.add('on')],[1500,()=>{S[1].classList.add('on');jr(4)}],[2400,()=>{S[2].classList.add('on');cf.classList.add('d1');count(8000)}],[3400,()=>{S[3].classList.add('on');cf.classList.add('d2');count(28000)}],[4600,()=>{cf.classList.add('agr');jr(5)}],[5300,()=>cf.classList.add('cfg-go')],[6300,()=>cf.classList.remove('cfg-go')]];
  let tm=[],st=0;/* st: 0 idle(start state) 1 playing 2 finished(holds final state) */
