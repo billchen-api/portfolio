@@ -795,3 +795,8 @@ html:not(.js) .cx path{stroke-dashoffset:0}html:not(.js) .cx-dn{clip-path:none}
 .cs-real #system .strip-w{margin-top:48px}
 @media(min-width:961px){.cs-real .feat{align-items:center}.cs-real .refl{align-items:center}}
 @media(max-width:760px){.cs-real .feat{padding:0 0 48px}.cs-real .feat#s3{padding-bottom:36px}.cs-real #system .strip-w{margin-top:32px}}
+/* v11: key insight box aligned to first paragraph line */
+.cs-real .cxi>h2.cxi-h{margin:0 0 24px}
+.cs-real .cxi{row-gap:0}
+@media(min-width:961px){.cs-real .cxi>h2.cxi-h{grid-column:1;grid-row:1}.cs-real .cxi>.cxi-t{grid-column:1;grid-row:2}.cs-real .cxi>.ins{grid-column:2;grid-row:2;align-self:start;margin-top:3px}}
+@media(max-width:960px){.cs-real .cxi>.ins{margin-top:28px}}
