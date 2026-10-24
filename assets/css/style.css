@@ -789,3 +789,9 @@ html:not(.js) .cx path{stroke-dashoffset:0}html:not(.js) .cx-dn{clip-path:none}
 @media(max-width:760px){.cs-real .cx-il{height:88px}.cs-real .cx-cat{height:124px}.cs-real .refl .frame{max-width:300px}.cs-real .pn a{padding:28px 22px 30px}.cs-real .tl2>div{padding:18px 20px 16px}}
 @media(min-width:1100px){.cs-real .cmp{max-width:680px}.cs-real .refl .frame{max-width:380px}}
 @media(max-width:760px){.cs-real .feat .cr{max-height:320px}}
+/* v10: Bill's spacing tweaks */
+.cs-real .feat{padding:0 0 80px}
+.cs-real .feat#s3{padding-bottom:48px}
+.cs-real #system .strip-w{margin-top:48px}
+@media(min-width:961px){.cs-real .feat{align-items:center}.cs-real .refl{align-items:center}}
+@media(max-width:760px){.cs-real .feat{padding:0 0 48px}.cs-real .feat#s3{padding-bottom:36px}.cs-real #system .strip-w{margin-top:32px}}
