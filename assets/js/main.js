@@ -5,7 +5,50 @@ if(RM)$$('svg').forEach(s=>s.pauseAnimations&&s.pauseAnimations());
 const pt=$('.pt'),pc=pt&&pt.querySelector('canvas'),px=pc&&pc.getContext('2d'),lbl=pt&&pt.querySelector('.lbl');
 let W,H;function size(){const D=Math.min(devicePixelRatio||1,2);W=innerWidth;H=innerHeight;pc.width=W*D;pc.height=H*D;px.setTransform(D,0,0,D,0,0)}
 const eio=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2,eo=t=>1-Math.pow(1-t,3),cl=t=>Math.max(0,Math.min(1,t));
-function run(mode,ox,oy,dur,done){size();pt.classList.remove('off');pt.classList.add('run');
+/* per-case transitions: 'cart' (Marketplace: item drops into a cart, order confirmed) and 'flow' (Data Broker: traffic routes into a node) */
+const COL={cart:[43,98,255],flow:[14,124,134]};
+const rgba=(c,a)=>`rgba(${c[0]},${c[1]},${c[2]},${a})`;
+function cartIcon(x,y,s,c,a,chk){px.save();px.translate(x,y);px.scale(s,s);px.globalAlpha=a;
+ px.fillStyle='#fff';px.beginPath();px.arc(0,0,46,0,6.3);px.fill();px.strokeStyle=rgba(c,.18);px.lineWidth=1;px.stroke();
+ px.strokeStyle=rgba(c,1);px.lineWidth=2.2;px.lineJoin='round';px.lineCap='round';px.beginPath();px.moveTo(-23,-15);px.lineTo(-16,-15);px.lineTo(-10,9);px.lineTo(15,9);px.lineTo(20,-8);px.lineTo(-13.5,-8);px.stroke();
+ px.beginPath();px.arc(-6,16,2.6,0,6.3);px.arc(12,16,2.6,0,6.3);px.fillStyle=rgba(c,1);px.fill();
+ if(chk>0){const k=eo(cl(chk));px.fillStyle=rgba(c,1);px.beginPath();px.arc(21,-20,10*Math.min(1,k*1.6),0,6.3);px.fill();
+  const q=cl((chk-.3)/.7);if(q>0){px.strokeStyle='#fff';px.lineWidth=2;px.beginPath();px.moveTo(16.5,-20);const m=Math.min(q*2,1);px.lineTo(16.5+3.2*m,-20+3.2*m);if(q>.5){const r=(q-.5)*2;px.lineTo(19.7+5.6*r,-16.8-7*r)}px.stroke()}}
+ px.restore()}
+function runCart(mode,ox,oy,dur,done){const c=COL.cart,cx=W/2,cy=H/2,R=Math.hypot(W,H)/2+20,t0=performance.now();
+ (function f(now){const t=cl((now-t0)/dur);px.clearRect(0,0,W,H);
+  if(mode==='in'){const a=eo(cl(t/.3));px.fillStyle=`rgba(251,252,253,${.55*a})`;px.fillRect(0,0,W,H);
+   const bump=t>.5&&t<.68?Math.sin((t-.5)/.18*Math.PI)*.08:0;cartIcon(cx,cy,(.85+.15*a)+bump,c,a,cl((t-.52)/.22));
+   const q=eio(cl(t/.52));if(q<1){const qx=ox+(cx+2-ox)*q,qy=(1-q)*(1-q)*oy+2*(1-q)*q*(Math.min(oy,cy)-170)+q*q*(cy-14),sz=1-.45*q;
+    px.save();px.translate(qx,qy);px.rotate((1-q)*-.35);px.scale(sz,sz);px.fillStyle=rgba(c,1);px.beginPath();px.roundRect(-14,-11,28,22,5);px.fill();
+    px.fillStyle='rgba(255,255,255,.9)';px.fillRect(-8,-4,16,2);px.fillRect(-8,1,10,2);px.restore()}
+   const r=R*eio(cl((t-.66)/.34));if(r>0){px.fillStyle='#fbfcfd';px.beginPath();px.arc(cx,cy,r,0,6.3);px.fill();px.strokeStyle=rgba(c,.35*(1-t));px.lineWidth=1.2;px.stroke()}
+   if(t>.7)pt.classList.add('show');
+  }else{px.fillStyle='#fbfcfd';px.fillRect(0,0,W,H);const r=R*eio(cl((t-.18)/.82));
+   px.globalCompositeOperation='destination-out';px.beginPath();px.arc(cx,cy,r,0,6.3);px.fill();px.globalCompositeOperation='source-over';
+   if(r>0){px.strokeStyle=rgba(c,.35*(1-t));px.lineWidth=1.2;px.beginPath();px.arc(cx,cy,r,0,6.3);px.stroke()}
+   const a=1-cl((t-.05)/.35);if(a>0)cartIcon(cx,cy,1+.15*(1-a),c,a,1);if(t>.1)pt.classList.remove('show')}
+  if(t<1)requestAnimationFrame(f);else done&&done()})(t0)}
+function runFlow(mode,ox,oy,dur,done){const c=COL.flow,cx=W/2,cy=H/2,R=Math.hypot(W,H)/2+20,t0=performance.now(),N=7,gap=Math.min(46,H/12);
+ const lane=(k,u,out)=>{const y=cy+(k-(N-1)/2)*gap,x0=out?W+20:-20,x1=out?cx+Math.min(260,W*.28):cx-Math.min(260,W*.28),sp=.55;
+  if(u<sp){const v=u/sp;return[x0+(x1-x0)*v,y]}const v=(u-sp)/(1-sp),m=1-v;const bx=(x1+cx)/2;
+  return[m*m*m*x1+3*m*m*v*bx+3*m*v*v*bx+v*v*v*cx,m*m*m*y+3*m*m*v*y+3*m*v*v*cy+v*v*v*cy]};
+ const pk=Array.from({length:N*3},(_,i)=>({k:i%N,o:Math.floor(i/N)*.16+(i%N)*.025}));
+ function lanes(a,out,upto){px.strokeStyle=rgba(c,.16*a);px.lineWidth=1.2;for(let k=0;k<N;k++){px.beginPath();for(let j=0;j<=40;j++){const u=j/40*upto,[x,y]=lane(k,u,out);j?px.lineTo(x,y):px.moveTo(x,y)}px.stroke()}}
+ function dots(q,a,out){pk.forEach(p=>{const u=cl((q-p.o)/.5);if(u<=0||u>=1)return;const u2=out?u:u;const[x,y]=lane(p.k,u2,out),[x2,y2]=lane(p.k,Math.max(0,u2-.08),out);
+  const g=px.createLinearGradient(x2,y2,x,y);g.addColorStop(0,rgba(c,0));g.addColorStop(1,rgba(c,.9*a));px.strokeStyle=g;px.lineWidth=2;px.beginPath();px.moveTo(x2,y2);px.lineTo(x,y);px.stroke();px.fillStyle=rgba(c,a);px.beginPath();px.arc(x,y,2.4,0,6.3);px.fill()})}
+ function hub(s,a){px.globalAlpha=a;px.fillStyle='#fff';px.strokeStyle=rgba(c,1);px.lineWidth=1.6;px.beginPath();px.arc(cx,cy,13*s,0,6.3);px.fill();px.stroke();px.fillStyle=rgba(c,1);px.beginPath();px.arc(cx,cy,5.5*s,0,6.3);px.fill();px.globalAlpha=1}
+ (function f(now){const t=cl((now-t0)/dur);px.clearRect(0,0,W,H);
+  if(mode==='in'){const a=eo(cl(t/.3));px.fillStyle=`rgba(251,252,253,${.55*a})`;px.fillRect(0,0,W,H);lanes(a,false,eo(cl(t/.35)));dots(eio(cl(t/.7))*1.1,a,false);hub(.7+.3*eo(cl((t-.3)/.3)),a);
+   const r=R*eio(cl((t-.64)/.36));if(r>0){px.fillStyle='#fbfcfd';px.beginPath();px.arc(cx,cy,r,0,6.3);px.fill();px.strokeStyle=rgba(c,.35*(1-t));px.lineWidth=1.2;px.stroke()}
+   if(t>.7)pt.classList.add('show');
+  }else{px.fillStyle='#fbfcfd';px.fillRect(0,0,W,H);const r=R*eio(cl((t-.12)/.88));
+   px.globalCompositeOperation='destination-out';px.beginPath();px.arc(cx,cy,r,0,6.3);px.fill();px.globalCompositeOperation='source-over';
+   if(r>0){px.strokeStyle=rgba(c,.35*(1-t));px.lineWidth=1.2;px.beginPath();px.arc(cx,cy,r,0,6.3);px.stroke()}
+   const a=1-cl((t-.35)/.65);lanes(a,true,1);dots(1.1-eo(t)*1.1,a,true);hub(1,1-cl(t/.4));if(t>.1)pt.classList.remove('show')}
+  if(t<1)requestAnimationFrame(f);else done&&done()})(t0)}
+function run(mode,ox,oy,dur,done,kind){size();pt.classList.remove('off');pt.classList.add('run');
+ if(kind==='cart')return runCart(mode,ox,oy,dur,done);if(kind==='flow')return runFlow(mode,ox,oy,dur,done);
  const R=Math.hypot(Math.max(ox,W-ox),Math.max(oy,H-oy))+20;
  const ps=Array.from({length:110},(_,i)=>{const a=i/110*6.283+Math.random()*.2;return{a,d:R*(.35+Math.random()*.75),s:.55+Math.random()*.45,o:Math.random()*.25}});
  const t0=performance.now();
@@ -34,15 +77,15 @@ function enter(){if(!pt)return;if(RM){pt.classList.add('off');return}
  let s={};try{s=JSON.parse(sessionStorage.getItem('bc-pt')||'{}');sessionStorage.removeItem('bc-pt')}catch(e){}
  if(lbl&&s.l){lbl.textContent=s.l;pt.classList.add('show')}
  const ox=(s.x??.5)*innerWidth,oy=(s.y??.5)*innerHeight;
- setTimeout(()=>run('out',ox,oy,s.l?950:800,()=>{pt.classList.add('off');pt.classList.remove('run','show')}),s.l?140:0)}
+ const k=s.k,D=k?540:(s.l?950:800);setTimeout(()=>run('out',ox,oy,D,()=>{pt.classList.add('off');pt.classList.remove('run','show')},k),k?60:(s.l?140:0))}
 enter();setTimeout(()=>pt&&pt.classList.contains('run')===false&&!pt.classList.contains('off')&&pt.classList.add('off'),2500);
 addEventListener('pageshow',e=>{if(e.persisted&&pt){pt.classList.add('off');pt.classList.remove('run','show')}});
 document.addEventListener('click',e=>{const a=e.target.closest('a');if(!a||RM||!pt)return;const href=a.getAttribute('href');
- if(!href||href.startsWith('#')||a.target==='_blank'||e.metaKey||e.ctrlKey||e.shiftKey||e.button||/^(mailto:|tel:|https?:)/.test(href))return;
+ if(!href||href.startsWith('#')||a.hasAttribute('data-contact')||a.target==='_blank'||e.metaKey||e.ctrlKey||e.shiftKey||e.button||/^(mailto:|tel:|https?:)/.test(href))return;
  const cur=location.pathname.split('/').pop()||'index.html',dest=href.split('#')[0];if(dest===cur&&href.includes('#'))return;
- e.preventDefault();const ox=e.clientX||innerWidth/2,oy=e.clientY||innerHeight/2,l=a.dataset.label||'Loading';
- if(lbl)lbl.textContent=l;try{sessionStorage.setItem('bc-pt',JSON.stringify({x:ox/innerWidth,y:oy/innerHeight,l}))}catch(_){}
- run('in',ox,oy,820,()=>location.href=href)});
+ e.preventDefault();const ox=e.clientX||innerWidth/2,oy=e.clientY||innerHeight/2,l=a.dataset.label||'Loading',k=a.dataset.pt||'';
+ if(lbl)lbl.textContent=l;try{sessionStorage.setItem('bc-pt',JSON.stringify({x:ox/innerWidth,y:oy/innerHeight,l,k}))}catch(_){}
+ run('in',ox,oy,k?660:820,()=>location.href=href,k)});
 /* ---------- reveals ---------- */
 const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.14,rootMargin:'0px 0px -6% 0px'});
 $$('.rv').forEach(el=>io.observe(el));
@@ -57,6 +100,28 @@ function sc(){const y=scrollY,vh=innerHeight;
  if(!RM)par.forEach(el=>{const b=el.parentElement.getBoundingClientRect();el.style.setProperty('--py',((b.top+b.height/2-vh/2)*parseFloat(el.dataset.par)).toFixed(1)+'px')});
  tk=false}
 addEventListener('scroll',()=>{if(!tk){tk=true;requestAnimationFrame(sc)}},{passive:true});addEventListener('resize',sc);sc();
+/* ---------- contact modal (Web3Forms; no address in the page) ---------- */
+const cm=$('#contact-modal');
+if(cm){const f=$('form',cm),st=$('.cm-st',cm),done=$('.cm-done',cm),KEY=f.dataset.key||'';let last=null;
+ const foc=()=>$$('button,input:not([type=hidden]):not(.hp),textarea,a[href]',cm).filter(x=>x.offsetParent!==null);
+ function open(e){if(e)e.preventDefault();last=document.activeElement;cm.hidden=false;document.documentElement.classList.add('cm-on');requestAnimationFrame(()=>cm.classList.add('on'));setTimeout(()=>{const x=$('input[name=name]',cm);x&&x.focus()},60)}
+ function close(){cm.classList.remove('on');document.documentElement.classList.remove('cm-on');setTimeout(()=>{cm.hidden=true},RM?0:220);last&&last.focus&&last.focus()}
+ document.addEventListener('click',e=>{const a=e.target.closest('[data-contact]');if(a&&!e.metaKey&&!e.ctrlKey){open(e)}});
+ $$('[data-close]',cm).forEach(b=>b.addEventListener('click',close));
+ cm.addEventListener('keydown',e=>{if(e.key==='Escape'){e.preventDefault();close()}else if(e.key==='Tab'){const l=foc();if(!l.length)return;const a=l[0],z=l[l.length-1];if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus()}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}}});
+ const err=(n,m)=>{const i=f.elements[n],w=i.closest('label');w.classList.toggle('bad',!!m);i.setAttribute('aria-invalid',m?'true':'false');$('.er',w).textContent=m||''};
+ f.addEventListener('submit',async e=>{e.preventDefault();const v=n=>f.elements[n].value.trim();let ok=true;
+  err('name',v('name')?'':'Please add your name.');if(!v('name'))ok=false;
+  const em=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v('email'));err('email',em?'':'Please add an email I can reply to.');if(!em)ok=false;
+  err('message',v('message')?'':'Please write a short message.');if(!v('message'))ok=false;
+  if(!ok){const b=$('.bad input,.bad textarea',f);b&&b.focus();return}
+  if(!KEY){st.className='cm-st warn';st.innerHTML='Sending isn’t connected yet, so this message wasn’t sent. Your text is still here. For now, please reach me on <a href="'+f.dataset.li+'" target="_blank" rel="noopener">LinkedIn</a>.';return}
+  const btn=$('button[type=submit]',f);btn.disabled=true;st.className='cm-st';st.textContent='Sending…';
+  try{const r=await fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({access_key:KEY,subject:'New message from your portfolio',from_name:'Portfolio contact form',name:v('name'),email:v('email'),message:v('message'),botcheck:f.elements.botcheck.checked})});
+   const j=await r.json().catch(()=>({}));if(r.ok&&j.success!==false){f.hidden=true;done.hidden=false;$('h3',done).focus()}else throw 0}
+  catch(_){st.className='cm-st warn';st.innerHTML='Something went wrong and the message didn’t send. Please try again, or reach me on <a href="'+f.dataset.li+'" target="_blank" rel="noopener">LinkedIn</a>.'}
+  btn.disabled=false});
+}
 })();
 
 /* Case Study 01: lightbox, scroll-through screenshots, spec strip */
@@ -123,4 +188,13 @@ if(matchMedia('(hover:hover)').matches)$$('.frame.real,.cmpw').forEach(f=>{f.add
 $$('.cmp').forEach(c=>{const r=c.querySelector('input'),set=v=>c.style.setProperty('--x',v+'%');r.addEventListener('input',()=>set(r.value));
  if(RM)return;const io=new IntersectionObserver(es=>{if(es[0].isIntersecting){io.disconnect();let t0=null;const D=1800;const st=n=>{t0=t0||n;const p=Math.min(1,(n-t0)/D);if(r.dataset.touched)return;const v=50+Math.sin(p*Math.PI*2)*-22*(1-p*.2);set(v.toFixed(1));r.value=v;if(p<1)requestAnimationFrame(st);else{set(50);r.value=50}};setTimeout(()=>requestAnimationFrame(st),500)}},{threshold:.4});io.observe(c);
  r.addEventListener('pointerdown',()=>r.dataset.touched=1,{once:true})});
+})();
+
+/* Case Study 02: hero routing sequence, before/after toggle, show-all screens */
+(()=>{const RM=window.RM,$=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const nx=$('.nx');if(nx){const lg=$$('.nx-lg li');const set=k=>{['s1','s2','s3','s4'].forEach((c,i)=>nx.classList.toggle(c,i<k));lg.forEach((l,i)=>{l.classList.toggle('on',i===Math.min(k,3)-1||(k===0&&i===0));l.classList.toggle('dn',i<Math.min(k,3)-1||k>=4&&i<2)})};
+ if(RM){set(4)}else{let st=0;const go=()=>{if(st)return;st=1;[1,2,3,4].forEach((k,i)=>setTimeout(()=>set(k),350+i*800))};
+  const io=new IntersectionObserver(es=>{if(es.some(e=>e.isIntersecting)){go();io.disconnect()}},{threshold:.3});io.observe(nx)}}
+$$('.ba').forEach(b=>{const bs=$$('.ba-t button',b),is=$$('.ba-i',b);bs.forEach(x=>x.addEventListener('click',()=>{const v=x.dataset.v;bs.forEach(y=>y.setAttribute('aria-pressed',y===x?'true':'false'));is.forEach(i=>{const on=i.dataset.v===v;i.classList.toggle('on',on);on?i.removeAttribute('aria-hidden'):i.setAttribute('aria-hidden','true')})}))});
+const g=$('.c2g'),gb=$('.c2g-x');if(g&&gb)gb.addEventListener('click',()=>{const all=g.classList.toggle('all');gb.setAttribute('aria-expanded',all);gb.firstChild.textContent=all?'Show fewer screens ':'Show all 24 screens ';if(!all)g.scrollIntoView({behavior:RM?'auto':'smooth',block:'start'});else{const f=$$('.si.more .cr',g)[0];f&&f.focus({preventScroll:true})}});
 })();
