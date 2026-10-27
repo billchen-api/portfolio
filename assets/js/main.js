@@ -215,8 +215,14 @@ const st=$('#tps'),its=$$('.tpi');if(st&&its.length){let pin=null;
   b.addEventListener('mouseenter',()=>show(k));b.addEventListener('mouseleave',()=>show(pin));
   b.addEventListener('focus',()=>show(k));b.addEventListener('blur',()=>show(pin));
   b.addEventListener('click',()=>{pin=pin===k?null:k;its.forEach(x=>x.setAttribute('aria-pressed',x.dataset.k===pin));show(pin||k)})})}
-const su=$('.su'),rp=$('.su-rp');if(su){const N=9,T=[200,900,1500,1950,2400,3050,3450,4050,4800];let tm=[];
- const set=k=>{for(let i=1;i<=N;i++)su.classList.toggle('s'+i,i<=k)};
- const run=()=>{tm.forEach(clearTimeout);tm=[];set(0);if(rp)rp.hidden=true;T.forEach((t,i)=>tm.push(setTimeout(()=>set(i+1),t)));tm.push(setTimeout(()=>{if(rp)rp.hidden=false},T[N-1]+500))};
- if(RM){set(N);rp&&rp.remove()}else{const io=new IntersectionObserver(es=>{if(es.some(e=>e.isIntersecting)){run();io.disconnect()}},{threshold:.4});io.observe(su);rp&&rp.addEventListener('click',run)}}
+})();
+/* Case Study 02 R12: challenge sort, drag and drop setup */
+(()=>{const RM=window.RM,$=(s,r=document)=>r.querySelector(s);
+const once=(el,fn,t)=>{const io=new IntersectionObserver(es=>{if(es.some(e=>e.isIntersecting)){fn();io.disconnect()}},{threshold:t});io.observe(el)};
+const cx=$('.c2x');if(cx){const K=()=>['k1','k2','k3'].forEach((k,i)=>setTimeout(()=>cx.classList.add(k),RM?0:400+i*900));RM?K():once(cx,K,.5)}
+const sv=$('.sv'),rp=$('.su-rp');if(sv){const T=[300,1000,1600,2200,2700,3000,3900,4500,5100,5700,6200,6500,7400,8000,8400],N=T.length;let tm=[];
+ const set=k=>{for(let i=1;i<=N;i++)sv.classList.toggle('s'+i,i<=k)};
+ const run=()=>{tm.forEach(clearTimeout);tm=[];sv.classList.add('rs');set(0);void sv.offsetWidth;sv.classList.remove('rs');if(rp)rp.hidden=true;
+  T.forEach((t,i)=>tm.push(setTimeout(()=>set(i+1),t)));tm.push(setTimeout(()=>{if(rp)rp.hidden=false},T[N-1]+500))};
+ if(RM){set(N);rp&&rp.remove()}else{once(sv,run,.4);rp&&rp.addEventListener('click',run)}}
 })();
