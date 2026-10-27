@@ -6,7 +6,7 @@ const pt=$('.pt'),pc=pt&&pt.querySelector('canvas'),px=pc&&pc.getContext('2d'),l
 let W,H;function size(){const D=Math.min(devicePixelRatio||1,2);W=innerWidth;H=innerHeight;pc.width=W*D;pc.height=H*D;px.setTransform(D,0,0,D,0,0)}
 const eio=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2,eo=t=>1-Math.pow(1-t,3),cl=t=>Math.max(0,Math.min(1,t));
 /* per-case transitions: 'cart' (Marketplace: item drops into a cart, order confirmed) and 'flow' (Data Broker: traffic routes into a node) */
-const COL={cart:[43,98,255],flow:[14,124,134]};
+const COL={cart:[43,98,255],flow:[8,82,114]};
 const rgba=(c,a)=>`rgba(${c[0]},${c[1]},${c[2]},${a})`;
 function cartIcon(x,y,s,c,a,chk){px.save();px.translate(x,y);px.scale(s,s);px.globalAlpha=a;
  px.fillStyle='#fff';px.beginPath();px.arc(0,0,46,0,6.3);px.fill();px.strokeStyle=rgba(c,.18);px.lineWidth=1;px.stroke();
@@ -202,8 +202,21 @@ $$('.cmp').forEach(c=>{const r=c.querySelector('input'),set=v=>c.style.setProper
 
 /* Case Study 02: hero routing sequence, show-all screens */
 (()=>{const RM=window.RM,$=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
-const nx=$('.nx');if(nx){const set=k=>{['s1','s2','s3','s4'].forEach((c,i)=>nx.classList.toggle(c,i<k))};
+const nx=$('.nxa');if(nx){const set=k=>{['s1','s2','s3','s4'].forEach((c,i)=>nx.classList.toggle(c,i<k))};
  if(RM){set(4)}else{let st=0;const go=()=>{if(st)return;st=1;[1,2,3,4].forEach((k,i)=>setTimeout(()=>set(k),350+i*800))};
   const io=new IntersectionObserver(es=>{if(es.some(e=>e.isIntersecting)){go();io.disconnect()}},{threshold:.3});io.observe(nx)}}
 const g=$('.c2g'),gb=$('.c2g-x');if(g&&gb)gb.addEventListener('click',()=>{const all=g.classList.toggle('all');gb.setAttribute('aria-expanded',all);gb.firstChild.textContent=all?'Show fewer screens ':'Show all 24 screens ';if(!all)g.scrollIntoView({behavior:RM?'auto':'smooth',block:'start'});else{const f=$$('.si.more .cr',g)[0];f&&f.focus({preventScroll:true})}});
+})();
+/* Case Study 02 R11: topology highlights, animated setup */
+(()=>{const RM=window.RM,$=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const st=$('#tps'),its=$$('.tpi');if(st&&its.length){let pin=null;
+ const show=k=>{if(k)st.dataset.k=k;else delete st.dataset.k;its.forEach(b=>b.classList.toggle('on',b.dataset.k===k))};
+ its.forEach(b=>{const k=b.dataset.k;
+  b.addEventListener('mouseenter',()=>show(k));b.addEventListener('mouseleave',()=>show(pin));
+  b.addEventListener('focus',()=>show(k));b.addEventListener('blur',()=>show(pin));
+  b.addEventListener('click',()=>{pin=pin===k?null:k;its.forEach(x=>x.setAttribute('aria-pressed',x.dataset.k===pin));show(pin||k)})})}
+const su=$('.su'),rp=$('.su-rp');if(su){const N=9,T=[200,900,1500,1950,2400,3050,3450,4050,4800];let tm=[];
+ const set=k=>{for(let i=1;i<=N;i++)su.classList.toggle('s'+i,i<=k)};
+ const run=()=>{tm.forEach(clearTimeout);tm=[];set(0);if(rp)rp.hidden=true;T.forEach((t,i)=>tm.push(setTimeout(()=>set(i+1),t)));tm.push(setTimeout(()=>{if(rp)rp.hidden=false},T[N-1]+500))};
+ if(RM){set(N);rp&&rp.remove()}else{const io=new IntersectionObserver(es=>{if(es.some(e=>e.isIntersecting)){run();io.disconnect()}},{threshold:.4});io.observe(su);rp&&rp.addEventListener('click',run)}}
 })();
