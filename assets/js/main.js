@@ -6,7 +6,7 @@ const pt=$('.pt'),pc=pt&&pt.querySelector('canvas'),px=pc&&pc.getContext('2d'),l
 let W,H;function size(){const D=Math.min(devicePixelRatio||1,2);W=innerWidth;H=innerHeight;pc.width=W*D;pc.height=H*D;px.setTransform(D,0,0,D,0,0)}
 const eio=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2,eo=t=>1-Math.pow(1-t,3),cl=t=>Math.max(0,Math.min(1,t));
 /* per-case transitions: 'cart' (Marketplace: item drops into a cart, order confirmed) and 'flow' (Data Broker: traffic routes into a node) */
-const COL={cart:[43,98,255],flow:[8,82,114],pulse:[103,61,147]};
+const COL={cart:[43,98,255],flow:[8,82,114],pulse:[5,105,192]};
 const rgba=(c,a)=>`rgba(${c[0]},${c[1]},${c[2]},${a})`;
 function cartIcon(x,y,s,c,a,chk){px.save();px.translate(x,y);px.scale(s,s);px.globalAlpha=a;
  px.fillStyle='#fff';px.beginPath();px.arc(0,0,46,0,6.3);px.fill();px.strokeStyle=rgba(c,.18);px.lineWidth=1;px.stroke();
@@ -285,13 +285,12 @@ const sv=$('.sv'),rp=$('.su-rp');if(sv){const cur=$('.sv-cur',sv),F=['cur','pr',
 if(!document.body.classList.contains('cs3'))return;
 const seen=(el,f,t=.4)=>{if(!('IntersectionObserver' in window)){f();return}const io=new IntersectionObserver(es=>{if(es.some(e=>e.isIntersecting)){io.disconnect();f()}},{threshold:t});io.observe(el)};
 const fmt=n=>Math.round(n).toLocaleString('en-US');
-/* hero: epoch timeline drives smart events by severity */
-const ae=$('.ae');if(ae&&window.AE_EP){const EP=AE_EP,T=AE_T,N=EP.length,tr=$('.ae-tr',ae),dots=$$('.ae-e',ae),ns=$$('.ae-n',ae),tm=$('.ae-tm',ae),tm2=$('.ae-tm2',ae),cds=$$('.ae-bg .cd');
+/* hero: epoch timeline drives the Smart Events dashlet; circle colour = highest severity in that epoch */
+const ae=$('.aew');if(ae&&window.AE_EP){const EP=AE_EP,T=AE_T,N=EP.length,tr=$('.ae-tr',ae),dots=$$('.ae-e',ae),ns=$$('.ae-n',ae),tm2=$('.ae-tm2',ae);
  let cur=-1,user=false,tmr=null;const val=ns.map(n=>+n.textContent.replace(/,/g,''));
  const tween=(k,to)=>{const n=ns[k],from=val[k];val[k]=to;if(RM){n.textContent=fmt(to);return}const t0=performance.now();const st=t=>{const p=Math.min(1,(t-t0)/320),e=1-Math.pow(1-p,3);n.textContent=fmt(from+(to-from)*e);if(p<1&&val[k]===to)requestAnimationFrame(st)};requestAnimationFrame(st)};
  const sel=i=>{i=Math.max(0,Math.min(N-1,i));if(i===cur)return;cur=i;dots.forEach((d,k)=>{const on=k===i;d.classList.toggle('on',on);d.setAttribute('aria-checked',on);d.tabIndex=on?0:-1});
-  const e=EP[i],v=[...e,e.reduce((a,b)=>a+b,0)];ns.forEach((n,k)=>tween(+n.dataset.k,v[+n.dataset.k]));
-  tm.firstChild.textContent=T[i];tm2.textContent=T[i];cds.forEach((c,j)=>{c.classList.toggle('hot',(j*5+i)%7<2);c.classList.toggle('ok',(j*3+i)%9===4)})};
+  const e=EP[i],v=[...e,e.reduce((a,b)=>a+b,0)];ns.forEach(n=>tween(+n.dataset.k,v[+n.dataset.k]));tm2.textContent=T[i]};
  const stop=()=>{user=true;clearInterval(tmr)};
  const near=x=>{const r=tr.getBoundingClientRect();return Math.round((x-r.left)/r.width*(N-1))};
  tr.addEventListener('pointermove',e=>{if(e.pointerType==='mouse'||e.buttons){stop();sel(near(e.clientX))}});
@@ -299,7 +298,7 @@ const ae=$('.ae');if(ae&&window.AE_EP){const EP=AE_EP,T=AE_T,N=EP.length,tr=$('.
  tr.addEventListener('keydown',e=>{const k={ArrowLeft:-1,ArrowDown:-1,ArrowRight:1,ArrowUp:1}[e.key];let i=null;if(k)i=cur+k;else if(e.key==='Home')i=0;else if(e.key==='End')i=N-1;if(i===null)return;e.preventDefault();stop();sel(i);dots[cur].focus()});
  dots.forEach((d,k)=>d.addEventListener('click',()=>{stop();sel(k)}));
  sel(N-1);
- if(!RM)seen(ae,()=>{if(user)return;let i=0;sel(0);tmr=setInterval(()=>{if(user){clearInterval(tmr);return}i++;sel(i);if(i>=N-1)clearInterval(tmr)},230)},.5)}
+ if(!RM)seen(ae,()=>{if(user)return;let i=0;sel(0);tmr=setInterval(()=>{if(user){clearInterval(tmr);return}i++;sel(i);if(i>=N-1)clearInterval(tmr)},260)},.5)}
 /* challenge: scattered events settle into epochs */
 const nz=$('.nz');if(nz){const go=()=>nz.classList.add('nz-go');if(RM)go();else seen(nz,go,.45);
  const rp=$('.nz-rp',nz);rp&&rp.addEventListener('click',()=>{nz.classList.remove('nz-go');void nz.offsetWidth;requestAnimationFrame(()=>requestAnimationFrame(go))})}
