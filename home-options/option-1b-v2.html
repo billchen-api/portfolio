@@ -1,0 +1,193 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bill Chen - Portfolio</title><meta name="robots" content="noindex">
+<script>document.documentElement.classList.add('js');window.RM=matchMedia('(prefers-reduced-motion: reduce)').matches;</script>
+<link rel="preload" href="../assets/fonts/Geist.ttf" as="font" type="font/ttf" crossorigin><link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cg fill='none' stroke='%232b62ff' stroke-width='1.6'%3E%3Ccircle cx='4' cy='4' r='2.2'/%3E%3Ccircle cx='14' cy='5' r='2.2'/%3E%3Ccircle cx='8' cy='14' r='2.2'/%3E%3C/g%3E%3C/svg%3E">
+<style>html,body{height:100%}
+body.g2b{background:#ebe7e0;overflow:hidden}
+.g2{--fw:min(29vw,calc((100dvh - 64px - 250px)/.8),540px);--floor:clamp(150px,24dvh,260px);position:relative;height:100dvh;overflow:hidden;isolation:isolate}
+/* room: warm wall with a soft vignette, a floor with a baseboard */
+.g2-wall{position:absolute;inset:0 0 var(--floor) 0;z-index:-2;background:
+ radial-gradient(120% 95% at 50% 25%,#ddd7cd 0%,#d6cfc3 60%,#c9c1b3 100%)}
+.g2-wall::after{content:"";position:absolute;left:0;right:0;bottom:0;height:12px;background:linear-gradient(#f6f3ee,#e4dfd6);box-shadow:0 -1px 0 rgba(90,70,40,.12),0 2px 3px rgba(60,45,30,.12)}
+.g2-floor{position:absolute;left:0;right:0;bottom:0;height:var(--floor);z-index:-2;background:
+ linear-gradient(180deg,rgba(60,45,30,.16),rgba(60,45,30,0) 40%),
+ repeating-linear-gradient(90deg,rgba(255,255,255,0) 0 179px,rgba(110,85,55,.10) 179px 180px),
+ linear-gradient(180deg,#d8cfc1,#cdc2b1)}
+.g2-row{list-style:none;position:absolute;left:0;right:0;top:calc(64px + clamp(56px,9dvh,96px));display:flex;justify-content:center;gap:clamp(32px,4vw,96px);padding:0 24px}
+.g2-it{width:var(--fw);position:relative}
+.g2-a{display:block;position:relative;color:inherit;text-decoration:none;outline:none;-webkit-tap-highlight-color:transparent}
+/* light: brass picture light with a cone that falls off down the frame and onto the wall */
+.g2-pool{position:absolute;left:50%;top:-34px;width:190%;height:150%;transform:translateX(-50%);pointer-events:none;z-index:0;
+ background:
+  radial-gradient(22% 12% at 50% 0%,rgba(255,253,244,1),rgba(255,250,236,0) 100%),
+  radial-gradient(40% 50% at 50% 0%,rgba(255,251,240,.95) 0%,rgba(255,248,232,.78) 28%,rgba(255,246,228,.42) 52%,rgba(255,245,226,.14) 72%,rgba(255,245,226,0) 88%),
+  radial-gradient(60% 72% at 50% 0%,rgba(255,247,230,.35) 0%,rgba(255,247,230,0) 100%);
+ filter:blur(3px);opacity:.88;transition:opacity .5s var(--e,ease)}
+.g2-lamp{position:absolute;left:50%;top:-40px;width:46%;height:40px;transform:translateX(-50%);z-index:3;pointer-events:none}
+.g2-arm{position:absolute;left:50%;bottom:0;width:4px;height:36px;margin-left:-2px;border-radius:2px;background:linear-gradient(90deg,#8a6c34,#e2c88c 45%,#9c7b3e)}
+.g2-arm::before{content:"";position:absolute;left:-5px;bottom:-3px;width:14px;height:6px;border-radius:2px;background:linear-gradient(#e6cd92,#a5843f)}
+.g2-hood{position:absolute;left:0;right:0;top:0;height:11px;border-radius:6px 6px 8px 8px;background:linear-gradient(180deg,#f0dca6 0%,#c9a862 40%,#8f6e31 100%);box-shadow:0 2px 3px rgba(60,40,10,.35)}
+.g2-hood::after{content:"";position:absolute;left:6%;right:6%;bottom:-2px;height:3px;border-radius:2px;background:#fff7df;box-shadow:0 2px 6px 1px rgba(255,236,186,.95),0 6px 18px 4px rgba(255,236,190,.55)}
+/* frame: painted white moulding, bevelled, with a mat and a soft wall shadow */
+.g2-fr{position:relative;z-index:1;display:block;padding:calc(var(--fw)*.034);background:#fbfaf7;border-radius:2px;
+ box-shadow:inset 0 2px 0 #fff,inset 2px 0 0 #fdfcfa,inset -2px 0 0 #e4e0d8,inset 0 -3px 0 #d8d3c9,
+  0 0 0 1px rgba(80,65,40,.10),0 26px 34px -18px rgba(60,44,26,.48),0 9px 14px -6px rgba(60,44,26,.26),0 2px 3px rgba(60,44,26,.12);
+ transition:transform .5s var(--e,ease),box-shadow .5s var(--e,ease)}
+.g2-mat{display:block;padding:calc(var(--fw)*.07);background:#f7f5f0;box-shadow:inset 0 3px 5px -2px rgba(60,44,26,.30),inset 0 0 0 1px rgba(80,65,40,.08)}
+.g2-art{display:block;position:relative;aspect-ratio:4/3;overflow:hidden;background:#fbfcfd;box-shadow:0 0 0 2px #fffefa,0 0 0 3px rgba(80,65,40,.12)}
+.g2-art::after{content:"";position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 3px 6px -2px rgba(40,30,20,.32),inset 2px 0 4px -3px rgba(40,30,20,.2);z-index:2}
+.g2-if{position:absolute;left:0;top:0;width:1440px;height:900px;border:0;transform-origin:0 0;pointer-events:none;opacity:0;transition:opacity .45s ease;background:transparent}
+.g2-if.on{opacity:1}
+.g2-if.play{z-index:1}
+.g2-glint{position:absolute;inset:0;pointer-events:none;z-index:3;background:radial-gradient(90% 55% at 50% -8%,rgba(255,250,236,.30),rgba(255,250,236,0) 70%),linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(70,52,28,.07));transition:opacity .5s}
+/* brass name plate; on hover it extends to show the subtitle */
+.g2-pl{position:relative;z-index:2;display:block;width:min(84%,330px);margin:clamp(16px,2.6dvh,26px) auto 0;padding:9px 18px 10px;border-radius:3px;text-align:center;color:#33240a;
+ background:repeating-linear-gradient(90deg,rgba(255,255,255,.05) 0 1px,rgba(0,0,0,.025) 1px 3px),linear-gradient(180deg,#ecd9a6 0%,#d6b978 42%,#c3a160 58%,#dcc287 100%);
+ box-shadow:inset 0 1px 0 rgba(255,250,225,.85),inset 0 -1px 0 rgba(110,80,30,.45),0 0 0 1px rgba(120,90,40,.35),0 6px 10px -5px rgba(60,44,26,.45)}
+.g2-pl::before,.g2-pl::after{content:"";position:absolute;top:50%;width:5px;height:5px;margin-top:-2.5px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#f6e7bd,#8d6b2c)}
+.g2-pl::before{left:7px}.g2-pl::after{right:7px}
+.g2-nm{display:block;font-size:14px;font-weight:600;letter-spacing:.005em;line-height:1.3;text-shadow:0 1px 0 rgba(255,244,210,.7);text-wrap:balance}
+.g2-sb{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s cubic-bezier(.2,.7,.2,1)}
+.g2-sb>span{overflow:hidden}
+.g2-sbt{display:block;margin-top:7px;padding-top:7px;border-top:1px solid rgba(110,80,30,.38);box-shadow:inset 0 1px 0 rgba(255,246,215,.6);font-size:13.5px;font-weight:500;line-height:1.4;text-wrap:balance;text-shadow:0 1px 0 rgba(255,244,210,.6)}
+.g2-it.act .g2-sb{grid-template-rows:1fr}
+.g2-it.act .g2-pool{opacity:1}
+.g2-it.act .g2-fr{transform:translateY(-3px);box-shadow:inset 0 2px 0 #fff,inset 2px 0 0 #fdfcfa,inset -2px 0 0 #e4e0d8,inset 0 -3px 0 #d8d3c9,0 0 0 1px rgba(80,65,40,.10),0 34px 40px -20px rgba(60,44,26,.52),0 12px 18px -8px rgba(60,44,26,.28),0 2px 3px rgba(60,44,26,.12)}
+.g2-a:focus-visible .g2-fr{outline:2px solid var(--acc);outline-offset:6px}
+.g2-a:focus-visible .g2-pl{outline:2px solid var(--acc);outline-offset:3px}
+/* Bill, seen from behind, bottom right */
+.g2-me{position:absolute;right:clamp(16px,3.2vw,64px);bottom:clamp(10px,2dvh,24px);z-index:5;height:clamp(200px,33dvh,340px)}
+.g2-fig{display:block;height:100%;aspect-ratio:120/300;padding:0;border:0;background:none;cursor:pointer;border-radius:12px}
+.g2-fig svg{display:block;width:100%;height:100%;transform-origin:50% 95%;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.g2-me:hover .g2-fig svg,.g2-me.open .g2-fig svg,.g2-fig:focus-visible svg{transform:rotate(-1.2deg)}
+.g2-fig:focus-visible{outline:2px solid var(--acc);outline-offset:4px}
+.g2-bub{position:absolute;right:calc(100% + 8px);bottom:6%;width:min(468px,calc(100vw - 48px));padding:18px 20px 18px;background:#fff;color:var(--fg);border-radius:14px;
+ box-shadow:0 0 0 1px rgba(10,20,40,.08),0 22px 40px -18px rgba(20,30,50,.38);opacity:0;visibility:hidden;transform:translateY(6px) scale(.98);transform-origin:100% 100%;
+ transition:opacity .25s,transform .35s cubic-bezier(.2,.7,.2,1),visibility 0s .35s}
+.g2-bub::after{content:"";position:absolute;right:-7px;top:30px;width:14px;height:14px;background:#fff;transform:rotate(45deg);box-shadow:1px -1px 0 rgba(10,20,40,.06)}
+.g2-bh{display:block;font-size:15px;font-weight:600;margin-bottom:6px}
+.g2-bub p{font-size:14.5px;line-height:1.5;color:var(--fg);text-wrap:pretty}
+.g2-cta{margin-top:14px;padding:10px 16px;font-size:14px}
+.g2-me:hover .g2-bub,.g2-me:focus-within .g2-bub,.g2-me.open .g2-bub{opacity:1;visibility:visible;transform:none;transition:opacity .25s,transform .35s cubic-bezier(.2,.7,.2,1),visibility 0s}
+@media(min-width:701px){.g2-me.shut .g2-bub{opacity:0;visibility:hidden}}
+@media(max-height:780px) and (min-width:701px){.g2-me{height:max(170px,28dvh)}}
+@media(max-height:820px) and (min-width:701px){.g2-nm{font-size:13px}.g2-sbt{font-size:12.5px}.g2-pl{padding:7px 16px 8px}}
+@media(max-width:1100px) and (min-width:701px){.g2{--fw:min(27vw,calc((100dvh - 64px - 250px)/.8))}.g2-row{gap:3vw}}
+/* phones: stack the frames and let the page scroll; Bill and his note come last */
+@media(max-width:700px){
+ body.g2b{overflow:auto;height:auto}html{height:auto}
+ .g2{--fw:min(78vw,380px);height:auto;min-height:100dvh;padding:calc(64px + 60px) 0 0;overflow:clip}
+ .g2-wall{inset:0}.g2-wall::after{display:none}
+ .g2-floor{display:none}
+ .g2-row{position:static;flex-direction:column;align-items:center;gap:76px;padding:0}
+ .g2-me{position:relative;right:auto;bottom:auto;height:auto;display:flex;flex-direction:column;align-items:center;gap:14px;margin:56px auto 0;padding:0 20px 28px}
+ .g2-fig{height:220px;order:2}
+ .g2-bub{position:relative;right:auto;bottom:auto;order:1;opacity:1;visibility:visible;transform:none;width:min(360px,100%)}
+ .g2-bub::after{right:auto;top:auto;left:50%;bottom:-7px;margin-left:-7px;box-shadow:1px 1px 0 rgba(10,20,40,.06)}
+}
+@media(prefers-reduced-motion:reduce){.g2-pool,.g2-fr,.g2-sb,.g2-if,.g2-bub,.g2-fig svg{transition:none!important}}
+</style></head><body id="top" class="g2b">
+<div class="pt" aria-hidden="true"><canvas></canvas></div><nav><div class="w"><a class="brand" href="../index.html" data-label="Index"><svg class="mark" viewBox="0 0 18 18" aria-hidden="true"><g fill="none" stroke="#2b62ff" stroke-width="1.4"><circle cx="4" cy="4" r="2.2"/><circle cx="14" cy="5" r="2.2"/><circle cx="8" cy="14" r="2.2"/><path d="M6 4.4 11.8 5M5 6 7.2 12M13 7 9.4 12.2"/></g></svg>Bill Chen</a><div class="links"><a class="pf" href="#gallery" aria-current="page">Portfolio</a><a class="ic" href="#contact" data-contact aria-label="Contact" title="Contact"><svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="m4 7.5 8 6 8-6"/></svg></a><a class="ic" href="https://www.linkedin.com/in/billchenux" target="_blank" rel="noopener" aria-label="LinkedIn (opens in a new tab)" title="LinkedIn"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg></a></div></div></nav>
+<main class="g2" id="gallery">
+<h1 class="sr">Bill Chen, selected work</h1>
+<div class="g2-wall" aria-hidden="true"></div><div class="g2-floor" aria-hidden="true"></div>
+<ul class="g2-row" aria-label="Case studies"><li class="g2-it" data-c="as">
+<a class="g2-a" href="../case-study-03.html" data-pt="pulse" data-label="Network Assurance Engine" aria-describedby="g2-s-as">
+<span class="g2-pool" aria-hidden="true"></span>
+<span class="g2-lamp" aria-hidden="true"><i class="g2-arm"></i><i class="g2-hood"></i></span>
+<span class="g2-fr"><span class="g2-mat"><span class="g2-art" inert><iframe class="g2-if still" src="hero.html?c=as&amp;m=still" title="" aria-hidden="true" tabindex="-1" scrolling="no"></iframe></span></span><span class="g2-glint" aria-hidden="true"></span></span>
+<span class="g2-pl"><span class="g2-nm">Network Assurance Engine</span><span class="g2-sb"><span><span class="g2-sbt" id="g2-s-as">Enterprise visualization &amp; proactive network&nbsp;monitoring</span></span></span></span>
+</a></li><li class="g2-it" data-c="db">
+<a class="g2-a" href="../case-study-02.html" data-pt="flow" data-label="Nexus Dashboard Data Broker" aria-describedby="g2-s-db">
+<span class="g2-pool" aria-hidden="true"></span>
+<span class="g2-lamp" aria-hidden="true"><i class="g2-arm"></i><i class="g2-hood"></i></span>
+<span class="g2-fr"><span class="g2-mat"><span class="g2-art" inert><iframe class="g2-if still" src="hero.html?c=db&amp;m=still" title="" aria-hidden="true" tabindex="-1" scrolling="no"></iframe></span></span><span class="g2-glint" aria-hidden="true"></span></span>
+<span class="g2-pl"><span class="g2-nm">Nexus Dashboard Data&nbsp;Broker</span><span class="g2-sb"><span><span class="g2-sbt" id="g2-s-db">Enterprise data visualization &amp; flow&nbsp;architectures</span></span></span></span>
+</a></li><li class="g2-it" data-c="mk">
+<a class="g2-a" href="../case-study.html" data-pt="cart" data-label="Intercloud Marketplace" aria-describedby="g2-s-mk">
+<span class="g2-pool" aria-hidden="true"></span>
+<span class="g2-lamp" aria-hidden="true"><i class="g2-arm"></i><i class="g2-hood"></i></span>
+<span class="g2-fr"><span class="g2-mat"><span class="g2-art" inert><iframe class="g2-if still" src="hero.html?c=mk&amp;m=still" title="" aria-hidden="true" tabindex="-1" scrolling="no"></iframe></span></span><span class="g2-glint" aria-hidden="true"></span></span>
+<span class="g2-pl"><span class="g2-nm">Intercloud Marketplace</span><span class="g2-sb"><span><span class="g2-sbt" id="g2-s-mk">Cloud marketplace &amp; configuration&nbsp;frameworks</span></span></span></span>
+</a></li></ul>
+<div class="g2-me">
+<div class="g2-bub" id="g2-about"><b class="g2-bh">About me</b><p>I&rsquo;m Bill, a senior product designer working on infrastructure, networking and enterprise software. At Cisco I led the design of Network Assurance Engine, Intercloud Marketplace and Nexus Dashboard Data Broker. I make dense, high stakes systems feel calm, precise and trustworthy for the people who run&nbsp;them.</p><a class="btn b1 g2-cta" href="#contact" data-contact>Contact me</a></div>
+<button class="g2-fig" type="button" aria-expanded="false" aria-controls="g2-about"><span class="sr">About me</span><svg viewBox="0 0 120 300" aria-hidden="true" focusable="false">
+<defs>
+<linearGradient id="g2j" x1="0" x2="1"><stop offset="0" stop-color="#22324f"/><stop offset=".55" stop-color="#2c3f63"/><stop offset="1" stop-color="#1d2b45"/></linearGradient>
+<linearGradient id="g2t" x1="0" x2="1"><stop offset="0" stop-color="#3a3f48"/><stop offset=".5" stop-color="#4a505b"/><stop offset="1" stop-color="#353a42"/></linearGradient>
+<linearGradient id="g2h" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b2c22"/><stop offset="1" stop-color="#1f1712"/></linearGradient>
+<radialGradient id="g2sh" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#3a2c1c" stop-opacity=".32"/><stop offset="1" stop-color="#3a2c1c" stop-opacity="0"/></radialGradient>
+</defs>
+<ellipse cx="60" cy="291" rx="54" ry="9" fill="url(#g2sh)"/>
+<path d="M37 176h22l-2 103H43z" fill="url(#g2t)"/><path d="M61 176h22l-4 103H65z" fill="url(#g2t)"/>
+<path d="M59 182v70" stroke="#2c3038" stroke-width="1" opacity=".5"/>
+<rect x="38" y="276" width="22" height="13" rx="5.5" fill="#f3f0ea"/><rect x="63" y="276" width="22" height="13" rx="5.5" fill="#f3f0ea"/>
+<path d="M39 286h20M64 286h20" stroke="#d6d0c5" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M30 84c-6 22-8 58-8 88l12 2c1-28 4-58 8-82z" fill="#1d2b45"/><path d="M90 84c6 22 8 58 8 88l-12 2c-1-28-4-58-8-82z" fill="#1d2b45"/>
+<path d="M22 171c0 6 3 10 7 10s6-3 6-8z" fill="#c4977a"/><path d="M98 171c0 6-3 10-7 10s-6-3-6-8z" fill="#b98c70"/>
+<path d="M40 72c8-6 32-6 40 0l12 12c3 34 3 66-1 104H29c-4-38-4-70-1-104z" fill="url(#g2j)"/>
+<path d="M60 76v110" stroke="#16223a" stroke-width="1.2" opacity=".55"/>
+<path d="M60 160v28" stroke="#101a2e" stroke-width="2.2" opacity=".5"/>
+<path d="M30 168c20 4 40 4 60 0" stroke="#16223a" stroke-width="1.2" fill="none" opacity=".45"/>
+<path d="M41 72c9-5 29-5 38 0l-4 7c-8-3-22-3-30 0z" fill="#33496f"/>
+<path d="M41 73c-6 2-10 6-12 11M79 73c6 2 10 6 12 11" stroke="#5d7399" stroke-width="1.4" fill="none" stroke-linecap="round" opacity=".7"/>
+<path d="M53 58h14v15c-4 2-10 2-14 0z" fill="#b98c70"/>
+<ellipse cx="44.5" cy="44" rx="3.2" ry="5.6" fill="#c4977a"/><ellipse cx="75.5" cy="44" rx="3.2" ry="5.6" fill="#b98c70"/>
+<path d="M44 40c0-14 7-22 16-22s16 8 16 22c0 9-3 17-8 20-5 2-11 2-16 0-5-3-8-11-8-20z" fill="url(#g2h)"/>
+<path d="M47 30c4-8 22-10 28 0" stroke="#5a4535" stroke-width="1.6" fill="none" stroke-linecap="round" opacity=".6"/>
+<path d="M53 59c4 1.5 10 1.5 14 0" stroke="#8d6a54" stroke-width="1" fill="none" opacity=".6"/>
+</svg></button>
+</div>
+</main>
+<div class="cm" id="contact-modal" role="dialog" aria-modal="true" aria-labelledby="cm-t" hidden><div class="cm-bg" data-close></div><div class="cm-p">
+<button class="cm-x" type="button" aria-label="Close" data-close><svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true"><path d="M5 5l10 10M15 5 5 15" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+<h2 id="cm-t">Send me a message</h2><p class="cm-s">Tell me a little about what you have in mind, and I’ll reply by&nbsp;email.</p>
+<form class="cm-f" novalidate data-key="" data-li="https://www.linkedin.com/in/billchenux"><input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+<label><span>Name</span><input name="name" autocomplete="name" required><em class="er" aria-live="polite"></em></label>
+<label><span>Email</span><input type="email" name="email" autocomplete="email" required><em class="er" aria-live="polite"></em></label>
+<label><span>Message</span><textarea name="message" rows="5" required></textarea><em class="er" aria-live="polite"></em></label>
+<div class="cm-a"><button type="submit" class="btn b1">Send message <span aria-hidden="true">→</span></button></div><p class="cm-st" role="status" aria-live="polite"></p></form>
+<div class="cm-done" hidden><h3 tabindex="-1">Thanks, your message is on its&nbsp;way.</h3><p>I’ll get back to you&nbsp;soon.</p><button type="button" class="btn b2" data-close>Close</button></div>
+</div></div>
+
+<script src="../assets/js/main.js"></script><script>(()=>{const RM=window.RM,$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const its=$$('.g2-it'),crops={};
+const touch=matchMedia('(hover:none)');let lastPT='mouse';
+addEventListener('pointerdown',e=>{lastPT=e.pointerType},true);
+/* fit a 1440x900 hero iframe so its graphic sits centred in the frame */
+function fit(it){const c=crops[it.dataset.c];if(!c)return;const art=it.querySelector('.g2-art'),W=art.clientWidth,H=art.clientHeight,p=1.05;
+ const s=Math.min(W/(c.w*p),H/(c.h*p)),tx=W/2-(c.x+c.w/2)*s,ty=H/2-(c.y+c.h/2)*s;
+ $$('.g2-if',art).forEach(f=>f.style.transform=`translate(${tx.toFixed(1)}px,${ty.toFixed(1)}px) scale(${s.toFixed(4)})`)}
+addEventListener('message',e=>{if(e.origin!==location.origin||!e.data||!e.data.hero)return;
+ const it=its.find(i=>i.dataset.c===e.data.hero);if(!it)return;const f=$$('.g2-if',it).find(f=>f.contentWindow===e.source);if(!f)return;
+ if(e.data.mode==='still'){crops[e.data.hero]=e.data.crop;fit(it);f.classList.add('on')}
+ else{fit(it);if(it.classList.contains('act'))f.classList.add('on')}});
+addEventListener('resize',()=>its.forEach(fit));
+/* play: a fresh live copy of the hero runs on top of the still, from the start of its sequence */
+function play(it){if(RM||it.querySelector('.g2-if.play'))return;const st=it.querySelector('.g2-if.still'),f=document.createElement('iframe');
+ f.className='g2-if play';f.title='';f.tabIndex=-1;f.setAttribute('aria-hidden','true');f.setAttribute('scrolling','no');f.src=st.getAttribute('src').replace('m=still','m=play');
+ st.after(f);fit(it)}
+function stop(it){const f=it.querySelector('.g2-if.play');if(!f)return;f.classList.remove('on');setTimeout(()=>{if(!it.classList.contains('act'))f.remove()},RM?0:460)}
+function on(it){its.forEach(o=>{if(o!==it&&o.classList.contains('act')&&!o.matches(':focus-within'))off(o)});it.classList.add('act');play(it)}
+function off(it){it.classList.remove('act');it.classList.remove('armed');stop(it)}
+its.forEach(it=>{const a=it.querySelector('.g2-a');
+ a.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse')on(it)});
+ a.addEventListener('pointerleave',e=>{if(e.pointerType==='mouse'&&!a.matches(':focus-visible'))off(it)});
+ a.addEventListener('focus',()=>on(it));a.addEventListener('blur',()=>{if(!a.matches(':hover'))off(it)});
+ /* touch: first tap plays the graphic and shows the subtitle, second tap opens the case study */
+ a.addEventListener('click',e=>{if(lastPT==='mouse'&&!touch.matches)return;if(e.detail===0)return;
+  if(!it.classList.contains('armed')){e.preventDefault();e.stopPropagation();its.forEach(o=>o!==it&&off(o));on(it);it.classList.add('armed')}})});
+document.addEventListener('pointerdown',e=>{if(e.pointerType==='mouse')return;if(!e.target.closest('.g2-it'))its.forEach(off);if(!e.target.closest('.g2-me'))me.classList.remove('open'),fb.setAttribute('aria-expanded','false')});
+/* Bill: hover, focus or tap shows his note */
+const me=document.querySelector('.g2-me'),fb=me.querySelector('.g2-fig');
+const sync=()=>fb.setAttribute('aria-expanded',String(me.matches(':hover')||me.matches(':focus-within')||me.classList.contains('open')));
+me.addEventListener('pointerenter',sync);me.addEventListener('pointerleave',()=>setTimeout(sync));me.addEventListener('focusin',sync);me.addEventListener('focusout',()=>setTimeout(sync));
+fb.addEventListener('click',()=>{me.classList.toggle('open');sync()});
+me.addEventListener('keydown',e=>{if(e.key==='Escape'){me.classList.remove('open');me.classList.add('shut');fb.focus();fb.setAttribute('aria-expanded','false')}});
+me.addEventListener('pointerleave',()=>me.classList.remove('shut'));me.addEventListener('focusout',e=>{if(!me.contains(e.relatedTarget))me.classList.remove('shut')});fb.addEventListener('click',()=>me.classList.remove('shut'),true);
+/* warm the cache for the live copies once the stills are in */
+addEventListener('load',()=>setTimeout(()=>{['../assets/js/main.js'].forEach(u=>fetch(u).catch(()=>{}))},1200));
+})();
+</script></body></html>
