@@ -233,6 +233,8 @@ html.cm-on{overflow:hidden}
 .cm-done{margin-top:24px}.cm-done h3{font-size:22px;font-weight:500;letter-spacing:-.03em;outline:0}.cm-done p{margin:8px 0 22px;font-size:15.5px}.cm-done .btn{cursor:pointer;font:inherit;font-weight:500}
 @media(max-width:560px){.cm-p{padding:30px 22px 24px;border-radius:16px}.cm h2{font-size:26px}}
 
+.caps b{margin-top:0}
+
 /* ===== Case Study 01 — real screenshots ===== */
 .cs-real .hero{min-height:80vh;min-height:80svh}
 .cs-real .hero h1 .sub{display:block;font-size:.46em;letter-spacing:-.03em;line-height:1.15;margin-top:.35em}
@@ -877,6 +879,11 @@ html:not(.js) .cx path{stroke-dashoffset:0}html:not(.js) .cx-dn{clip-path:none}
  .cs-real .cx-end b{position:static;display:block;margin-top:12px;text-align:center}}
 @media(max-width:560px){.cs-real .cx-r{gap:16px}.cs-real .cx-il{width:96px;height:76px}.cs-real .cx .il1{width:80%;gap:8px}.cs-real .cx .il1 span{height:8px}.cs-real .cx .il2{transform:scale(.6)}.cs-real .cx .il3{grid-template-columns:repeat(4,12px);gap:5px}.cs-real .cx .il3 i{height:12px;border-radius:3px}.cs-real .cx-cat{height:auto;padding:16px 0}.cs-real .cx-end{max-width:260px}}
 
+/* ===== R11: Marketplace hero text solid, no fade overlay (same fix as Data Broker) ===== */
+.cs-real:not(.cs2) .hero.mk::after{display:none}
+.cs-real:not(.cs2) .hero .crumb span,.cs-real:not(.cs2) .hero .hsub,.cs-real:not(.cs2) .hero .lede,.cs-real:not(.cs2) .hero .hb-facts dt{color:#2c3542}
+.cs-real:not(.cs2) .hero .jt-lb{color:#3d4757}.cs-real:not(.cs2) .hero .cfg small{color:#4a5464}
+
 /* ===== Case Study 02: Nexus Dashboard Data Broker (teal accent, flow motifs) ===== */
 .cs2{--acc:#085272;--acc2:#1f7aa0;--vis:#eef4f7}
 .cs2 .frame.real,.cs2 .cmpw{background-image:radial-gradient(260px circle at var(--mx,-400px) var(--my,-400px),rgba(8,82,114,.08),transparent 70%),radial-gradient(120% 90% at 50% 0%,#fff 0%,var(--vis) 70%)}
@@ -1374,3 +1381,5 @@ html.js .nz:not(.nz-go) .nz-l.a{opacity:1}html.js .nz:not(.nz-go) .nz-l.b{opacit
 .pat .cq-ic{width:32px;height:32px;margin:0}.pat .cq-ic svg{width:32px;height:32px}
 .pat h4{font-size:16px;font-weight:500;line-height:1.35;margin:0}.pat p{font-size:14.5px;margin:2px 0 0;font-variant-numeric:tabular-nums}
 @media(prefers-reduced-motion:reduce){.ae-bg .rg-r,.nq-cr{animation:none}.nz-d,.nz-o,.nz-b,.nz-t,.nz-l,.hz-r,.nq-im,.ae-e i{transition:none!important}}
+.cs3 .hero.mk h1{text-wrap:balance}
+@media(max-width:600px){.cs-real.cs3 .hero.mk h1{font-size:clamp(32px,10.6vw,40px)}}
