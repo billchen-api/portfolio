@@ -1,7 +1,7 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Bill Chen - Portfolio</title><meta name="robots" content="noindex">
-<script>document.documentElement.classList.add('js');window.RM=matchMedia('(prefers-reduced-motion: reduce)').matches;{const l=new URLSearchParams(location.search).get('logo');document.documentElement.dataset.logo=/^[123]$/.test(l)?l:'1'}</script>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;800&family=Space+Grotesk:wght@500;700&family=Syne:wght@700&display=swap">
+<script>document.documentElement.classList.add('js');window.RM=matchMedia('(prefers-reduced-motion: reduce)').matches;{const l=new URLSearchParams(location.search).get('logo');document.documentElement.dataset.logo=/^[123]$/.test(l)?l:'1';const t=new URLSearchParams(location.search).get('intro');document.documentElement.dataset.intro=/^[123]$/.test(t)?t:'1'}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;800&family=Space+Grotesk:wght@500;700&family=Syne:wght@700&display=swap">
 <link rel="preload" href="../assets/fonts/Geist.ttf" as="font" type="font/ttf" crossorigin><link rel="stylesheet" href="../assets/css/style.css">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cg fill='none' stroke='%232b62ff' stroke-width='1.6'%3E%3Ccircle cx='4' cy='4' r='2.2'/%3E%3Ccircle cx='14' cy='5' r='2.2'/%3E%3Ccircle cx='8' cy='14' r='2.2'/%3E%3C/g%3E%3C/svg%3E">
 <style>html,body{height:100%}
@@ -66,14 +66,17 @@ body.g4b{background:#ebe8e3;overflow:hidden}
 }
 @media(prefers-reduced-motion:reduce){.g4 *{animation:none!important;transition:none!important}}
 /* ===== 1E overrides ===== */
-body.g4b{background:#ebe7e0}
+body.g4b{background:#fbfcfd}
 .g4{--floor:clamp(96px,16dvh,170px);--ih:clamp(146px,19.5dvh,186px);--top:calc(64px + clamp(22px,4dvh,44px) + var(--ih) + clamp(14px,3dvh,34px));
  --fw:min(calc((100vw - 2*var(--pad) - 2*var(--gap))/3),calc((100dvh - var(--floor) - var(--top) - 104px)/.86),500px)}
 .g4-room{background:none}
 .g4-room::after{display:none}
-.e-wall{position:absolute;inset:0 0 var(--floor) 0;z-index:-2;background:radial-gradient(120% 95% at 50% 25%,#e2ddd4 0%,#d9d2c6 60%,#cdc5b7 100%)}
-.e-wall::after{content:"";position:absolute;left:0;right:0;bottom:0;height:10px;background:linear-gradient(#f6f3ee,#e4dfd6);box-shadow:0 -1px 0 rgba(90,70,40,.12),0 2px 3px rgba(60,45,30,.12)}
-.e-floor{position:absolute;left:0;right:0;bottom:0;height:var(--floor);z-index:-2;background:linear-gradient(180deg,rgba(60,45,30,.12),rgba(60,45,30,0) 45%),repeating-linear-gradient(90deg,rgba(255,255,255,0) 0 179px,rgba(110,85,55,.07) 179px 180px),linear-gradient(180deg,#d9d0c3,#d0c6b6)}
+/* wall: copied from option-1b .gal (gallery.css) */
+.e-wall{--wall:#efeeea;position:absolute;left:0;right:0;top:64px;bottom:0;z-index:-2;background:radial-gradient(120% 70% at 50% 0,#f6f5f2 0,var(--wall) 60%,#e8e6e1 100%)}
+/* option-1b rail (light track), fixtures, cones and washes intentionally not included */
+/* floor: copied from option-1b .floor / .floor::before */
+.e-floor{position:absolute;left:0;right:0;bottom:0;height:clamp(28px,6vh,56px);background:linear-gradient(#e9e6e0,#e2ded7);border-top:1px solid #d9d4cc;z-index:-1}
+.e-floor::before{content:"";position:absolute;left:0;right:0;top:0;height:5px;background:#f7f6f3;border-bottom:1px solid #ddd8d0}
 /* intro, top left, aligned with the nav */
 .e-intro{position:absolute;left:0;right:0;top:calc(64px + clamp(22px,4dvh,44px));height:var(--ih);z-index:2}
 .e-intro .w{display:flex;flex-direction:column;justify-content:center;height:100%}
@@ -92,7 +95,7 @@ nav .brand.wm{font-family:var(--lf);font-weight:var(--lw);letter-spacing:var(--l
 @media(max-width:700px){
  .g4{padding-top:calc(64px + 28px)}
  .e-intro{position:static;height:auto;margin-bottom:44px}
- .e-wall{inset:0}.e-wall::after,.e-floor{display:none}
+ .e-wall{top:64px;bottom:0}
  .g4-row{gap:84px;padding-bottom:64px}
 }
 .g4-wash{display:none}
@@ -103,6 +106,46 @@ nav .brand.wm{font-family:var(--lf);font-weight:var(--lw);letter-spacing:var(--l
  .g4-row{position:relative;top:auto;margin-top:clamp(18px,3.4dvh,36px)}
 }
 @media(max-width:700px){.e-intro{padding:28px 0 0}}
+/* ===== intro type: calm editorial pairing, independent of the logo font ===== */
+.e-hi{font-family:"Inter Tight",sans-serif;font-weight:500;font-size:clamp(13.5px,1.7dvh,15px);letter-spacing:.005em;color:#2a2d33;margin:0 0 clamp(4px,.8dvh,8px)}
+.e-h1{font-family:"Inter Tight",sans-serif;font-weight:300;letter-spacing:-.03em;font-size:clamp(34px,5dvh,52px);line-height:1.04;color:#111317;margin:0 0 clamp(8px,1.5dvh,14px)}
+.e-p{font-family:"Inter Tight",sans-serif;font-weight:400;font-size:clamp(14.5px,1.85dvh,16px);line-height:1.55;letter-spacing:0;max-width:52ch;color:#1d2026}
+/* ===== placements (?intro=1|2|3); frames take whatever height is left (container units) ===== */
+@media(min-width:701px){
+ .g4{--floor:clamp(28px,6vh,56px);height:100dvh;box-sizing:border-box;padding-bottom:calc(var(--floor) + clamp(10px,2dvh,24px))}
+ .g4-row{flex:1 1 0;min-height:0;container-type:size;align-items:center;margin-top:clamp(14px,2.6dvh,30px);
+  --fw:min(calc((100cqw - 2*var(--gap))/3),calc((100cqh - 110px)/.86),500px)}
+ .g4-it{align-self:center}
+ .e-intro .w{width:100%}
+ /* 1: exhibition title, centred above the frames */
+ html[data-intro="1"] .e-intro .w{align-items:center;text-align:center}
+ html[data-intro="1"] .e-p{max-width:56ch}
+ /* 3: compact wall text centred below the frames, above the floor */
+ html[data-intro="3"] .e-intro{order:2}
+ html[data-intro="3"] .g4-row{order:1;margin-top:clamp(8px,2dvh,24px)}
+ html[data-intro="3"] .g4-row{padding-bottom:clamp(44px,6dvh,60px)}
+ html[data-intro="3"] .e-intro .w{align-items:center;text-align:center}
+ html[data-intro="3"] .e-h1{font-size:clamp(26px,3.4dvh,36px);margin-bottom:clamp(4px,.9dvh,10px)}
+ html[data-intro="3"] .e-hi{margin-bottom:2px}
+ html[data-intro="3"] .e-p{max-width:78ch;font-size:clamp(14px,1.7dvh,15px);line-height:1.5}
+ /* 2: museum intro panel on the wall to the left of the frames */
+ html[data-intro="2"] .g4{display:grid;grid-template-columns:clamp(240px,21vw,340px) minmax(0,1fr);grid-template-rows:minmax(0,1fr);column-gap:0;padding-left:var(--pad)}
+ html[data-intro="2"] .e-intro{align-self:center;grid-column:1;grid-row:1}
+ html[data-intro="2"] .e-intro .w{padding:0;margin:0;max-width:none;border-left:2px solid #1d2026;padding-left:clamp(16px,1.6vw,24px)}
+ html[data-intro="2"] .e-h1{font-size:clamp(30px,2.9vw,46px)}
+ html[data-intro="2"] .e-p{font-size:clamp(14px,1.1vw,15.5px)}
+ html[data-intro="2"] .g4-cap{width:max(100%,220px)}
+ html[data-intro="2"] .g4-row{grid-column:2;grid-row:1;margin-top:0;height:100%;padding:0 var(--pad) 0 var(--gap)}
+}
+@media(max-width:1100px) and (min-width:701px){html[data-intro="2"] .g4-cap{width:100%}}
+@media(max-width:700px){
+ html[data-intro="1"] .e-intro .w{text-align:center;align-items:center}
+ html[data-intro="3"] .g4{display:flex;flex-direction:column}
+ html[data-intro="3"] .e-intro{order:2;margin:24px 0 72px;text-align:center}
+ html[data-intro="3"] .g4-row{order:1;margin-top:20px}
+ .e-h1{font-size:34px}
+ .g4,.g4-row{--fw:min(78vw,380px)}
+}
 
 .g4-art svg{position:absolute;inset:0;width:100%;height:100%;display:block}
 .wire{stroke:#c3d6df;stroke-width:1.8}
