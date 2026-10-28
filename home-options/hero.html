@@ -3,8 +3,8 @@
 /* Live hero graphic from a case page. Reads the case page at runtime, keeps only the hero visual,
    and runs the site's own CSS and main.js, so it always matches the case page.
    ?c=as|db|mk  &m=still (reduced motion final state, frozen) | play */
-(()=>{window.REALTO=setTimeout.bind(window);const P=new URLSearchParams(location.search);window.HC=P.get('c');window.STILL=P.get('m')!=='play';
-document.documentElement.classList.add('js');if(STILL)document.documentElement.classList.add('still');
+(()=>{window.REALTO=setTimeout.bind(window);const P=new URLSearchParams(location.search);window.HC=P.get('c');window.STILL=P.get('m')!=='play';window.SIMPLE=P.get('s')==='1';
+document.documentElement.classList.add('js');if(STILL)document.documentElement.classList.add('still');if(SIMPLE)document.documentElement.classList.add('simple');
 window.RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 /* still: fast forward the real sequence (timers and clocks run 60x) to its settled end state, then freeze */
 if(STILL&&!RM){const k=1/60,st=setTimeout.bind(window),si=setInterval.bind(window),pn=performance.now.bind(performance),t0=pn(),raf=requestAnimationFrame.bind(window);
@@ -20,6 +20,11 @@ html,body{margin:0;overflow:hidden!important;height:100%}
 .hero .ae-h{display:none!important}
 html.still.frozen *,html.still.frozen *::before,html.still.frozen *::after{animation-play-state:paused!important}
 html.still *,html.still *::before,html.still *::after{transition:none!important}
+/* &s=1: home page artwork only. Assurance keeps the timeline, Data Broker the diagram, Marketplace the configurator */
+html.simple .ae-sv,html.simple .ae-dots,html.simple .ae-bg,html.simple .ae-hd,html.simple .ae-tb,html.simple .ae-cal,html.simple .ae-lg,
+html.simple .lyr,html.simple .mk-grid,html.simple .jt-w,html.simple .cfg-h,html.simple .cfg-f{display:none!important}
+html.simple body,html.simple .hero{background:#fff!important}
+html.simple .hero::before,html.simple .hero::after{display:none!important}
 </style>
 </head><body>
 <script>
@@ -36,8 +41,9 @@ const m=document.createElement('script');m.src='../assets/js/main.js';
 m.onload=()=>{
  const fin=()=>{const v=document.querySelector('.hero .hb-v');if(!v)return;
   if(STILL){document.documentElement.classList.add('frozen');document.querySelectorAll('svg').forEach(s=>s.pauseAnimations&&s.pauseAnimations())}
-  let r=v.getBoundingClientRect(),a=[r.left,r.top,r.right,r.bottom];
-  [...v.children].filter(c=>c.getAttribute('aria-hidden')!=='true'&&getComputedStyle(c).display!=='none').forEach(c=>{const q=c.getBoundingClientRect();if(q.width&&q.height)a=[Math.min(a[0],q.left),Math.min(a[1],q.top),Math.max(a[2],q.right),Math.max(a[3],q.bottom)]});
+  const T=SIMPLE&&document.querySelector({as:'.hero .ae-tl',db:'.hero .nxa',mk:'.hero .cfg'}[HC]);
+  let r=(T||v).getBoundingClientRect(),a=[r.left,r.top,r.right,r.bottom];
+  (T?[]:[...v.children]).filter(c=>c.getAttribute('aria-hidden')!=='true'&&getComputedStyle(c).display!=='none').forEach(c=>{const q=c.getBoundingClientRect();if(q.width&&q.height)a=[Math.min(a[0],q.left),Math.min(a[1],q.top),Math.max(a[2],q.right),Math.max(a[3],q.bottom)]});
   window.CROP={x:a[0],y:a[1],w:a[2]-a[0],h:a[3]-a[1]};document.documentElement.classList.add('ready');
   parent!==window&&parent.postMessage({hero:HC,mode:STILL?'still':'play',crop:window.CROP},location.origin)};
  (document.fonts?document.fonts.ready:Promise.resolve()).then(()=>REALTO(fin,STILL&&!RM?450:60))};
