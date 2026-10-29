@@ -3,7 +3,7 @@
 <script>document.documentElement.classList.add('js');window.RM=matchMedia('(prefers-reduced-motion: reduce)').matches;{const l=new URLSearchParams(location.search).get('logo');document.documentElement.dataset.logo=/^[123]$/.test(l)?l:'v2';const g=new URLSearchParams(location.search).get('grid');document.documentElement.dataset.grid=g==='case'?'case':'blue';document.documentElement.dataset.sub=new URLSearchParams(location.search).get('sub')==='plate'?'plate':'in'}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;800&family=Space+Grotesk:wght@500;700&family=Syne:wght@700&display=swap">
 <link rel="preload" href="../assets/fonts/Geist.ttf" as="font" type="font/ttf" crossorigin><link rel="stylesheet" href="../assets/css/style.css">
-<link rel="icon" href="assets/logos-vector/fav-v2b.svg" type="image/svg+xml"><link rel="icon" href="assets/logos-vector/fav-v2b-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="assets/logos-vector/fav-v2b-180.png">
+<link rel="icon" href="assets/logos-vector/fav-fb3.svg" type="image/svg+xml"><link rel="icon" href="assets/logos-vector/fav-fb3-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="assets/logos-vector/fav-fb3-180.png">
 <style>html,body{height:100%}
 body.g4b{background:#ebe8e3;overflow:hidden}
 /* wordmark: Bricolage Grotesque, bold, tight */
@@ -319,7 +319,7 @@ html[data-sub=in] .g4-it[data-c=as] .g4-mat>.g4-cap{white-space:normal;text-wrap
 html[data-sub=in] .g4-it.act[data-c=as][style*="--lift"] .g4-art svg{transform:translateY(calc(var(--lift)*-1))}
 /* t199: phones: the first frame, its light and its nameplate start centred in the screen under the header, at least 24px below it.
    This is the first paint estimate; sub1g.js measures and sets the exact value */
-@media(max-width:700px){.g4{padding-top:calc(65px + 62px + clamp(24px,(100svh - 65px - 380px)/2,116px))}}
+@media(max-width:700px){.g4{padding-top:calc(65px + 62px + clamp(24px,(100svh - 65px - 380px)/2,80px))}}
 /* t200: phones: more room under the Marketplace frame so its nameplate clears the floor and the About me avatar */
 @media(max-width:700px){.g4-row{padding-bottom:calc(clamp(28px,6vh,56px) + 120px)}}
 /* t200: a larger V2 mark on desktop; phones keep 40px */
@@ -512,12 +512,12 @@ const top=c.offsetTop-c.offsetHeight/2-a.offsetTop;it.style.setProperty('--lift'
 fit();addEventListener('resize',fit);document.fonts&&document.fonts.ready.then(fit)})();
 
 /* t199: phones only: on load the Assurance frame, its picture light and its nameplate sit centred in the screen below the header,
-   never closer than 24px to it and (t200) never more than 116px below it, so tall phones keep it a little above centre. Measured from the real screen height; redone when the width or orientation changes */
+   never closer than 24px to it and (t200) never more than 80px below it (t201, was 116), so tall phones keep it a little above centre. Measured from the real screen height; redone when the width or orientation changes */
 (()=>{const g=document.querySelector('.g4'),it=document.querySelector('.g4-it'),nav=document.querySelector('nav'),mq=matchMedia('(max-width:700px)');if(!g||!it||!nav)return;
 let w=-1;const vh=()=>window.visualViewport?visualViewport.height*(visualViewport.scale||1):innerHeight;
 const place=()=>{w=innerWidth;g.style.removeProperty('padding-top');if(!mq.matches)return;
 const fx=it.querySelector('.g4-lt .fx'),fr=it.querySelector('.g4-fr'),pl=it.querySelector('.g4-pl'),R=e=>e.getBoundingClientRect(),y=scrollY;
 const top=Math.min(R(fx).top,R(fr).top)+y,bot=Math.max(R(fr).bottom,R(pl).bottom)+y,H=nav.offsetHeight,P=parseFloat(getComputedStyle(g).paddingTop);
-const want=H+Math.min(116,Math.max(24,(vh()-H-(bot-top))/2));g.style.paddingTop=(P+want-top).toFixed(1)+'px'};
+const want=H+Math.min(80,Math.max(24,(vh()-H-(bot-top))/2));g.style.paddingTop=(P+want-top).toFixed(1)+'px'};
 place();addEventListener('resize',()=>{if(innerWidth!==w)place()});addEventListener('orientationchange',()=>setTimeout(place,250));document.fonts&&document.fonts.ready.then(place)})();
 </script></body></html>
