@@ -1,0 +1,357 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bill Chen - Portfolio</title><meta name="robots" content="noindex">
+<script>document.documentElement.classList.add('js');window.RM=matchMedia('(prefers-reduced-motion: reduce)').matches;{const l=new URLSearchParams(location.search).get('logo');document.documentElement.dataset.logo=/^[123]$/.test(l)?l:'1';const g=new URLSearchParams(location.search).get('grid');document.documentElement.dataset.grid=g==='case'?'case':'blue'}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;800&family=Space+Grotesk:wght@500;700&family=Syne:wght@700&display=swap">
+<link rel="preload" href="../assets/fonts/Geist.ttf" as="font" type="font/ttf" crossorigin><link rel="stylesheet" href="../assets/css/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cg fill='none' stroke='%232b62ff' stroke-width='1.6'%3E%3Ccircle cx='4' cy='4' r='2.2'/%3E%3Ccircle cx='14' cy='5' r='2.2'/%3E%3Ccircle cx='8' cy='14' r='2.2'/%3E%3C/g%3E%3C/svg%3E">
+<style>html,body{height:100%}
+body.g4b{background:#ebe8e3;overflow:hidden}
+/* wordmark: Bricolage Grotesque, bold, tight */
+
+.g4{--wl:82dvh;--top:calc(64px + clamp(40px,11dvh,130px));--gap:clamp(36px,4vw,80px);--pad:clamp(56px,7vw,170px);
+ --fw:min(calc((100vw - 2*var(--pad) - 2*var(--gap))/3),calc((var(--wl) - var(--top) - 150px)/.86),520px);
+ position:relative;height:100dvh;overflow:hidden;isolation:isolate}
+.g4-room{position:absolute;inset:0;z-index:-3;background:#ebe8e3 url(assets/1d/room.webp) 50% 82%/cover no-repeat}
+.g4-room::after{content:"";position:absolute;inset:0;background:radial-gradient(130% 110% at 50% 36%,rgba(40,30,20,0) 58%,rgba(40,30,20,.08) 100%)}
+.g4-row{list-style:none;position:absolute;left:0;right:0;top:var(--top);display:flex;justify-content:center;gap:var(--gap);padding:0 var(--pad)}
+.g4-it{width:var(--fw);flex:none;position:relative}
+.g4-a{display:block;position:relative;color:inherit;text-decoration:none;outline:none;-webkit-tap-highlight-color:transparent}
+.g4-wash{position:absolute;left:50%;top:-24%;width:170%;height:140%;transform:translateX(-50%);pointer-events:none;z-index:0;
+ background:radial-gradient(44% 50% at 50% 30%,rgba(255,254,250,.6),rgba(255,253,248,.3) 40%,rgba(255,252,246,0) 80%)}
+/* thick white frame with depth, as in 1B: a white moulding, a recessed mat, a soft shadow on the wall */
+.g4-fr{position:relative;z-index:1;display:block;padding:calc(var(--fw)*.045);background:linear-gradient(180deg,#ffffff,#f7f6f3);border:1px solid #e2ded7;
+ box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 2px 3px rgba(60,45,20,.08),0 14px 22px -12px rgba(60,45,20,.22),0 34px 54px -30px rgba(60,45,20,.34);transition:box-shadow .5s,transform .5s cubic-bezier(.2,.7,.2,1)}
+.g4-mat{display:block;padding:calc(var(--fw)*.05);background:#fff;border:1px solid #ece9e3;box-shadow:inset 0 9px 16px -8px rgba(60,50,30,.18),inset 0 0 0 1px #fff}
+.g4-art{display:block;position:relative;aspect-ratio:5/4}
+.g4-art::after{content:"";position:absolute;inset:-2px;background:#fff;opacity:0;pointer-events:none;transition:opacity .45s ease}
+.g4-row.dim .g4-it:not(.act) .g4-art::after{opacity:.68}
+.g4-it.act .g4-fr{box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 3px 5px rgba(60,45,20,.09),0 18px 28px -12px rgba(60,45,20,.24),0 42px 64px -30px rgba(60,45,20,.36);transform:translateY(-2px)}
+/* wall label: a fixed white card with the case name centred; it never grows */
+.g4-pl{position:relative;z-index:2;display:table;margin:clamp(16px,2.6dvh,26px) auto 0;padding:10px 18px 11px;white-space:nowrap;text-align:center;color:#111317;
+ background:linear-gradient(180deg,#fff,#f6f6f4);border-radius:1.5px;
+ box-shadow:0 0 0 .5px rgba(0,0,0,.08),0 1px 0 rgba(0,0,0,.10),0 2px 3px -1px rgba(30,24,18,.16),0 6px 10px -6px rgba(30,24,18,.18)}
+.g4-nm{display:block;font-family:"Inter Tight",var(--font,system-ui),sans-serif;font-size:15.5px;font-weight:600;letter-spacing:-.01em;line-height:1.25}
+/* the line about the case appears on the wall under the label, outside the layout */
+.g4-cap{position:absolute;left:50%;top:calc(100% + 12px);width:max(100%,250px);transform:translate(-50%,-6px);text-align:center;font-size:14px;line-height:1.45;color:#23262c;opacity:0;visibility:hidden;pointer-events:none;
+ transition:opacity .35s ease,transform .45s cubic-bezier(.2,.7,.2,1),visibility 0s .45s;text-wrap:balance}
+.g4-it.act .g4-cap{opacity:1;visibility:visible;transform:translate(-50%,0);transition:opacity .35s ease .05s,transform .45s cubic-bezier(.2,.7,.2,1),visibility 0s}
+.g4-a:focus-visible .g4-fr{outline:2px solid var(--acc);outline-offset:6px}
+.g4-a:focus-visible .g4-pl{outline:2px solid var(--acc);outline-offset:3px}
+/* a viewer in the foreground, chest up, cut by the bottom edge */
+.g4-me{position:absolute;right:clamp(16px,3.2vw,64px);bottom:0;z-index:5;height:clamp(140px,21dvh,240px)}
+.g4-fig{display:block;height:100%;aspect-ratio:300/280;padding:0;border:0;background:none;cursor:pointer;border-radius:8px 8px 0 0}
+.g4-fig svg{display:block;width:100%;height:100%;filter:drop-shadow(0 8px 18px rgba(30,24,18,.18))}
+.g4-fig:focus-visible{outline:2px solid var(--acc);outline-offset:4px}
+.g4-bub{position:absolute;right:calc(100% + 10px);bottom:46%;width:min(430px,calc(100vw - 48px));padding:20px 22px;background:#fff;color:var(--fg);border-radius:12px;
+ box-shadow:0 0 0 1px rgba(20,20,20,.06),0 2px 4px rgba(20,20,20,.04),0 24px 48px -20px rgba(30,24,18,.35);opacity:0;visibility:hidden;transform:translateY(6px);
+ transition:opacity .25s,transform .35s cubic-bezier(.2,.7,.2,1),visibility 0s .35s}
+.g4-bub::after{content:"";position:absolute;right:-6px;bottom:26px;width:12px;height:12px;background:#fff;transform:rotate(45deg);box-shadow:1px -1px 0 rgba(20,20,20,.05)}
+.g4-bh{display:block;font-family:"Bricolage Grotesque",sans-serif;font-size:16px;font-weight:600;margin-bottom:6px}
+.g4-bub p{font-size:14.5px;line-height:1.55;color:var(--fg);text-wrap:pretty}
+.g4-cta{margin-top:16px;padding:10px 16px;font-size:14px}
+.g4-me:hover .g4-bub,.g4-me:focus-within .g4-bub,.g4-me.open .g4-bub{opacity:1;visibility:visible;transform:none;transition:opacity .25s,transform .35s cubic-bezier(.2,.7,.2,1),visibility 0s}
+@media(min-width:701px){.g4-me.shut .g4-bub{opacity:0;visibility:hidden}}
+@media(max-height:820px) and (min-width:701px){.g4-nm{font-size:14.5px}.g4-cap{font-size:13.5px}.g4-pl{padding:9px 16px 10px}}
+@media(max-width:1100px) and (min-width:701px){.g4{--pad:clamp(40px,5vw,56px);--gap:clamp(26px,3vw,36px)}.g4-nm{font-size:13.5px}.g4-pl{padding:8px 12px 9px}}
+@media(max-width:700px){
+ body.g4b{overflow:auto;height:auto}html{height:auto}
+ .g4{--fw:min(78vw,380px);height:auto;min-height:100dvh;padding:calc(64px + 48px) 0 0;overflow:clip;background:#eceae5}
+ .g4-room{top:auto;height:220px;background-size:auto 520px;background-position:50% 100%;-webkit-mask:linear-gradient(180deg,transparent,#000 40%);mask:linear-gradient(180deg,transparent,#000 40%)}
+ .g4-room::after{display:none}
+ .g4-row{position:static;flex-direction:column;align-items:center;gap:96px;padding:0 0 40px}
+ .g4-me{position:relative;right:auto;bottom:auto;height:auto;display:flex;flex-direction:column;align-items:center;gap:16px;margin:24px auto 0;padding:0 20px}
+ .g4-fig{height:170px;order:2}
+ .g4-bub{position:relative;right:auto;bottom:auto;order:1;opacity:1;visibility:visible;transform:none;width:min(360px,100%)}
+ .g4-bub::after{right:auto;bottom:-6px;left:50%;margin-left:-6px;box-shadow:1px 1px 0 rgba(20,20,20,.05)}
+}
+@media(prefers-reduced-motion:reduce){.g4 *{animation:none!important;transition:none!important}}
+/* ===== 1E overrides ===== */
+body.g4b{background:#fbfcfd}
+.g4{--floor:clamp(96px,16dvh,170px);--ih:clamp(146px,19.5dvh,186px);--top:calc(64px + clamp(22px,4dvh,44px) + var(--ih) + clamp(14px,3dvh,34px));
+ --fw:min(calc((100vw - 2*var(--pad) - 2*var(--gap))/3),calc((100dvh - var(--floor) - var(--top) - 104px)/.86),500px)}
+.g4-room{background:none}
+.g4-room::after{display:none}
+/* wall: copied from option-1b .gal (gallery.css) */
+.e-wall{--wall:#efeeea;position:absolute;left:0;right:0;top:64px;bottom:0;z-index:-2;background:radial-gradient(120% 70% at 50% 0,#f6f5f2 0,var(--wall) 60%,#e8e6e1 100%)}
+/* option-1b rail (light track), fixtures, cones and washes intentionally not included */
+/* floor: copied from option-1b .floor / .floor::before */
+.e-floor{position:absolute;left:0;right:0;bottom:0;height:clamp(28px,6vh,56px);background:linear-gradient(#e9e6e0,#e2ded7);border-top:1px solid #d9d4cc;z-index:-1}
+.e-floor::before{content:"";position:absolute;left:0;right:0;top:0;height:5px;background:#f7f6f3;border-bottom:1px solid #ddd8d0}
+/* the three logo candidates (?logo=1|2|3): wordmark and headline share the font */
+html{--lf:"Inter Tight",sans-serif;--lw:800;--ls:-.04em}
+html[data-logo="2"]{--lf:"Space Grotesk",sans-serif;--lw:700;--ls:-.045em}
+html[data-logo="3"]{--lf:"Syne",sans-serif;--lw:700;--ls:-.03em}
+nav .brand.wm{font-family:var(--lf);font-weight:var(--lw);letter-spacing:var(--ls);font-size:clamp(24px,1.9vw,28px);line-height:1;gap:0;color:var(--fg)}
+/* hover line: a stylised mono caption on the wall under the label */
+.g4-cap{font-family:"Space Grotesk",system-ui,sans-serif;font-weight:500;font-size:13.5px;letter-spacing:-.01em;text-transform:none;line-height:1.45;color:#16181d;width:max(100%,280px)}
+@media(max-height:820px) and (min-width:701px){.g4-cap{font-size:13px}}
+@media(max-width:700px){
+ .g4{padding-top:calc(64px + 28px)}
+ .e-wall{top:64px;bottom:0}
+ .g4-row{gap:84px;padding-bottom:64px}
+}
+.g4-wash{display:none}
+/* flow layout */
+@media(min-width:701px){
+ .g4{display:flex;flex-direction:column;padding-top:calc(64px + clamp(20px,3.6dvh,40px))}
+ .g4-row{position:relative;top:auto;margin-top:clamp(18px,3.4dvh,36px)}
+}
+@media(max-width:700px){}
+/* ===== frames take whatever height is left (container units) ===== */
+@media(min-width:701px){
+ .g4{--floor:clamp(28px,6vh,56px);height:100dvh;box-sizing:border-box;padding-bottom:calc(var(--floor) + clamp(10px,2dvh,24px))}
+ .g4-row{flex:1 1 0;min-height:0;container-type:size;align-items:center;margin-top:clamp(14px,2.6dvh,30px);
+  --fw:min(calc((100cqw - 2*var(--gap))/3),calc((100cqh - 110px)/.86),500px)}
+ .g4-it{align-self:center}
+ /* 1: exhibition title, centred above the frames */
+ /* 3: compact wall text centred below the frames, above the floor */
+}
+@media(max-width:700px){
+ .g4,.g4-row{--fw:min(78vw,380px)}
+}
+
+/* ===================== 1F ===================== */
+/* blueprint grid colour: ?grid=blue (one blueprint blue) or ?grid=case (each case's own colour) */
+.g4-it{--gc:#0569c0}
+html[data-grid="case"] .g4-it[data-c="as"]{--gc:#0569c0}
+html[data-grid="case"] .g4-it[data-c="db"]{--gc:#085272}
+html[data-grid="case"] .g4-it[data-c="mk"]{--gc:#2b62ff}
+html[data-grid="case"] .g4-it[data-c="db"] .f-gmi{opacity:.075}
+/* ===================== 1G ===================== */
+@media(min-width:701px){
+ .g4{padding-top:calc(64px + clamp(10px,2dvh,24px))}
+ .g4-row{margin-top:0;padding-bottom:clamp(24px,7dvh,72px);--fw:min(calc((100cqw - 2*var(--gap))/3),calc((100cqh - 96px)/.86),500px)}
+}
+/* floating avatar launcher, bottom right, opens an about bubble */
+.f-ch{position:fixed;right:clamp(16px,1.7vw,28px);bottom:clamp(16px,2.4dvh,28px);z-index:60;font-family:"Inter Tight",system-ui,sans-serif}
+.f-av{position:relative;display:block;width:var(--av,68px);height:var(--av,68px);margin:0;padding:0;border:0;border-radius:50%;background:#fff;cursor:pointer;
+ box-shadow:0 0 0 3px #fff,0 10px 26px -6px rgba(20,28,40,.38),0 3px 8px -2px rgba(20,28,40,.22);
+ transition:transform .45s cubic-bezier(.34,1.56,.64,1),box-shadow .3s;animation:f-in .7s .5s cubic-bezier(.34,1.56,.64,1) both}
+.f-av svg{display:block;width:100%;height:100%;border-radius:50%}
+.f-av:focus{outline:none}
+.f-av:focus-visible{outline:2px solid #1d2026;outline-offset:5px}
+.f-dot{position:absolute;right:1px;bottom:3px;width:15px;height:15px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 3px #fff}
+@keyframes f-in{from{transform:scale(.4);opacity:0}}
+.f-bub{position:absolute;right:0;bottom:calc(100% + 16px);width:min(372px,calc(100vw - 2*clamp(16px,1.7vw,28px)));box-sizing:border-box;padding:20px 22px 21px;
+ background:#fff;color:#16181c;border-radius:20px 20px 6px 20px;border:1px solid #e6e8ec;
+ box-shadow:0 26px 54px -18px rgba(20,28,40,.38),0 8px 18px -8px rgba(20,28,40,.2);
+ transform-origin:calc(100% - 28px) calc(100% + 16px);transform:translateY(10px) scale(.86);opacity:0;visibility:hidden;pointer-events:none;
+ transition:transform .4s cubic-bezier(.34,1.56,.64,1),opacity .2s,visibility 0s .4s}
+.f-bub::after{content:"";position:absolute;right:26px;bottom:-7px;width:13px;height:13px;background:#fff;border-right:1px solid #e6e8ec;border-bottom:1px solid #e6e8ec;transform:rotate(45deg);border-radius:0 0 3px 0}
+.f-bub::before{content:"";position:absolute;left:0;right:0;bottom:-18px;height:18px}
+.f-hi{display:block;margin:0;font-size:21px;font-weight:600;letter-spacing:-.02em;line-height:1.2;color:#111317}
+.f-role{display:block;margin:4px 0 0;font-size:14px;font-weight:500;line-height:1.4;color:#1d2026}
+.f-txt{display:block;margin:12px 0 0;font-size:14.5px;font-weight:400;line-height:1.55;color:#16181c;text-wrap:pretty}
+.f-ch.open .f-bub{transform:none;opacity:1;visibility:visible;pointer-events:auto;transition:transform .45s cubic-bezier(.34,1.56,.64,1),opacity .22s,visibility 0s}
+.f-ch.open .f-av{transform:scale(1.06)}
+@media(hover:hover){.f-av:hover{transform:scale(1.06)}}
+@media(max-width:1100px) and (min-width:701px){.f-ch{--av:64px}}
+@media(max-width:700px){.f-ch{--av:60px;right:16px;bottom:16px}.f-bub{width:calc(100vw - 32px);padding:18px 20px 19px}.f-hi{font-size:20px}}
+@media(prefers-reduced-motion:reduce){.f-av,.f-bub,.f-ch.open .f-bub{transition:opacity .15s,visibility 0s!important;animation:none!important;transform:none!important}}
+/* desktop: bubble opens to the left of the launcher, bottom aligned, so it sits under the Marketplace plate instead of over it */
+@media(min-width:701px){
+ .f-bub{right:calc(100% + 16px);bottom:0;width:min(520px,calc(100vw - var(--av,68px) - 64px));padding:18px 22px 19px;border-radius:20px;transform-origin:calc(100% + 16px) calc(100% - 34px);transform:translateX(10px) scale(.86)}
+ .f-bub::after{right:-7px;bottom:calc(var(--av,68px)/2 - 7px);border-right:1px solid #e6e8ec;border-bottom:0;border-top:1px solid #e6e8ec;border-radius:0 3px 0 0}
+ .f-bub::before{left:auto;right:-18px;top:0;bottom:0;width:18px;height:auto}
+}
+
+.g4-art svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.wire{stroke:#c3d6df;stroke-width:1.8}
+.flow{stroke:#1f7aa0;stroke-width:2.2;stroke-dasharray:6 10;opacity:0;transition:opacity .4s}
+.pl,.sel,.knob,.dot,.cn,.rad{transform-box:fill-box;transform-origin:center}
+.ping{transform-box:fill-box;transform-origin:center;opacity:0}
+.prog{stroke-dasharray:100;stroke-dashoffset:0}
+.g4-it.play .dot{animation:ev .45s cubic-bezier(.2,.9,.3,1.35) calc(120ms + var(--i)*55ms) both}
+.g4-it.play .prog{animation:prog 1.4s cubic-bezier(.4,0,.2,1) both}
+.g4-it.play .cn{animation:pl .5s cubic-bezier(.2,.8,.3,1.2) calc(900ms + var(--i)*90ms) both}
+.g4-it.act .ping{animation:ping 1.8s ease-out 1.3s infinite}
+@keyframes ev{from{transform:scale(0)}}
+@keyframes prog{from{stroke-dashoffset:100}}
+@keyframes ping{0%{transform:scale(.9);opacity:.8}100%{transform:scale(2.2);opacity:0}}
+.g4-it.play .pl{animation:pl .5s cubic-bezier(.2,.8,.3,1.2) calc(var(--i)*80ms) both}
+.g4-it.act .flow{opacity:1;animation:flow .9s linear infinite}
+@keyframes pl{from{transform:scale(.6);opacity:0}}
+@keyframes flow{to{stroke-dashoffset:-16}}
+.g4-it.play .sel{animation:sel 2.4s cubic-bezier(.6,0,.2,1) both}
+.g4-it.play .knob{animation:knob 2.4s cubic-bezier(.6,0,.2,1) both}
+.g4-it.play .ring{animation:ring 2.4s cubic-bezier(.6,0,.2,1) both}
+@keyframes sel{0%,20%{transform:translateX(-38px)}35%,60%{transform:translateX(76px)}75%,100%{transform:translateX(0)}}
+@keyframes knob{0%,10%{transform:translateX(-60px)}45%{transform:translateX(30px)}70%,100%{transform:translateX(0)}}
+.fill{transform-box:fill-box;transform-origin:left center}
+.g4-it.play .fill{animation:fil 2.4s cubic-bezier(.6,0,.2,1) both}
+@keyframes fil{0%,10%{transform:scaleX(.33)}45%{transform:scaleX(1.33)}70%,100%{transform:scaleX(1)}}
+.g4-it.play .rad{animation:rad 2.4s cubic-bezier(.6,0,.2,1) both}
+@keyframes rad{0%,15%{transform:translateY(-22px)}40%,60%{transform:translateY(22px)}80%,100%{transform:translateY(0)}}
+@keyframes ring{0%{stroke-dashoffset:var(--c)}35%{stroke-dashoffset:calc(var(--c)*.55)}60%{stroke-dashoffset:calc(var(--c)*.12)}100%{stroke-dashoffset:calc(var(--c)*.28)}}
+
+.f-pap{fill:color-mix(in srgb,var(--gc) 3%,#fbfcfe)}
+.f-gmi{opacity:.065}.f-gma{opacity:.1}
+</style></head><body id="top" class="g4b">
+<div class="pt" aria-hidden="true"><canvas></canvas></div><nav><div class="w"><a class="brand wm" href="../index.html" data-label="Index">Bill Chen</a><div class="links"><a class="pf" href="#gallery" aria-current="page">Portfolio</a><a class="ic" href="#contact" data-contact aria-label="Contact" title="Contact"><svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="m4 7.5 8 6 8-6"/></svg></a><a class="ic" href="https://www.linkedin.com/in/billchenux" target="_blank" rel="noopener" aria-label="LinkedIn (opens in a new tab)" title="LinkedIn"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg></a></div></div></nav>
+<main class="g4" id="gallery">
+<h1 class="sr">Bill Chen, selected work</h1>
+<div class="e-wall" aria-hidden="true"></div><div class="e-floor" aria-hidden="true"></div>
+<ul class="g4-row" aria-label="Case studies"><li class="g4-it" data-c="as">
+<a class="g4-a" href="../case-study-03.html" data-pt="pulse" data-label="Network Assurance Engine" aria-describedby="g4-s-as">
+<span class="g4-wash" aria-hidden="true"></span>
+<span class="g4-fr"><span class="g4-mat"><span class="g4-art" aria-hidden="true"><svg viewBox="0 0 400 320" aria-hidden="true">
+<defs><pattern id="f-mi-as" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M10 0H0V10" fill="none" stroke-width=".55" style="stroke:var(--gc)"/></pattern>
+<pattern id="f-ma-as" width="50" height="50" patternUnits="userSpaceOnUse" x="0" y="10"><path d="M50 0H0V50" fill="none" stroke-width="1" style="stroke:var(--gc)"/></pattern></defs>
+<rect width="400" height="320" class="f-pap"/>
+<rect width="400" height="320" fill="url(#f-mi-as)" class="f-gmi"/><rect width="400" height="320" fill="url(#f-ma-as)" class="f-gma"/>
+<g stroke="#b9c3d3" stroke-width="1.2" opacity=".55"><line x1="20.0" y1="72" x2="20.0" y2="82"/><line x1="27.5" y1="72" x2="27.5" y2="75.5"/><line x1="35.0" y1="72" x2="35.0" y2="75.5"/><line x1="42.5" y1="72" x2="42.5" y2="75.5"/><line x1="50.0" y1="72" x2="50.0" y2="78"/><line x1="57.5" y1="72" x2="57.5" y2="75.5"/><line x1="65.0" y1="72" x2="65.0" y2="75.5"/><line x1="72.5" y1="72" x2="72.5" y2="75.5"/><line x1="80.0" y1="72" x2="80.0" y2="82"/><line x1="87.5" y1="72" x2="87.5" y2="75.5"/><line x1="95.0" y1="72" x2="95.0" y2="75.5"/><line x1="102.5" y1="72" x2="102.5" y2="75.5"/><line x1="110.0" y1="72" x2="110.0" y2="78"/><line x1="117.5" y1="72" x2="117.5" y2="75.5"/><line x1="125.0" y1="72" x2="125.0" y2="75.5"/><line x1="132.5" y1="72" x2="132.5" y2="75.5"/><line x1="140.0" y1="72" x2="140.0" y2="82"/><line x1="147.5" y1="72" x2="147.5" y2="75.5"/><line x1="155.0" y1="72" x2="155.0" y2="75.5"/><line x1="162.5" y1="72" x2="162.5" y2="75.5"/><line x1="170.0" y1="72" x2="170.0" y2="78"/><line x1="177.5" y1="72" x2="177.5" y2="75.5"/><line x1="185.0" y1="72" x2="185.0" y2="75.5"/><line x1="192.5" y1="72" x2="192.5" y2="75.5"/><line x1="200.0" y1="72" x2="200.0" y2="82"/><line x1="207.5" y1="72" x2="207.5" y2="75.5"/><line x1="215.0" y1="72" x2="215.0" y2="75.5"/><line x1="222.5" y1="72" x2="222.5" y2="75.5"/><line x1="230.0" y1="72" x2="230.0" y2="78"/><line x1="237.5" y1="72" x2="237.5" y2="75.5"/><line x1="245.0" y1="72" x2="245.0" y2="75.5"/><line x1="252.5" y1="72" x2="252.5" y2="75.5"/><line x1="260.0" y1="72" x2="260.0" y2="82"/><line x1="267.5" y1="72" x2="267.5" y2="75.5"/><line x1="275.0" y1="72" x2="275.0" y2="75.5"/><line x1="282.5" y1="72" x2="282.5" y2="75.5"/><line x1="290.0" y1="72" x2="290.0" y2="78"/><line x1="297.5" y1="72" x2="297.5" y2="75.5"/><line x1="305.0" y1="72" x2="305.0" y2="75.5"/><line x1="312.5" y1="72" x2="312.5" y2="75.5"/><line x1="320.0" y1="72" x2="320.0" y2="82"/><line x1="327.5" y1="72" x2="327.5" y2="75.5"/><line x1="335.0" y1="72" x2="335.0" y2="75.5"/><line x1="342.5" y1="72" x2="342.5" y2="75.5"/><line x1="350.0" y1="72" x2="350.0" y2="78"/><line x1="357.5" y1="72" x2="357.5" y2="75.5"/><line x1="365.0" y1="72" x2="365.0" y2="75.5"/><line x1="372.5" y1="72" x2="372.5" y2="75.5"/><line x1="380.0" y1="72" x2="380.0" y2="82"/><line x1="20" y1="72" x2="380" y2="72" stroke-width="1"/></g><g stroke="#b9c3d3" stroke-width="1.2" opacity=".55"><line x1="20.0" y1="152" x2="20.0" y2="142"/><line x1="27.5" y1="152" x2="27.5" y2="148.5"/><line x1="35.0" y1="152" x2="35.0" y2="148.5"/><line x1="42.5" y1="152" x2="42.5" y2="148.5"/><line x1="50.0" y1="152" x2="50.0" y2="146"/><line x1="57.5" y1="152" x2="57.5" y2="148.5"/><line x1="65.0" y1="152" x2="65.0" y2="148.5"/><line x1="72.5" y1="152" x2="72.5" y2="148.5"/><line x1="80.0" y1="152" x2="80.0" y2="142"/><line x1="87.5" y1="152" x2="87.5" y2="148.5"/><line x1="95.0" y1="152" x2="95.0" y2="148.5"/><line x1="102.5" y1="152" x2="102.5" y2="148.5"/><line x1="110.0" y1="152" x2="110.0" y2="146"/><line x1="117.5" y1="152" x2="117.5" y2="148.5"/><line x1="125.0" y1="152" x2="125.0" y2="148.5"/><line x1="132.5" y1="152" x2="132.5" y2="148.5"/><line x1="140.0" y1="152" x2="140.0" y2="142"/><line x1="147.5" y1="152" x2="147.5" y2="148.5"/><line x1="155.0" y1="152" x2="155.0" y2="148.5"/><line x1="162.5" y1="152" x2="162.5" y2="148.5"/><line x1="170.0" y1="152" x2="170.0" y2="146"/><line x1="177.5" y1="152" x2="177.5" y2="148.5"/><line x1="185.0" y1="152" x2="185.0" y2="148.5"/><line x1="192.5" y1="152" x2="192.5" y2="148.5"/><line x1="200.0" y1="152" x2="200.0" y2="142"/><line x1="207.5" y1="152" x2="207.5" y2="148.5"/><line x1="215.0" y1="152" x2="215.0" y2="148.5"/><line x1="222.5" y1="152" x2="222.5" y2="148.5"/><line x1="230.0" y1="152" x2="230.0" y2="146"/><line x1="237.5" y1="152" x2="237.5" y2="148.5"/><line x1="245.0" y1="152" x2="245.0" y2="148.5"/><line x1="252.5" y1="152" x2="252.5" y2="148.5"/><line x1="260.0" y1="152" x2="260.0" y2="142"/><line x1="267.5" y1="152" x2="267.5" y2="148.5"/><line x1="275.0" y1="152" x2="275.0" y2="148.5"/><line x1="282.5" y1="152" x2="282.5" y2="148.5"/><line x1="290.0" y1="152" x2="290.0" y2="146"/><line x1="297.5" y1="152" x2="297.5" y2="148.5"/><line x1="305.0" y1="152" x2="305.0" y2="148.5"/><line x1="312.5" y1="152" x2="312.5" y2="148.5"/><line x1="320.0" y1="152" x2="320.0" y2="142"/><line x1="327.5" y1="152" x2="327.5" y2="148.5"/><line x1="335.0" y1="152" x2="335.0" y2="148.5"/><line x1="342.5" y1="152" x2="342.5" y2="148.5"/><line x1="350.0" y1="152" x2="350.0" y2="146"/><line x1="357.5" y1="152" x2="357.5" y2="148.5"/><line x1="365.0" y1="152" x2="365.0" y2="148.5"/><line x1="372.5" y1="152" x2="372.5" y2="148.5"/><line x1="380.0" y1="152" x2="380.0" y2="142"/><line x1="20" y1="152" x2="380" y2="152" stroke-width="1"/></g>
+<line x1="28" y1="112" x2="356" y2="112" stroke="#d9dfe8" stroke-width="3" stroke-linecap="round"/>
+<line class="prog" x1="28" y1="112" x2="356" y2="112" stroke="#aeb9cc" stroke-width="3" stroke-linecap="round" pathLength="100"/>
+<circle class="dot" style="--i:0" cx="40.0" cy="112" r="5.5" fill="#1fb36b"/><circle class="dot" style="--i:1" cx="60.0" cy="112" r="5.5" fill="#1fb36b"/><circle class="dot" style="--i:2" cx="80.0" cy="112" r="6.8" fill="#f2b705"/><circle class="dot" style="--i:3" cx="100.0" cy="112" r="5.5" fill="#1fb36b"/><circle class="dot" style="--i:4" cx="120.0" cy="112" r="8" fill="#ff7a1a"/><circle class="dot" style="--i:5" cx="140.0" cy="112" r="6.8" fill="#f2b705"/><circle class="dot" style="--i:6" cx="160.0" cy="112" r="5.5" fill="#1fb36b"/><circle class="dot" style="--i:7" cx="180.0" cy="112" r="9" fill="#ff2d4f"/><circle class="dot" style="--i:8" cx="200.0" cy="112" r="8" fill="#ff7a1a"/><circle class="dot" style="--i:9" cx="220.0" cy="112" r="5.5" fill="#1fb36b"/><circle class="dot" style="--i:10" cx="240.0" cy="112" r="6.8" fill="#f2b705"/><circle class="dot" style="--i:11" cx="260.0" cy="112" r="8" fill="#ff7a1a"/><circle class="dot" style="--i:12" cx="280.0" cy="112" r="5.5" fill="#1fb36b"/><circle class="dot" style="--i:13" cx="300.0" cy="112" r="6.8" fill="#f2b705"/><circle class="dot" style="--i:14" cx="320.0" cy="112" r="5.5" fill="#1fb36b"/><circle class="dot" style="--i:15" cx="340.0" cy="112" r="9" fill="#ff2d4f"/>
+<circle class="ping" cx="356" cy="112" r="13" fill="none" stroke="#ff2d4f" stroke-width="2"/>
+<circle cx="356" cy="112" r="12.5" fill="none" stroke="#1d3a8a" stroke-width="2"/><circle cx="356" cy="112" r="8.5" fill="#ff2d4f"/>
+<rect x="30" y="182" width="340" height="96" rx="10" fill="#fff" stroke="#e3e8f0"/>
+<g class="cn" style="--i:0"><circle cx="74" cy="214" r="9" fill="#ff2d4f"/><path d="M70.6 210.6l6.8 6.8M77.4 210.6l-6.8 6.8" stroke="#fff" stroke-width="2" stroke-linecap="round"/><text x="74" y="252" text-anchor="middle" font-size="19" font-weight="650" fill="#141821" font-family="Geist,system-ui,sans-serif">314</text></g><g class="cn" style="--i:1"><path d="M137 204.5L147 222H127z" fill="#ff7a1a" stroke="#ff7a1a" stroke-width="2" stroke-linejoin="round"/><path d="M137 211v5" stroke="#fff" stroke-width="2" stroke-linecap="round"/><text x="137" y="252" text-anchor="middle" font-size="19" font-weight="650" fill="#141821" font-family="Geist,system-ui,sans-serif">998</text></g><g class="cn" style="--i:2"><rect x="193.5" y="207.5" width="13" height="13" rx="2" transform="rotate(45 200 214)" fill="#f2b705"/><text x="200" y="252" text-anchor="middle" font-size="19" font-weight="650" fill="#141821" font-family="Geist,system-ui,sans-serif">54</text></g><g class="cn" style="--i:3"><circle cx="263" cy="214" r="9" fill="#38a8f0"/><path d="M263 213v5" stroke="#fff" stroke-width="2" stroke-linecap="round"/><circle cx="263" cy="209.6" r="1.3" fill="#fff"/><text x="263" y="252" text-anchor="middle" font-size="19" font-weight="650" fill="#141821" font-family="Geist,system-ui,sans-serif">294</text></g><g class="cn" style="--i:4"><circle cx="326" cy="214" r="9" fill="#1fb36b"/><path d="M322 214l2.8 2.8 5-5.4" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><text x="326" y="252" text-anchor="middle" font-size="19" font-weight="650" fill="#141821" font-family="Geist,system-ui,sans-serif">675</text></g>
+</svg></span></span></span>
+<span class="g4-pl"><span class="g4-nm">Network Assurance Engine</span></span><span class="g4-cap" id="g4-s-as">Network Diagnostics, System Monitoring &amp; Governance</span>
+</a></li><li class="g4-it" data-c="db">
+<a class="g4-a" href="../case-study-02.html" data-pt="flow" data-label="Nexus Dashboard Data Broker" aria-describedby="g4-s-db">
+<span class="g4-wash" aria-hidden="true"></span>
+<span class="g4-fr"><span class="g4-mat"><span class="g4-art" aria-hidden="true"><svg viewBox="0 0 400 320" aria-hidden="true">
+<defs><pattern id="f-mi-db" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M10 0H0V10" fill="none" stroke-width=".55" style="stroke:var(--gc)"/></pattern>
+<pattern id="f-ma-db" width="50" height="50" patternUnits="userSpaceOnUse" x="0" y="10"><path d="M50 0H0V50" fill="none" stroke-width="1" style="stroke:var(--gc)"/></pattern></defs>
+<rect width="400" height="320" class="f-pap"/>
+<rect width="400" height="320" fill="url(#f-mi-db)" class="f-gmi"/><rect width="400" height="320" fill="url(#f-ma-db)" class="f-gma"/>
+<path class="wire" d="M126 92C141.0 92 141.0 126 156 126" fill="none"/><path class="flow" d="M126 92C141.0 92 141.0 126 156 126" fill="none"/><path class="wire" d="M126 160C141.0 160 141.0 126 156 126" fill="none"/><path class="flow" d="M126 160C141.0 160 141.0 126 156 126" fill="none"/><path class="wire" d="M126 160C141.0 160 141.0 194 156 194" fill="none"/><path class="flow" d="M126 160C141.0 160 141.0 194 156 194" fill="none"/><path class="wire" d="M126 228C141.0 228 141.0 194 156 194" fill="none"/><path class="flow" d="M126 228C141.0 228 141.0 194 156 194" fill="none"/><path class="wire" d="M252 126C265.0 126 265.0 126 278 126" fill="none"/><path class="flow" d="M252 126C265.0 126 265.0 126 278 126" fill="none"/><path class="wire" d="M252 126C265.0 126 265.0 194 278 194" fill="none"/><path class="flow" d="M252 126C265.0 126 265.0 194 278 194" fill="none"/><path class="wire" d="M252 194C265.0 194 265.0 194 278 194" fill="none"/><path class="flow" d="M252 194C265.0 194 265.0 194 278 194" fill="none"/>
+<g class="pl" style="--i:0"><rect x="30.0" y="73.0" width="96" height="38" rx="19.0" fill="#fff" stroke="#cfdde4" stroke-width="1.4"/>
+<circle cx="49.0" cy="92" r="12.5" fill="#e3eff4"/><g transform="translate(49.0 92)" fill="none" stroke="#085272" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="-8" y="-7" width="16" height="11" rx="2"/><path d="M-4 7.5h8M0 4v3.5"/></g>
+<rect x="68.0" y="86" width="40" height="5" rx="2.5" fill="#9fb6c2"/><rect x="68.0" y="95" width="24" height="4" rx="2" fill="#d3e0e6"/></g><g class="pl" style="--i:1"><rect x="30.0" y="141.0" width="96" height="38" rx="19.0" fill="#fff" stroke="#cfdde4" stroke-width="1.4"/>
+<circle cx="49.0" cy="160" r="12.5" fill="#e3eff4"/><g transform="translate(49.0 160)" fill="none" stroke="#085272" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="-8" y="-7" width="16" height="11" rx="2"/><path d="M-4 7.5h8M0 4v3.5"/></g>
+<rect x="68.0" y="154" width="40" height="5" rx="2.5" fill="#9fb6c2"/><rect x="68.0" y="163" width="24" height="4" rx="2" fill="#d3e0e6"/></g><g class="pl" style="--i:2"><rect x="30.0" y="209.0" width="96" height="38" rx="19.0" fill="#fff" stroke="#cfdde4" stroke-width="1.4"/>
+<circle cx="49.0" cy="228" r="12.5" fill="#e3eff4"/><g transform="translate(49.0 228)" fill="none" stroke="#085272" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="-8" y="-7" width="16" height="11" rx="2"/><path d="M-4 7.5h8M0 4v3.5"/></g>
+<rect x="68.0" y="222" width="40" height="5" rx="2.5" fill="#9fb6c2"/><rect x="68.0" y="231" width="24" height="4" rx="2" fill="#d3e0e6"/></g>
+<g class="pl" style="--i:3"><rect x="156.0" y="107.0" width="96" height="38" rx="19.0" fill="#eef6f9" stroke="#a9c9d6" stroke-width="1.4"/>
+<circle cx="175.0" cy="126" r="12.5" fill="#e3eff4"/><g transform="translate(175.0 126)" fill="none" stroke="#085272" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M-8 -7h16l-6 7v6l-4 2v-8z"/></g>
+<rect x="194.0" y="120" width="40" height="5" rx="2.5" fill="#9fb6c2"/><rect x="194.0" y="129" width="24" height="4" rx="2" fill="#d3e0e6"/></g><g class="pl" style="--i:4"><rect x="156.0" y="175.0" width="96" height="38" rx="19.0" fill="#eef6f9" stroke="#a9c9d6" stroke-width="1.4"/>
+<circle cx="175.0" cy="194" r="12.5" fill="#e3eff4"/><g transform="translate(175.0 194)" fill="none" stroke="#085272" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M-8 -7h16l-6 7v6l-4 2v-8z"/></g>
+<rect x="194.0" y="188" width="40" height="5" rx="2.5" fill="#9fb6c2"/><rect x="194.0" y="197" width="24" height="4" rx="2" fill="#d3e0e6"/></g>
+<g class="pl" style="--i:5"><rect x="278.0" y="107.0" width="96" height="38" rx="19.0" fill="#fff" stroke="#cfdde4" stroke-width="1.4"/>
+<circle cx="297.0" cy="126" r="12.5" fill="#e3eff4"/><g transform="translate(297.0 126)" fill="none" stroke="#085272" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 -7.5a4.5 4.5 0 0 0-5.6 5.6L-7.5 4a2 2 0 0 0 2.8 2.8l6.1-6.1a4.5 4.5 0 0 0 5.6-5.6l-2.7 2.7-2.7-.5-.5-2.7z"/></g>
+<rect x="316.0" y="120" width="40" height="5" rx="2.5" fill="#9fb6c2"/><rect x="316.0" y="129" width="24" height="4" rx="2" fill="#d3e0e6"/></g><g class="pl" style="--i:6"><rect x="278.0" y="175.0" width="96" height="38" rx="19.0" fill="#fff" stroke="#cfdde4" stroke-width="1.4"/>
+<circle cx="297.0" cy="194" r="12.5" fill="#e3eff4"/><g transform="translate(297.0 194)" fill="none" stroke="#085272" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 -7.5a4.5 4.5 0 0 0-5.6 5.6L-7.5 4a2 2 0 0 0 2.8 2.8l6.1-6.1a4.5 4.5 0 0 0 5.6-5.6l-2.7 2.7-2.7-.5-.5-2.7z"/></g>
+<rect x="316.0" y="188" width="40" height="5" rx="2.5" fill="#9fb6c2"/><rect x="316.0" y="197" width="24" height="4" rx="2" fill="#d3e0e6"/></g>
+</svg></span></span></span>
+<span class="g4-pl"><span class="g4-nm">Nexus Dashboard Data&nbsp;Broker</span></span><span class="g4-cap" id="g4-s-db">Enterprise Data Visualization &amp; Flow Architectures</span>
+</a></li><li class="g4-it" data-c="mk">
+<a class="g4-a" href="../case-study.html" data-pt="cart" data-label="Intercloud Marketplace" aria-describedby="g4-s-mk">
+<span class="g4-wash" aria-hidden="true"></span>
+<span class="g4-fr"><span class="g4-mat"><span class="g4-art" aria-hidden="true"><svg viewBox="0 0 400 320" aria-hidden="true">
+<defs><pattern id="f-mi-mk" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M10 0H0V10" fill="none" stroke-width=".55" style="stroke:var(--gc)"/></pattern>
+<pattern id="f-ma-mk" width="50" height="50" patternUnits="userSpaceOnUse" x="0" y="10"><path d="M50 0H0V50" fill="none" stroke-width="1" style="stroke:var(--gc)"/></pattern></defs>
+<rect width="400" height="320" class="f-pap"/>
+<rect width="400" height="320" fill="url(#f-mi-mk)" class="f-gmi"/><rect width="400" height="320" fill="url(#f-ma-mk)" class="f-gma"/>
+<rect x="34" y="56" width="332" height="216" rx="14" fill="#fff" fill-opacity=".9" stroke="#dfe5f0"/>
+<circle cx="64" cy="84" r="6.5" fill="#fff" stroke="#c3cbd9" stroke-width="1.6"/><path d="M80 84h64" stroke="#cfd6e2" stroke-width="2.4" stroke-linecap="round"/><circle cx="64" cy="106" r="6.5" fill="#fff" stroke="#3b82f6" stroke-width="1.6"/><path d="M80 106h88" stroke="#cfd6e2" stroke-width="2.4" stroke-linecap="round"/><circle cx="64" cy="128" r="6.5" fill="#fff" stroke="#c3cbd9" stroke-width="1.6"/><path d="M80 128h52" stroke="#cfd6e2" stroke-width="2.4" stroke-linecap="round"/><circle class="rad" cx="64" cy="106" r="3.2" fill="#3b82f6"/><rect x="56" y="152" width="30" height="30" rx="6" fill="#fff" stroke="#dde3ee"/><rect x="65" y="174" width="12" height="3" rx="1" fill="#c5cee0"/><rect x="94" y="152" width="30" height="30" rx="6" fill="#fff" stroke="#dde3ee"/><rect x="103" y="174" width="12" height="3" rx="1" fill="#c5cee0"/><rect x="103" y="169" width="12" height="3" rx="1" fill="#c5cee0"/><rect x="132" y="152" width="30" height="30" rx="6" fill="#fff" stroke="#dde3ee"/><rect x="141" y="174" width="12" height="3" rx="1" fill="#c5cee0"/><rect x="141" y="169" width="12" height="3" rx="1" fill="#c5cee0"/><rect x="141" y="164" width="12" height="3" rx="1" fill="#c5cee0"/><rect x="170" y="152" width="30" height="30" rx="6" fill="#fff" stroke="#dde3ee"/><rect x="179" y="174" width="12" height="3" rx="1" fill="#c5cee0"/><rect x="179" y="169" width="12" height="3" rx="1" fill="#c5cee0"/><rect x="179" y="164" width="12" height="3" rx="1" fill="#c5cee0"/><rect x="179" y="159" width="12" height="3" rx="1" fill="#c5cee0"/><g class="sel"><rect x="94" y="152" width="30" height="30" rx="6" fill="none" stroke="#3b82f6" stroke-width="2"/><circle cx="122" cy="154" r="5.5" fill="#3b82f6"/><path d="M119.6 154l1.6 1.6 3-3.2" stroke="#fff" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g><path d="M56 205H206" stroke="#e6eaf2" stroke-width="3" stroke-linecap="round"/>
+<path class="fill" d="M56 205H146" stroke="#3b82f6" stroke-width="3" stroke-linecap="round"/><path d="M56 214v4" stroke="#d3d9e4" stroke-width="1.2"/><path d="M86 214v4" stroke="#d3d9e4" stroke-width="1.2"/><path d="M116 214v4" stroke="#d3d9e4" stroke-width="1.2"/><path d="M146 214v4" stroke="#d3d9e4" stroke-width="1.2"/><path d="M176 214v4" stroke="#d3d9e4" stroke-width="1.2"/><path d="M206 214v4" stroke="#d3d9e4" stroke-width="1.2"/>
+<circle class="knob" cx="146" cy="205" r="7.5" fill="#fff" stroke="#3b82f6" stroke-width="2"/><rect x="56" y="230" width="84" height="26" rx="6" fill="#fff" stroke="#dde3ee"/>
+<path d="M62.5 236.5h13v13h-13z" fill="#f1f4f9"/><path d="M65.5 243h7" stroke="#8b96aa" stroke-width="1.6" stroke-linecap="round"/>
+<path d="M120.5 236.5h13v13h-13z" fill="#eaf0fe"/><path d="M123.5 243h7M127 239.5v7" stroke="#3b82f6" stroke-width="1.6" stroke-linecap="round"/>
+<text x="98" y="248" text-anchor="middle" font-size="13" font-weight="650" fill="#141821" font-family="Geist,system-ui,sans-serif">3</text>
+<text x="206" y="248" text-anchor="end" font-size="13" font-weight="600" fill="#141821" font-family="Geist,system-ui,sans-serif">36</text>
+<circle cx="300" cy="164" r="42" fill="none" stroke="#e3ebfd" stroke-width="11"/>
+<circle class="ring" style="--c:263.9" cx="300" cy="164" r="42" fill="none" stroke="#3b82f6" stroke-width="11" stroke-linecap="round" stroke-dasharray="263.9" stroke-dashoffset="73.9" transform="rotate(-90 300 164)"/>
+<text x="300" y="170" text-anchor="middle" font-size="14" font-weight="650" fill="#141821" font-family="Geist,system-ui,sans-serif">$20,000</text>
+</svg></span></span></span>
+<span class="g4-pl"><span class="g4-nm">Intercloud Marketplace</span></span><span class="g4-cap" id="g4-s-mk">Cloud Marketplace &amp; Configuration Frameworks</span>
+</a></li></ul>
+
+</main>
+<div class="f-ch" id="f-ch"><div class="f-bub" id="f-bub"><span class="f-hi">Hi, I&rsquo;m Bill Chen</span><span class="f-role">Founding Product Designer / Lead Product Designer</span><span class="f-txt">I design scalable enterprise software ecosystems and transform dense, technical data into minimalist user experiences. Specializing in data visualization and complex SaaS platforms, my work directly bridges the gap between deep infrastructure constraints and critical product execution.</span></div><button class="f-av" type="button" aria-expanded="false" aria-controls="f-bub" aria-label="About Bill Chen"><svg viewBox="14 14 92 92" aria-hidden="true" focusable="false">
+<defs>
+<radialGradient id="f-a-bg" cx=".35" cy=".25" r=".95"><stop offset="0" stop-color="#eef3f8"/><stop offset="1" stop-color="#cfd9e5"/></radialGradient>
+<linearGradient id="f-a-sk" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#e6bf9f"/><stop offset=".28" stop-color="#f3d6bd"/><stop offset=".62" stop-color="#f1d2b7"/><stop offset="1" stop-color="#ddb393"/></linearGradient>
+<linearGradient id="f-a-nk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c99877"/><stop offset="1" stop-color="#deb293"/></linearGradient>
+<linearGradient id="f-a-hr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2e3138"/><stop offset=".5" stop-color="#17181c"/><stop offset="1" stop-color="#0e0f12"/></linearGradient>
+<linearGradient id="f-a-tn" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#1c1d22"/><stop offset=".45" stop-color="#2a2c33"/><stop offset="1" stop-color="#121317"/></linearGradient>
+<clipPath id="f-a-c"><circle cx="60" cy="60" r="46"/></clipPath>
+</defs>
+<g clip-path="url(#f-a-c)">
+<rect width="120" height="120" fill="url(#f-a-bg)"/>
+<!-- body: black turtleneck -->
+<path d="M6 124C8 104 22 95 42 91L50 89H70L78 91C98 95 112 104 114 124Z" fill="url(#f-a-tn)"/>
+<path d="M30 102C38 97 44 95 50 94" fill="none" stroke="#3a3c44" stroke-width="1.2" stroke-linecap="round" opacity=".7"/>
+<path d="M90 102C84 98 79 96 72 94" fill="none" stroke="#08090b" stroke-width="1.2" stroke-linecap="round" opacity=".6"/>
+<!-- neck -->
+<path d="M51.5 64H68.5V84C68.5 86 64 88 60 88C56 88 51.5 86 51.5 84Z" fill="url(#f-a-nk)"/>
+<path d="M51.5 70C55 73.5 65 73.5 68.5 70V64H51.5Z" fill="#b98767" opacity=".45"/>
+<!-- rolled collar -->
+<path d="M46.5 86C46.5 79.5 52 77 60 77C68 77 73.5 79.5 73.5 86V93C67 95.5 53 95.5 46.5 93Z" fill="#202127"/>
+<path d="M47.5 84C53 81.2 67 81.2 72.5 84" fill="none" stroke="#3b3e46" stroke-width="1.1" stroke-linecap="round"/>
+<path d="M48 88.6C54 86.2 66 86.2 72 88.6" fill="none" stroke="#33353c" stroke-width="1" stroke-linecap="round"/>
+<!-- ears -->
+<ellipse cx="39.6" cy="50.5" rx="3.6" ry="6" fill="#e2b998"/><path d="M39.4 47.5C38 49 38 52 39.6 54" fill="none" stroke="#c4936f" stroke-width="1" stroke-linecap="round"/>
+<ellipse cx="80.4" cy="50.5" rx="3.6" ry="6" fill="#d9ad8c"/><path d="M80.6 47.5C82 49 82 52 80.4 54" fill="none" stroke="#bd8b67" stroke-width="1" stroke-linecap="round"/>
+<!-- face -->
+<path d="M40.5 45C40.5 31 49 24.5 60 24.5C71 24.5 79.5 31 79.5 45C79.5 58.5 74.5 68.5 66 73C62.2 75 57.8 75 54 73C45.5 68.5 40.5 58.5 40.5 45Z" fill="url(#f-a-sk)"/>
+<path d="M75 52C74 61 70 68 64 71.6C68.5 70.5 76.5 63 77.8 52Z" fill="#c99a78" opacity=".35"/>
+<ellipse cx="48.5" cy="58" rx="4.6" ry="2.6" fill="#ee9f8a" opacity=".22"/><ellipse cx="71.5" cy="58" rx="4.6" ry="2.6" fill="#ee9f8a" opacity=".22"/>
+<!-- brows, eyes -->
+<path d="M45.2 42.2C47.5 40.6 51 40.4 53.8 41.2" fill="none" stroke="#1e1c1c" stroke-width="2" stroke-linecap="round"/>
+<path d="M66.2 41.2C69 40.4 72.5 40.6 74.8 42.2" fill="none" stroke="#1e1c1c" stroke-width="2" stroke-linecap="round"/>
+<path d="M46.2 49.2C47.8 47.4 51.2 47.2 53.2 48.8C51.4 50.6 48.2 50.8 46.2 49.2Z" fill="#1d1b1b"/>
+<path d="M66.8 48.8C68.8 47.2 72.2 47.4 73.8 49.2C71.8 50.8 68.6 50.6 66.8 48.8Z" fill="#1d1b1b"/>
+<circle cx="50.6" cy="48.4" r=".7" fill="#fff" opacity=".9"/><circle cx="71.2" cy="48.4" r=".7" fill="#fff" opacity=".9"/>
+<path d="M45.6 51.2C47.6 52.2 50.6 52.3 52.8 51.4M67.2 51.4C69.4 52.3 72.4 52.2 74.4 51.2" fill="none" stroke="#c99878" stroke-width=".8" stroke-linecap="round" opacity=".7"/>
+<!-- nose, mouth -->
+<path d="M60.6 50.5C60.8 54 61.6 56.6 62.6 57.6C61.6 58.6 59.4 58.8 58 58.2" fill="none" stroke="#c08d6b" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M54 63C57.6 66.2 62.4 66.2 66 63C63.6 64 56.4 64 54 63Z" fill="#9c4f45" stroke="#9c4f45" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M56.2 63.9C58.6 64.5 61.4 64.5 63.8 63.9" fill="none" stroke="#fff" stroke-width="1" stroke-linecap="round" opacity=".85"/>
+<!-- hair: short, textured on top, side swept fringe -->
+<path d="M39.2 50C37 37.5 40.5 26 49 20.6C56.5 15.8 68.2 15.6 75.4 20.8C83 26.2 84.6 37 81 50C80 44 78.6 39.6 76.4 36.6C74.6 34.4 72 33.6 69 33.8C63 34.2 55.2 33 49.4 30C47 34 45.6 38 44.6 41.2C42.6 43 41 46 39.2 50Z" fill="url(#f-a-hr)"/>
+<path d="M49.4 30C56 26.4 66.6 25.2 76.4 28.6C73 25.2 67 23.4 60.6 23.8C55 24.2 51 26.6 49.4 30Z" fill="#3c4049" opacity=".55"/>
+<path d="M52 22.6C58 19.6 67 19.4 73 22.4" fill="none" stroke="#4a4f59" stroke-width="1.2" stroke-linecap="round" opacity=".5"/>
+<path d="M44.6 41.2C46.2 35.6 48.6 31.6 52.6 28.6" fill="none" stroke="#3a3e47" stroke-width="1" stroke-linecap="round" opacity=".6"/>
+</g>
+</svg><span class="f-dot" aria-hidden="true"></span></button></div>
+<div class="cm" id="contact-modal" role="dialog" aria-modal="true" aria-labelledby="cm-t" hidden><div class="cm-bg" data-close></div><div class="cm-p">
+<button class="cm-x" type="button" aria-label="Close" data-close><svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true"><path d="M5 5l10 10M15 5 5 15" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+<h2 id="cm-t">Send me a message</h2><p class="cm-s">Tell me a little about what you have in mind, and I’ll reply by&nbsp;email.</p>
+<form class="cm-f" novalidate data-key="" data-li="https://www.linkedin.com/in/billchenux"><input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+<label><span>Name</span><input name="name" autocomplete="name" required><em class="er" aria-live="polite"></em></label>
+<label><span>Email</span><input type="email" name="email" autocomplete="email" required><em class="er" aria-live="polite"></em></label>
+<label><span>Message</span><textarea name="message" rows="5" required></textarea><em class="er" aria-live="polite"></em></label>
+<div class="cm-a"><button type="submit" class="btn b1">Send message <span aria-hidden="true">→</span></button></div><p class="cm-st" role="status" aria-live="polite"></p></form>
+<div class="cm-done" hidden><h3 tabindex="-1">Thanks, your message is on its&nbsp;way.</h3><p>I’ll get back to you&nbsp;soon.</p><button type="button" class="btn b2" data-close>Close</button></div>
+</div></div>
+
+<script src="../assets/js/main.js"></script><script>(()=>{const RM=window.RM,$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const row=document.querySelector('.g4-row'),its=$$('.g4-it');
+const touch=matchMedia('(hover:none)');let lastPT='mouse';
+addEventListener('pointerdown',e=>{lastPT=e.pointerType},true);
+/* play restarts the piece's sequence; the still is its finished state */
+function play(it){if(RM)return;it.classList.remove('play');void it.offsetWidth;it.classList.add('play')}
+const dim=()=>row.classList.toggle('dim',its.some(i=>i.classList.contains('act')));
+function on(it){its.forEach(o=>{if(o!==it&&o.classList.contains('act')&&!o.matches(':focus-within'))off(o)});if(!it.classList.contains('act')){it.classList.add('act');play(it)}dim()}
+function off(it){it.classList.remove('act','armed','play');dim()}
+its.forEach(it=>{const a=it.querySelector('.g4-a');
+ a.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse')on(it)});
+ a.addEventListener('pointerleave',e=>{if(e.pointerType==='mouse'&&!a.matches(':focus-visible'))off(it)});
+ a.addEventListener('focus',()=>on(it));a.addEventListener('blur',()=>{if(!a.matches(':hover'))off(it)});
+ /* touch: first tap plays the piece and shows its line, second tap opens the case study */
+ a.addEventListener('click',e=>{if(lastPT==='mouse'&&!touch.matches)return;if(e.detail===0)return;
+  if(!it.classList.contains('armed')){e.preventDefault();e.stopPropagation();its.forEach(o=>o!==it&&off(o));on(it);it.classList.add('armed')}})});
+const me=document.querySelector('.g4-me'),fb=me&&me.querySelector('.g4-fig');
+document.addEventListener('pointerdown',e=>{if(e.pointerType==='mouse')return;if(!e.target.closest('.g4-it'))its.forEach(off);if(me&&!e.target.closest('.g4-me')){me.classList.remove('open');fb.setAttribute('aria-expanded','false')}});
+if(me){const sync=()=>fb.setAttribute('aria-expanded',String(me.matches(':hover')||me.matches(':focus-within')||me.classList.contains('open')));
+ me.addEventListener('pointerenter',sync);me.addEventListener('pointerleave',()=>setTimeout(sync));me.addEventListener('focusin',sync);me.addEventListener('focusout',()=>setTimeout(sync));
+ fb.addEventListener('click',()=>{me.classList.toggle('open');sync()});
+ me.addEventListener('keydown',e=>{if(e.key==='Escape'){me.classList.remove('open');me.classList.add('shut');fb.focus();fb.setAttribute('aria-expanded','false')}});
+ me.addEventListener('pointerleave',()=>me.classList.remove('shut'));me.addEventListener('focusout',e=>{if(!me.contains(e.relatedTarget))me.classList.remove('shut')});fb.addEventListener('click',()=>me.classList.remove('shut'),true)}
+})();
+(()=>{const w=document.getElementById('f-ch');if(!w)return;const b=w.querySelector('.f-av');let t,esc=0;
+const set=o=>{clearTimeout(t);w.classList.toggle('open',o);b.setAttribute('aria-expanded',String(o))};
+const fine=matchMedia('(hover:hover) and (pointer:fine)');
+w.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse'||fine.matches&&e.pointerType!=='touch')set(true)});
+w.addEventListener('pointerleave',e=>{if(e.pointerType==='touch')return;if(!w.contains(document.activeElement)||!b.matches(':focus-visible'))t=setTimeout(()=>set(false),160)});
+b.addEventListener('click',e=>{if(e.detail&&fine.matches&&w.classList.contains('open')&&w.matches(':hover'))return;set(!w.classList.contains('open'))});
+b.addEventListener('focus',()=>setTimeout(()=>{if(!esc&&b.matches(':focus-visible'))set(true);esc=0}));
+w.addEventListener('focusout',e=>{if(!w.contains(e.relatedTarget)&&!w.matches(':hover'))set(false)});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&w.classList.contains('open')){set(false);if(w.contains(document.activeElement)&&document.activeElement!==b){esc=1;b.focus({preventScroll:true})}}});
+document.addEventListener('pointerdown',e=>{if(!w.contains(e.target))set(false)});
+})();
+</script></body></html>
