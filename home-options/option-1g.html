@@ -319,7 +319,11 @@ html[data-sub=in] .g4-it[data-c=as] .g4-mat>.g4-cap{white-space:normal;text-wrap
 html[data-sub=in] .g4-it.act[data-c=as][style*="--lift"] .g4-art svg{transform:translateY(calc(var(--lift)*-1))}
 /* t199: phones: the first frame, its light and its nameplate start centred in the screen under the header, at least 24px below it.
    This is the first paint estimate; sub1g.js measures and sets the exact value */
-@media(max-width:700px){.g4{padding-top:calc(65px + 62px + max(24px,(100svh - 65px - 380px)/2))}}
+@media(max-width:700px){.g4{padding-top:calc(65px + 62px + clamp(24px,(100svh - 65px - 380px)/2,116px))}}
+/* t200: phones: more room under the Marketplace frame so its nameplate clears the floor and the About me avatar */
+@media(max-width:700px){.g4-row{padding-bottom:calc(clamp(28px,6vh,56px) + 120px)}}
+/* t200: a larger V2 mark on desktop; phones keep 40px */
+@media(min-width:701px){html[data-logo=v2] nav .brand.wm .wm-v2{height:60px}}
 
 .g4-art svg{position:absolute;inset:0;width:100%;height:100%;display:block}
 .wire{stroke:#c3d6df;stroke-width:1.8}
@@ -508,12 +512,12 @@ const top=c.offsetTop-c.offsetHeight/2-a.offsetTop;it.style.setProperty('--lift'
 fit();addEventListener('resize',fit);document.fonts&&document.fonts.ready.then(fit)})();
 
 /* t199: phones only: on load the Assurance frame, its picture light and its nameplate sit centred in the screen below the header,
-   never closer than 24px to it. Measured from the real screen height; redone when the width or orientation changes */
+   never closer than 24px to it and (t200) never more than 116px below it, so tall phones keep it a little above centre. Measured from the real screen height; redone when the width or orientation changes */
 (()=>{const g=document.querySelector('.g4'),it=document.querySelector('.g4-it'),nav=document.querySelector('nav'),mq=matchMedia('(max-width:700px)');if(!g||!it||!nav)return;
 let w=-1;const vh=()=>window.visualViewport?visualViewport.height*(visualViewport.scale||1):innerHeight;
 const place=()=>{w=innerWidth;g.style.removeProperty('padding-top');if(!mq.matches)return;
 const fx=it.querySelector('.g4-lt .fx'),fr=it.querySelector('.g4-fr'),pl=it.querySelector('.g4-pl'),R=e=>e.getBoundingClientRect(),y=scrollY;
 const top=Math.min(R(fx).top,R(fr).top)+y,bot=Math.max(R(fr).bottom,R(pl).bottom)+y,H=nav.offsetHeight,P=parseFloat(getComputedStyle(g).paddingTop);
-const want=H+Math.max(24,(vh()-H-(bot-top))/2);g.style.paddingTop=(P+want-top).toFixed(1)+'px'};
+const want=H+Math.min(116,Math.max(24,(vh()-H-(bot-top))/2));g.style.paddingTop=(P+want-top).toFixed(1)+'px'};
 place();addEventListener('resize',()=>{if(innerWidth!==w)place()});addEventListener('orientationchange',()=>setTimeout(place,250));document.fonts&&document.fonts.ready.then(place)})();
 </script></body></html>
