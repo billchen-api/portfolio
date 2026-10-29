@@ -1362,3 +1362,10 @@ html.js .nz:not(.nz-go) .nz-l.a{opacity:1}html.js .nz:not(.nz-go) .nz-l.b{opacit
 @media(max-width:600px){.cs-real.cs3 .hero.mk h1{font-size:clamp(32px,10.6vw,40px)}}
 @media(max-width:960px){.cs3 .hb-v{padding:44px 0 56px}}
 @media(max-width:400px){.cs3 .hb-facts>div{grid-template-columns:88px minmax(0,1fr)}}
+
+/* brand: V2e logo in the nav, sized like 1G; header button hover/focus in the logo blue */
+nav .brand.bc{gap:0}
+nav .brand.bc .bc-v2e{display:block;height:60px;width:auto;overflow:visible;translate:0 -8.4%}
+@media(max-width:700px){nav .brand.bc .bc-v2e{height:40px}}
+nav[data-bc] .links a.pf:hover,nav[data-bc] .links a.ic:hover{color:#1c79ba;border-color:#1c79ba}
+nav[data-bc] .links a:focus-visible{outline-color:#1c79ba}
