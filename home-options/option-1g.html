@@ -127,7 +127,7 @@ html[data-grid="case"] .g4-it[data-c="db"] .f-gmi{opacity:.075}
 .f-av{position:relative;display:block;width:var(--av,68px);height:var(--av,68px);margin:0;padding:0;border:0;border-radius:50%;background:#fff;cursor:pointer;
  box-shadow:0 0 0 3px #fff,0 10px 26px -6px rgba(20,28,40,.38),0 3px 8px -2px rgba(20,28,40,.22);
  transition:transform .45s cubic-bezier(.34,1.56,.64,1),box-shadow .3s;animation:f-in .7s .5s cubic-bezier(.34,1.56,.64,1) both}
-.f-av svg{display:block;width:100%;height:100%;border-radius:50%}
+.f-av svg,.f-av img{display:block;width:100%;height:100%;border-radius:50%;object-fit:cover}
 .f-av:focus{outline:none}
 .f-av:focus-visible{outline:2px solid #1d2026;outline-offset:5px}
 .f-dot{position:absolute;right:1px;bottom:3px;width:15px;height:15px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 3px #fff}
@@ -154,27 +154,37 @@ html[data-grid="case"] .g4-it[data-c="db"] .f-gmi{opacity:.075}
  .f-bub::after{right:-7px;bottom:calc(var(--av,68px)/2 - 7px);border-right:1px solid #e6e8ec;border-bottom:0;border-top:1px solid #e6e8ec;border-radius:0 3px 0 0}
  .f-bub::before{left:auto;right:-18px;top:0;bottom:0;width:18px;height:auto}
 }
-/* 1G bubble v2: editorial type, two columns on desktop, contact call to action */
-.f-bub{display:grid;grid-template-columns:1fr;gap:14px}
-.f-l{display:flex;flex-direction:column;align-items:flex-start;min-width:0}
+/* 1G bubble v3: single column speech bubble with a curved tail that points at the avatar */
+.f-bub{display:block;border-radius:22px}
+.f-bub::after{display:none}
 .f-hi{display:block;margin:0;color:#0f1114}
-.f-h1{display:block;font-size:20px;font-weight:300;letter-spacing:-.02em;line-height:1.1}
-.f-h2{display:block;margin-top:1px;font-size:36px;font-weight:800;letter-spacing:-.045em;line-height:.98;white-space:nowrap}
-.f-role{display:inline-flex;align-items:center;gap:8px;margin:12px 0 0;font-family:"Space Grotesk","Inter Tight",sans-serif;font-size:15px;font-weight:500;letter-spacing:-.01em;line-height:1.2;color:#0569c0}
+.f-h1{display:block;font-size:19px;font-weight:300;letter-spacing:-.02em;line-height:1.1}
+.f-h2{display:block;margin-top:1px;font-size:38px;font-weight:800;letter-spacing:-.045em;line-height:.98;white-space:nowrap}
+.f-role{display:inline-flex;align-items:center;gap:8px;margin:11px 0 0;font-family:"Space Grotesk","Inter Tight",sans-serif;font-size:15px;font-weight:500;letter-spacing:-.01em;line-height:1.2;color:#0569c0}
 .f-role::before{content:"";width:7px;height:7px;border-radius:2px;background:#0569c0;transform:rotate(45deg)}
-.f-txt{margin:0;font-size:14.5px;line-height:1.56;color:#16181c;text-wrap:pretty}
+.f-txt{display:block;margin:12px 0 0;font-size:15px;line-height:1.55;color:#16181c;text-wrap:wrap}
 .f-cta{display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:10px 15px 10px 16px;border-radius:9px;background:#111317;color:#fff;font-size:14px;font-weight:600;letter-spacing:-.005em;line-height:1;text-decoration:none;transition:background .25s,transform .25s}
 .f-cta svg{width:15px;height:15px;transition:transform .25s}
 .f-cta:hover{background:#0569c0}.f-cta:hover svg{transform:translateX(2px)}
 .f-cta:focus{outline:none}.f-cta:focus-visible{outline:2px solid #0569c0;outline-offset:3px}
+.f-tail{position:absolute;left:calc(100% - 1px);bottom:calc(var(--av,68px)/2 - 26px);width:21px;height:27px;overflow:visible;pointer-events:none;filter:drop-shadow(2px 5px 5px rgba(20,28,40,.16))}
+.f-tf{fill:#fff}.f-ts{fill:none;stroke:#e1e4e9;stroke-width:1.2;vector-effect:non-scaling-stroke}
 @media(min-width:701px){
- .f-bub{grid-template-columns:auto 1fr;gap:0 24px;align-items:stretch;width:min(660px,calc(100vw - var(--av,68px) - 64px));padding:22px 24px 22px 24px}
- .f-l{padding-right:24px;border-right:1px solid #e8eaee;margin-right:-24px}
- .f-cta{margin-top:auto}
- .f-role{margin-bottom:18px}
- .f-txt{align-self:center;padding-left:24px}
+ .f-bub{width:min(520px,calc(100vw - var(--av,68px) - 64px));padding:20px 24px 22px}
 }
-@media(max-width:700px){.f-h2{font-size:32px}.f-cta{margin-top:14px}}
+@media(max-width:700px){
+ .f-h2{font-size:33px}.f-txt{font-size:14.5px}.f-cta{margin-top:14px}
+ .f-tail{left:auto;right:calc(var(--av,60px)/2 - 1px);top:calc(100% - 1px);bottom:auto;transform-origin:0 0;transform:rotate(90deg) scaleY(-1) translate(0,-100%)}
+}
+@media(min-width:701px) and (max-height:820px){
+ .f-bub{width:min(540px,calc(100vw - var(--av,68px) - 64px));padding:17px 22px 19px}
+ .f-h1{font-size:18px}.f-h2{font-size:34px}.f-role{margin-top:9px}.f-txt{margin-top:10px;font-size:14.5px;line-height:1.5}.f-cta{margin-top:13px}
+}
+@media(min-width:701px){
+ .f-bub{right:calc(100% + 20px);transform-origin:calc(100% + 20px) calc(100% - 34px)}
+ .f-bub::before{right:-22px;width:22px}
+ .f-tail{bottom:calc(var(--av,68px)/2 - 28px);width:24px;height:30px}
+}
 
 .g4-art svg{position:absolute;inset:0;width:100%;height:100%;display:block}
 .wire{stroke:#c3d6df;stroke-width:1.8}
@@ -282,53 +292,7 @@ html[data-grid="case"] .g4-it[data-c="db"] .f-gmi{opacity:.075}
 </a></li></ul>
 
 </main>
-<div class="f-ch" id="f-ch"><button class="f-av" type="button" aria-expanded="false" aria-controls="f-bub" aria-label="About Bill Chen"><svg viewBox="14 14 92 92" aria-hidden="true" focusable="false">
-<defs>
-<radialGradient id="f-a-bg" cx=".35" cy=".25" r=".95"><stop offset="0" stop-color="#eef3f8"/><stop offset="1" stop-color="#cfd9e5"/></radialGradient>
-<linearGradient id="f-a-sk" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#e6bf9f"/><stop offset=".28" stop-color="#f3d6bd"/><stop offset=".62" stop-color="#f1d2b7"/><stop offset="1" stop-color="#ddb393"/></linearGradient>
-<linearGradient id="f-a-nk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c99877"/><stop offset="1" stop-color="#deb293"/></linearGradient>
-<linearGradient id="f-a-hr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2e3138"/><stop offset=".5" stop-color="#17181c"/><stop offset="1" stop-color="#0e0f12"/></linearGradient>
-<linearGradient id="f-a-tn" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#1c1d22"/><stop offset=".45" stop-color="#2a2c33"/><stop offset="1" stop-color="#121317"/></linearGradient>
-<clipPath id="f-a-c"><circle cx="60" cy="60" r="46"/></clipPath>
-</defs>
-<g clip-path="url(#f-a-c)">
-<rect width="120" height="120" fill="url(#f-a-bg)"/>
-<!-- body: black turtleneck -->
-<path d="M6 124C8 104 22 95 42 91L50 89H70L78 91C98 95 112 104 114 124Z" fill="url(#f-a-tn)"/>
-<path d="M30 102C38 97 44 95 50 94" fill="none" stroke="#3a3c44" stroke-width="1.2" stroke-linecap="round" opacity=".7"/>
-<path d="M90 102C84 98 79 96 72 94" fill="none" stroke="#08090b" stroke-width="1.2" stroke-linecap="round" opacity=".6"/>
-<!-- neck -->
-<path d="M51.5 64H68.5V84C68.5 86 64 88 60 88C56 88 51.5 86 51.5 84Z" fill="url(#f-a-nk)"/>
-<path d="M51.5 70C55 73.5 65 73.5 68.5 70V64H51.5Z" fill="#b98767" opacity=".45"/>
-<!-- rolled collar -->
-<path d="M46.5 86C46.5 79.5 52 77 60 77C68 77 73.5 79.5 73.5 86V93C67 95.5 53 95.5 46.5 93Z" fill="#202127"/>
-<path d="M47.5 84C53 81.2 67 81.2 72.5 84" fill="none" stroke="#3b3e46" stroke-width="1.1" stroke-linecap="round"/>
-<path d="M48 88.6C54 86.2 66 86.2 72 88.6" fill="none" stroke="#33353c" stroke-width="1" stroke-linecap="round"/>
-<!-- ears -->
-<ellipse cx="39.6" cy="50.5" rx="3.6" ry="6" fill="#e2b998"/><path d="M39.4 47.5C38 49 38 52 39.6 54" fill="none" stroke="#c4936f" stroke-width="1" stroke-linecap="round"/>
-<ellipse cx="80.4" cy="50.5" rx="3.6" ry="6" fill="#d9ad8c"/><path d="M80.6 47.5C82 49 82 52 80.4 54" fill="none" stroke="#bd8b67" stroke-width="1" stroke-linecap="round"/>
-<!-- face -->
-<path d="M40.5 45C40.5 31 49 24.5 60 24.5C71 24.5 79.5 31 79.5 45C79.5 58.5 74.5 68.5 66 73C62.2 75 57.8 75 54 73C45.5 68.5 40.5 58.5 40.5 45Z" fill="url(#f-a-sk)"/>
-<path d="M75 52C74 61 70 68 64 71.6C68.5 70.5 76.5 63 77.8 52Z" fill="#c99a78" opacity=".35"/>
-<ellipse cx="48.5" cy="58" rx="4.6" ry="2.6" fill="#ee9f8a" opacity=".22"/><ellipse cx="71.5" cy="58" rx="4.6" ry="2.6" fill="#ee9f8a" opacity=".22"/>
-<!-- brows, eyes -->
-<path d="M45.2 42.2C47.5 40.6 51 40.4 53.8 41.2" fill="none" stroke="#1e1c1c" stroke-width="2" stroke-linecap="round"/>
-<path d="M66.2 41.2C69 40.4 72.5 40.6 74.8 42.2" fill="none" stroke="#1e1c1c" stroke-width="2" stroke-linecap="round"/>
-<path d="M46.2 49.2C47.8 47.4 51.2 47.2 53.2 48.8C51.4 50.6 48.2 50.8 46.2 49.2Z" fill="#1d1b1b"/>
-<path d="M66.8 48.8C68.8 47.2 72.2 47.4 73.8 49.2C71.8 50.8 68.6 50.6 66.8 48.8Z" fill="#1d1b1b"/>
-<circle cx="50.6" cy="48.4" r=".7" fill="#fff" opacity=".9"/><circle cx="71.2" cy="48.4" r=".7" fill="#fff" opacity=".9"/>
-<path d="M45.6 51.2C47.6 52.2 50.6 52.3 52.8 51.4M67.2 51.4C69.4 52.3 72.4 52.2 74.4 51.2" fill="none" stroke="#c99878" stroke-width=".8" stroke-linecap="round" opacity=".7"/>
-<!-- nose, mouth -->
-<path d="M60.6 50.5C60.8 54 61.6 56.6 62.6 57.6C61.6 58.6 59.4 58.8 58 58.2" fill="none" stroke="#c08d6b" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M54 63C57.6 66.2 62.4 66.2 66 63C63.6 64 56.4 64 54 63Z" fill="#9c4f45" stroke="#9c4f45" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
-<path d="M56.2 63.9C58.6 64.5 61.4 64.5 63.8 63.9" fill="none" stroke="#fff" stroke-width="1" stroke-linecap="round" opacity=".85"/>
-<!-- hair: short, textured on top, side swept fringe -->
-<path d="M39.2 50C37 37.5 40.5 26 49 20.6C56.5 15.8 68.2 15.6 75.4 20.8C83 26.2 84.6 37 81 50C80 44 78.6 39.6 76.4 36.6C74.6 34.4 72 33.6 69 33.8C63 34.2 55.2 33 49.4 30C47 34 45.6 38 44.6 41.2C42.6 43 41 46 39.2 50Z" fill="url(#f-a-hr)"/>
-<path d="M49.4 30C56 26.4 66.6 25.2 76.4 28.6C73 25.2 67 23.4 60.6 23.8C55 24.2 51 26.6 49.4 30Z" fill="#3c4049" opacity=".55"/>
-<path d="M52 22.6C58 19.6 67 19.4 73 22.4" fill="none" stroke="#4a4f59" stroke-width="1.2" stroke-linecap="round" opacity=".5"/>
-<path d="M44.6 41.2C46.2 35.6 48.6 31.6 52.6 28.6" fill="none" stroke="#3a3e47" stroke-width="1" stroke-linecap="round" opacity=".6"/>
-</g>
-</svg><span class="f-dot" aria-hidden="true"></span></button><div class="f-bub" id="f-bub"><span class="f-l"><span class="f-hi"><span class="f-h1">Hi, I&rsquo;m</span><span class="f-h2">Bill Chen</span></span><span class="f-role">Product Design Leader</span><a class="f-cta" href="#contact" data-contact>Contact me<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a></span><span class="f-txt">I design scalable enterprise software ecosystems and transform dense, technical data into minimalist user experiences. Specializing in data visualization and complex SaaS platforms, my work directly bridges the gap between deep infrastructure constraints and critical product&nbsp;execution.</span></div></div>
+<div class="f-ch" id="f-ch"><button class="f-av" type="button" aria-expanded="false" aria-controls="f-bub" aria-label="About Bill Chen"><img src="assets/avatar/bill-avatar-flat-144.webp" srcset="assets/avatar/bill-avatar-flat-144.webp 1x, assets/avatar/bill-avatar-flat-288.webp 2x" width="72" height="72" alt="" decoding="async"><span class="f-dot" aria-hidden="true"></span></button><div class="f-bub" id="f-bub"><span class="f-hi"><span class="f-h1">Hi, I&rsquo;m</span><span class="f-h2">Bill Chen</span></span><span class="f-role">Product Design Leader</span><span class="f-txt">I design scalable enterprise software ecosystems and transform dense, technical data into minimalist user experiences. Specializing in data visualization and complex SaaS platforms, my work directly bridges the gap between deep infrastructure constraints and critical product&nbsp;execution.</span><a class="f-cta" href="#contact" data-contact>Contact me<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a><svg class="f-tail" viewBox="0 0 20 22" preserveAspectRatio="none" aria-hidden="true"><path class="f-tf" d="M0 0C2 8 8 16 20 21C11 21.6 4 19.5 0 15.5Z"/><path class="f-ts" d="M0 0C2 8 8 16 20 21C11 21.6 4 19.5 0 15.5"/></svg></div></div>
 <div class="cm" id="contact-modal" role="dialog" aria-modal="true" aria-labelledby="cm-t" hidden><div class="cm-bg" data-close></div><div class="cm-p">
 <button class="cm-x" type="button" aria-label="Close" data-close><svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true"><path d="M5 5l10 10M15 5 5 15" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
 <h2 id="cm-t">Send me a message</h2><p class="cm-s">Tell me a little about what you have in mind, and I’ll reply by&nbsp;email.</p>
