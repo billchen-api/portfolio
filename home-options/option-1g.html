@@ -1,6 +1,6 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Bill Chen - Portfolio</title><meta name="robots" content="noindex">
-<script>document.documentElement.classList.add('js');window.RM=matchMedia('(prefers-reduced-motion: reduce)').matches;{const l=new URLSearchParams(location.search).get('logo');document.documentElement.dataset.logo=/^[123]$/.test(l)?l:'1';const g=new URLSearchParams(location.search).get('grid');document.documentElement.dataset.grid=g==='case'?'case':'blue'}</script>
+<script>document.documentElement.classList.add('js');window.RM=matchMedia('(prefers-reduced-motion: reduce)').matches;{const l=new URLSearchParams(location.search).get('logo');document.documentElement.dataset.logo=/^[123]$/.test(l)?l:'1';const g=new URLSearchParams(location.search).get('grid');document.documentElement.dataset.grid=g==='case'?'case':'blue';document.documentElement.dataset.sub=new URLSearchParams(location.search).get('sub')==='plate'?'plate':'in'}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;800&family=Space+Grotesk:wght@500;700&family=Syne:wght@700&display=swap">
 <link rel="preload" href="../assets/fonts/Geist.ttf" as="font" type="font/ttf" crossorigin><link rel="stylesheet" href="../assets/css/style.css">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cg fill='none' stroke='%232b62ff' stroke-width='1.6'%3E%3Ccircle cx='4' cy='4' r='2.2'/%3E%3Ccircle cx='14' cy='5' r='2.2'/%3E%3Ccircle cx='8' cy='14' r='2.2'/%3E%3C/g%3E%3C/svg%3E">
@@ -24,7 +24,7 @@ body.g4b{background:#ebe8e3;overflow:hidden}
 .g4-mat{display:block;padding:calc(var(--fw)*.05);background:#fff;border:1px solid #ece9e3;box-shadow:inset 0 9px 16px -8px rgba(60,50,30,.18),inset 0 0 0 1px #fff}
 .g4-art{display:block;position:relative;aspect-ratio:5/4}
 .g4-art::after{content:"";position:absolute;inset:-2px;background:#fff;opacity:0;pointer-events:none;transition:opacity .45s ease}
-.g4-row.dim .g4-it:not(.act) .g4-art::after{opacity:.68}
+.g4-row.dim .g4-it:not(.act) .g4-art::after{opacity:.3}
 .g4-it.act .g4-fr{box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 3px 5px rgba(60,45,20,.09),0 18px 28px -12px rgba(60,45,20,.24),0 42px 64px -30px rgba(60,45,20,.36);transform:translateY(-2px)}
 /* wall label: a fixed white card with the case name centred; it never grows */
 .g4-pl{position:relative;z-index:2;display:table;margin:clamp(16px,2.6dvh,26px) auto 0;padding:10px 18px 11px;white-space:nowrap;text-align:center;color:#111317;
@@ -231,27 +231,26 @@ html[data-grid="case"] .g4-it[data-c="db"] .f-gmi{opacity:.075}
 .g4-lt{position:absolute;left:0;top:0;width:100%;height:0;pointer-events:none}
 .g4-lt>span{position:absolute;left:50%;transform:translateX(-50%);opacity:0;transition:opacity .28s cubic-bezier(.3,.6,.3,1)}
 .g4-lt .lg{z-index:0;top:-104px;width:calc(var(--fw)*.9);height:110px;background:radial-gradient(closest-side,rgba(255,255,255,.95),rgba(255,255,255,.5) 45%,rgba(255,255,255,0))}
-.g4-lt .lc{z-index:0;top:-48px;width:calc(var(--fw)*1.5);height:calc(var(--fw)*.98);filter:blur(9px)}
+.g4-lt .lc{z-index:0;top:-38px;width:calc(var(--fw)*1.5);height:calc(var(--fw)*.98);filter:blur(9px)}
 .g4-lt .lc::before{content:"";position:absolute;inset:0;clip-path:polygon(33% 0,67% 0,100% 100%,0 100%);
  background:radial-gradient(ellipse 52% 100% at 50% 0,rgba(255,255,255,1) 0,rgba(255,255,255,.9) 25%,rgba(255,255,255,.55) 55%,rgba(255,255,255,.18) 80%,rgba(255,255,255,0) 100%)}
-.g4-lt .fx{opacity:1;z-index:3;top:-56px;width:calc(var(--fw)*.5);height:36px}
+.g4-lt .fx{opacity:1;z-index:3;top:-62px;width:calc(var(--fw)*.54);height:42px}
 .g4-lt .fx i{position:absolute;display:block}
-.g4-lt .pl{left:50%;top:8px;width:26px;height:28px;margin-left:-13px;border-radius:3px;
- background:linear-gradient(90deg,#b9bdc3,#eef0f2 35%,#d4d7db 60%,#aeb3b9);box-shadow:0 0 0 .5px rgba(80,85,92,.35),0 3px 6px -2px rgba(40,40,45,.25)}
-.g4-lt .pl::after{content:"";position:absolute;left:50%;top:-6px;width:6px;height:8px;margin-left:-3px;border-radius:2px;background:linear-gradient(90deg,#a9aeb5,#e9ebee 50%,#a3a8b0)}
-.g4-lt .bar{left:0;right:0;top:0;height:9px;border-radius:2.5px;
- background:linear-gradient(180deg,#f5f6f7 0,#dcdfe2 40%,#c3c7cc 75%,#a7acb3 100%);box-shadow:0 0 0 .5px rgba(80,85,92,.4),0 4px 7px -3px rgba(40,40,45,.3)}
-.g4-lt .bar::before{content:"";position:absolute;inset:1px 2px auto;height:2px;border-radius:2px;background:repeating-linear-gradient(90deg,rgba(255,255,255,.55) 0 1px,rgba(255,255,255,0) 1px 3px)}
-.g4-lt .bar::after{content:"";position:absolute;left:3px;right:3px;bottom:-1px;height:2.5px;border-radius:2px;background:#fffef9;opacity:0;
+.g4-lt .pl{left:50%;top:0;width:34px;height:42px;margin-left:-17px;border-radius:2px;
+ background:linear-gradient(90deg,#b7bcc2,#eceef0 30%,#dadde1 55%,#c4c8cd 80%,#aab0b7);box-shadow:0 0 0 .5px rgba(80,85,92,.4),0 3px 7px -2px rgba(40,40,45,.25)}
+.g4-lt .pl::after{content:"";position:absolute;left:0;right:0;bottom:0;height:7px;border-radius:0 0 2px 2px;background:linear-gradient(180deg,rgba(60,65,72,.18),rgba(255,255,255,0) 60%)}
+.g4-lt .bar{left:0;right:0;top:18px;height:13px;border-radius:2.5px;
+ background:linear-gradient(180deg,#f7f8f9 0,#e1e4e7 30%,#c9cdd2 70%,#a9aeb5 100%);box-shadow:0 0 0 .5px rgba(80,85,92,.42),0 5px 8px -3px rgba(40,40,45,.3)}
+.g4-lt .bar::before{content:"";position:absolute;inset:2px 3px auto;height:3px;border-radius:2px;background:repeating-linear-gradient(90deg,rgba(255,255,255,.55) 0 1px,rgba(255,255,255,0) 1px 3px)}
+.g4-lt .bar::after{content:"";position:absolute;left:3px;right:3px;bottom:-1px;height:3px;border-radius:2px;background:#fffef9;opacity:0;
  box-shadow:0 2px 8px 2px rgba(255,252,242,.95),0 6px 22px 6px rgba(255,252,244,.6)}
 /* on the frame: half dome wash from the top, bright top edge; the glazing gets one sweep */
-.g4-glow{position:absolute;inset:0;pointer-events:none;z-index:2;opacity:0;transition:opacity .28s;
- background:linear-gradient(180deg,rgba(255,255,255,.95) 0,rgba(255,255,255,.5) 1.4%,rgba(255,255,255,0) 4.5%),
- radial-gradient(ellipse 60% 62% at 50% 0,rgba(255,255,255,.3) 0,rgba(255,255,255,.12) 50%,rgba(255,255,255,0) 100%)}
+.g4-glow{position:absolute;inset:0;pointer-events:none;z-index:0;opacity:0;transition:opacity .28s;
+ background:linear-gradient(180deg,rgba(255,255,255,1) 0,rgba(255,255,255,.6) 1.6%,rgba(255,255,255,0) 4.5%)}
 .g4-sh{position:absolute;inset:0;z-index:2;pointer-events:none;overflow:hidden;opacity:0;transition:opacity .2s}
 .g4-sh::before{content:"";position:absolute;top:-30%;bottom:-30%;left:-60%;width:46%;transform:translateX(0) skewX(-18deg);
- background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.7) 46%,rgba(255,255,255,.85) 50%,rgba(255,255,255,.7) 54%,rgba(255,255,255,0))}
-.g4-art{transition:filter .28s}.g4-it.act .g4-art{filter:brightness(1.05) saturate(1.04)}
+ background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.38) 46%,rgba(255,255,255,.5) 50%,rgba(255,255,255,.38) 54%,rgba(255,255,255,0))}
+.g4-art{transition:filter .28s}.g4-it.act .g4-art{filter:saturate(1.12) contrast(1.04)}
 .g4-it.act .g4-lt>span,.g4-it.act .g4-glow,.g4-it.act .g4-sh{opacity:1}
 .g4-it.act .g4-lt .bar::after{animation:bulb .3s linear both}
 @keyframes bulb{0%{opacity:0}25%{opacity:.85}40%{opacity:.35}60%{opacity:1}75%{opacity:.8}100%{opacity:1}}
@@ -260,6 +259,18 @@ html[data-grid="case"] .g4-it[data-c="db"] .f-gmi{opacity:.075}
 @media(prefers-reduced-motion:reduce){.g4-lt>span,.g4-glow,.g4-sh,.g4-art{transition:none!important}.g4-it.act .g4-lt .bar::after{animation:none;opacity:1}.g4-sh::before{display:none}}
 @media(max-width:700px){.g4{padding-top:calc(64px + 64px)}}
 @media(max-width:700px){.g4-it+.g4-it{margin-top:76px}}
+/* r9: hover subtext inside the frame, at the bottom of the art (default); ?sub=plate restores the old place under the nameplate */
+html[data-sub=in] .g4-mat{position:relative}
+html[data-sub=in] .g4-mat>.g4-cap{top:auto;bottom:calc(var(--fw)*.05 + 5px);left:50%;width:max-content;max-width:calc(100% - var(--fw)*.1 - 16px);z-index:3;
+ padding:3px 10px 4px;border-radius:7px;background:#fff;box-shadow:0 0 0 1px rgba(20,30,50,.07),0 2px 6px -2px rgba(20,30,50,.12);
+ font-size:12.5px;line-height:1.3;color:#16181d;white-space:normal;transform:translate(-50%,6px)}
+html[data-sub=in] .g4-it.act .g4-mat>.g4-cap{transform:translate(-50%,0)}
+@media(max-width:1100px) and (min-width:701px){html[data-sub=in] .g4-mat>.g4-cap{font-size:11.5px}}
+.g4-art{overflow:hidden}
+html[data-sub=in] .g4-art svg{transition:transform .45s cubic-bezier(.2,.7,.2,1)}
+html[data-sub=in] .g4-it.act .g4-art svg{transform:translateY(-9%)}
+@media(prefers-reduced-motion:reduce){html[data-sub=in] .g4-art svg{transition:none}}
+@media(max-width:1100px) and (min-width:701px){html[data-sub=in] .g4-it.act .g4-art svg{transform:translateY(-12%)}}
 
 .g4-art svg{position:absolute;inset:0;width:100%;height:100%;display:block}
 .wire{stroke:#c3d6df;stroke-width:1.8}
@@ -300,11 +311,11 @@ html[data-grid="case"] .g4-it[data-c="db"] .f-gmi{opacity:.075}
 <a class="g4-a" href="../case-study-03.html" data-pt="pulse" data-label="Network Assurance Engine" aria-describedby="g4-s-as">
 <span class="g4-wash" aria-hidden="true"></span>
 <span class="g4-lt" aria-hidden="true"><span class="lg"></span><span class="lc"></span><span class="fx"><i class="pl"></i><i class="bar"></i></span></span>
-<span class="g4-fr"><span class="g4-mat"><span class="g4-art" aria-hidden="true"><svg viewBox="0 0 400 320" aria-hidden="true">
+<span class="g4-fr"><span class="g4-mat"><span class="g4-art" aria-hidden="true"><svg overflow="visible" viewBox="0 0 400 320" aria-hidden="true">
 <defs><pattern id="f-mi-as" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M10 0H0V10" fill="none" stroke-width=".55" style="stroke:var(--gc)"/></pattern>
 <pattern id="f-ma-as" width="50" height="50" patternUnits="userSpaceOnUse" x="0" y="10"><path d="M50 0H0V50" fill="none" stroke-width="1" style="stroke:var(--gc)"/></pattern></defs>
-<rect width="400" height="320" class="f-pap"/>
-<rect width="400" height="320" fill="url(#f-mi-as)" class="f-gmi"/><rect width="400" height="320" fill="url(#f-ma-as)" class="f-gma"/>
+<rect width="400" height="400" class="f-pap"/>
+<rect width="400" height="400" fill="url(#f-mi-as)" class="f-gmi"/><rect width="400" height="400" fill="url(#f-ma-as)" class="f-gma"/>
 <g stroke="#b9c3d3" stroke-width="1.2" opacity=".55"><line x1="20.0" y1="72" x2="20.0" y2="82"/><line x1="27.5" y1="72" x2="27.5" y2="75.5"/><line x1="35.0" y1="72" x2="35.0" y2="75.5"/><line x1="42.5" y1="72" x2="42.5" y2="75.5"/><line x1="50.0" y1="72" x2="50.0" y2="78"/><line x1="57.5" y1="72" x2="57.5" y2="75.5"/><line x1="65.0" y1="72" x2="65.0" y2="75.5"/><line x1="72.5" y1="72" x2="72.5" y2="75.5"/><line x1="80.0" y1="72" x2="80.0" y2="82"/><line x1="87.5" y1="72" x2="87.5" y2="75.5"/><line x1="95.0" y1="72" x2="95.0" y2="75.5"/><line x1="102.5" y1="72" x2="102.5" y2="75.5"/><line x1="110.0" y1="72" x2="110.0" y2="78"/><line x1="117.5" y1="72" x2="117.5" y2="75.5"/><line x1="125.0" y1="72" x2="125.0" y2="75.5"/><line x1="132.5" y1="72" x2="132.5" y2="75.5"/><line x1="140.0" y1="72" x2="140.0" y2="82"/><line x1="147.5" y1="72" x2="147.5" y2="75.5"/><line x1="155.0" y1="72" x2="155.0" y2="75.5"/><line x1="162.5" y1="72" x2="162.5" y2="75.5"/><line x1="170.0" y1="72" x2="170.0" y2="78"/><line x1="177.5" y1="72" x2="177.5" y2="75.5"/><line x1="185.0" y1="72" x2="185.0" y2="75.5"/><line x1="192.5" y1="72" x2="192.5" y2="75.5"/><line x1="200.0" y1="72" x2="200.0" y2="82"/><line x1="207.5" y1="72" x2="207.5" y2="75.5"/><line x1="215.0" y1="72" x2="215.0" y2="75.5"/><line x1="222.5" y1="72" x2="222.5" y2="75.5"/><line x1="230.0" y1="72" x2="230.0" y2="78"/><line x1="237.5" y1="72" x2="237.5" y2="75.5"/><line x1="245.0" y1="72" x2="245.0" y2="75.5"/><line x1="252.5" y1="72" x2="252.5" y2="75.5"/><line x1="260.0" y1="72" x2="260.0" y2="82"/><line x1="267.5" y1="72" x2="267.5" y2="75.5"/><line x1="275.0" y1="72" x2="275.0" y2="75.5"/><line x1="282.5" y1="72" x2="282.5" y2="75.5"/><line x1="290.0" y1="72" x2="290.0" y2="78"/><line x1="297.5" y1="72" x2="297.5" y2="75.5"/><line x1="305.0" y1="72" x2="305.0" y2="75.5"/><line x1="312.5" y1="72" x2="312.5" y2="75.5"/><line x1="320.0" y1="72" x2="320.0" y2="82"/><line x1="327.5" y1="72" x2="327.5" y2="75.5"/><line x1="335.0" y1="72" x2="335.0" y2="75.5"/><line x1="342.5" y1="72" x2="342.5" y2="75.5"/><line x1="350.0" y1="72" x2="350.0" y2="78"/><line x1="357.5" y1="72" x2="357.5" y2="75.5"/><line x1="365.0" y1="72" x2="365.0" y2="75.5"/><line x1="372.5" y1="72" x2="372.5" y2="75.5"/><line x1="380.0" y1="72" x2="380.0" y2="82"/><line x1="20" y1="72" x2="380" y2="72" stroke-width="1"/></g><g stroke="#b9c3d3" stroke-width="1.2" opacity=".55"><line x1="20.0" y1="152" x2="20.0" y2="142"/><line x1="27.5" y1="152" x2="27.5" y2="148.5"/><line x1="35.0" y1="152" x2="35.0" y2="148.5"/><line x1="42.5" y1="152" x2="42.5" y2="148.5"/><line x1="50.0" y1="152" x2="50.0" y2="146"/><line x1="57.5" y1="152" x2="57.5" y2="148.5"/><line x1="65.0" y1="152" x2="65.0" y2="148.5"/><line x1="72.5" y1="152" x2="72.5" y2="148.5"/><line x1="80.0" y1="152" x2="80.0" y2="142"/><line x1="87.5" y1="152" x2="87.5" y2="148.5"/><line x1="95.0" y1="152" x2="95.0" y2="148.5"/><line x1="102.5" y1="152" x2="102.5" y2="148.5"/><line x1="110.0" y1="152" x2="110.0" y2="146"/><line x1="117.5" y1="152" x2="117.5" y2="148.5"/><line x1="125.0" y1="152" x2="125.0" y2="148.5"/><line x1="132.5" y1="152" x2="132.5" y2="148.5"/><line x1="140.0" y1="152" x2="140.0" y2="142"/><line x1="147.5" y1="152" x2="147.5" y2="148.5"/><line x1="155.0" y1="152" x2="155.0" y2="148.5"/><line x1="162.5" y1="152" x2="162.5" y2="148.5"/><line x1="170.0" y1="152" x2="170.0" y2="146"/><line x1="177.5" y1="152" x2="177.5" y2="148.5"/><line x1="185.0" y1="152" x2="185.0" y2="148.5"/><line x1="192.5" y1="152" x2="192.5" y2="148.5"/><line x1="200.0" y1="152" x2="200.0" y2="142"/><line x1="207.5" y1="152" x2="207.5" y2="148.5"/><line x1="215.0" y1="152" x2="215.0" y2="148.5"/><line x1="222.5" y1="152" x2="222.5" y2="148.5"/><line x1="230.0" y1="152" x2="230.0" y2="146"/><line x1="237.5" y1="152" x2="237.5" y2="148.5"/><line x1="245.0" y1="152" x2="245.0" y2="148.5"/><line x1="252.5" y1="152" x2="252.5" y2="148.5"/><line x1="260.0" y1="152" x2="260.0" y2="142"/><line x1="267.5" y1="152" x2="267.5" y2="148.5"/><line x1="275.0" y1="152" x2="275.0" y2="148.5"/><line x1="282.5" y1="152" x2="282.5" y2="148.5"/><line x1="290.0" y1="152" x2="290.0" y2="146"/><line x1="297.5" y1="152" x2="297.5" y2="148.5"/><line x1="305.0" y1="152" x2="305.0" y2="148.5"/><line x1="312.5" y1="152" x2="312.5" y2="148.5"/><line x1="320.0" y1="152" x2="320.0" y2="142"/><line x1="327.5" y1="152" x2="327.5" y2="148.5"/><line x1="335.0" y1="152" x2="335.0" y2="148.5"/><line x1="342.5" y1="152" x2="342.5" y2="148.5"/><line x1="350.0" y1="152" x2="350.0" y2="146"/><line x1="357.5" y1="152" x2="357.5" y2="148.5"/><line x1="365.0" y1="152" x2="365.0" y2="148.5"/><line x1="372.5" y1="152" x2="372.5" y2="148.5"/><line x1="380.0" y1="152" x2="380.0" y2="142"/><line x1="20" y1="152" x2="380" y2="152" stroke-width="1"/></g>
 <line x1="32" y1="112" x2="356" y2="112" stroke="#d9dfe8" stroke-width="3" stroke-linecap="round"/>
 <line class="prog" x1="32" y1="112" x2="356" y2="112" stroke="#aeb9cc" stroke-width="3" stroke-linecap="round" pathLength="100"/>
@@ -319,11 +330,11 @@ html[data-grid="case"] .g4-it[data-c="db"] .f-gmi{opacity:.075}
 <a class="g4-a" href="../case-study-02.html" data-pt="flow" data-label="Nexus Dashboard Data Broker" aria-describedby="g4-s-db">
 <span class="g4-wash" aria-hidden="true"></span>
 <span class="g4-lt" aria-hidden="true"><span class="lg"></span><span class="lc"></span><span class="fx"><i class="pl"></i><i class="bar"></i></span></span>
-<span class="g4-fr"><span class="g4-mat"><span class="g4-art" aria-hidden="true"><svg viewBox="0 0 400 320" aria-hidden="true">
+<span class="g4-fr"><span class="g4-mat"><span class="g4-art" aria-hidden="true"><svg overflow="visible" viewBox="0 0 400 320" aria-hidden="true">
 <defs><pattern id="f-mi-db" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M10 0H0V10" fill="none" stroke-width=".55" style="stroke:var(--gc)"/></pattern>
 <pattern id="f-ma-db" width="50" height="50" patternUnits="userSpaceOnUse" x="0" y="10"><path d="M50 0H0V50" fill="none" stroke-width="1" style="stroke:var(--gc)"/></pattern></defs>
-<rect width="400" height="320" class="f-pap"/>
-<rect width="400" height="320" fill="url(#f-mi-db)" class="f-gmi"/><rect width="400" height="320" fill="url(#f-ma-db)" class="f-gma"/>
+<rect width="400" height="400" class="f-pap"/>
+<rect width="400" height="400" fill="url(#f-mi-db)" class="f-gmi"/><rect width="400" height="400" fill="url(#f-ma-db)" class="f-gma"/>
 <path class="wire" d="M126 92C141.0 92 141.0 126 156 126" fill="none"/><path class="flow" d="M126 92C141.0 92 141.0 126 156 126" fill="none"/><path class="wire" d="M126 160C141.0 160 141.0 126 156 126" fill="none"/><path class="flow" d="M126 160C141.0 160 141.0 126 156 126" fill="none"/><path class="wire" d="M126 160C141.0 160 141.0 194 156 194" fill="none"/><path class="flow" d="M126 160C141.0 160 141.0 194 156 194" fill="none"/><path class="wire" d="M126 228C141.0 228 141.0 194 156 194" fill="none"/><path class="flow" d="M126 228C141.0 228 141.0 194 156 194" fill="none"/><path class="wire" d="M252 126C265.0 126 265.0 126 278 126" fill="none"/><path class="flow" d="M252 126C265.0 126 265.0 126 278 126" fill="none"/><path class="wire" d="M252 126C265.0 126 265.0 194 278 194" fill="none"/><path class="flow" d="M252 126C265.0 126 265.0 194 278 194" fill="none"/><path class="wire" d="M252 194C265.0 194 265.0 194 278 194" fill="none"/><path class="flow" d="M252 194C265.0 194 265.0 194 278 194" fill="none"/>
 <g class="pl" style="--i:0"><rect x="30.0" y="73.0" width="96" height="38" rx="19.0" fill="#fff" stroke="#cfdde4" stroke-width="1.4"/>
 <circle cx="49.0" cy="92" r="12.5" fill="#e3eff4"/><g transform="translate(49.0 92)" fill="none" stroke="#085272" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="-8" y="-7" width="16" height="11" rx="2"/><path d="M-4 7.5h8M0 4v3.5"/></g>
@@ -348,11 +359,11 @@ html[data-grid="case"] .g4-it[data-c="db"] .f-gmi{opacity:.075}
 <a class="g4-a" href="../case-study.html" data-pt="cart" data-label="Intercloud Marketplace" aria-describedby="g4-s-mk">
 <span class="g4-wash" aria-hidden="true"></span>
 <span class="g4-lt" aria-hidden="true"><span class="lg"></span><span class="lc"></span><span class="fx"><i class="pl"></i><i class="bar"></i></span></span>
-<span class="g4-fr"><span class="g4-mat"><span class="g4-art" aria-hidden="true"><svg viewBox="0 0 400 320" aria-hidden="true">
+<span class="g4-fr"><span class="g4-mat"><span class="g4-art" aria-hidden="true"><svg overflow="visible" viewBox="0 0 400 320" aria-hidden="true">
 <defs><pattern id="f-mi-mk" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M10 0H0V10" fill="none" stroke-width=".55" style="stroke:var(--gc)"/></pattern>
 <pattern id="f-ma-mk" width="50" height="50" patternUnits="userSpaceOnUse" x="0" y="10"><path d="M50 0H0V50" fill="none" stroke-width="1" style="stroke:var(--gc)"/></pattern></defs>
-<rect width="400" height="320" class="f-pap"/>
-<rect width="400" height="320" fill="url(#f-mi-mk)" class="f-gmi"/><rect width="400" height="320" fill="url(#f-ma-mk)" class="f-gma"/>
+<rect width="400" height="400" class="f-pap"/>
+<rect width="400" height="400" fill="url(#f-mi-mk)" class="f-gmi"/><rect width="400" height="400" fill="url(#f-ma-mk)" class="f-gma"/>
 <rect x="34" y="56" width="332" height="216" rx="14" fill="#fff" fill-opacity=".9" stroke="#dfe5f0"/>
 <rect x="56" y="76" width="132" height="28" rx="8" fill="#eef1f6"/>
 <path d="M69 90h18M113 90h18M157 90h18" stroke="#b8c2d2" stroke-width="2.6" stroke-linecap="round"/>
@@ -426,4 +437,6 @@ const read=s=>{const k=s.querySelector('.knob'),t=s.querySelector('.num'),x0=+s.
 let raf=0,until=0;const tick=()=>{sls.forEach(read);raf=performance.now()<until?requestAnimationFrame(tick):0;if(!raf)sls.forEach(read)};
 new MutationObserver(()=>{const it=sls[0].closest('.g4-it');if(it.classList.contains('play')){until=performance.now()+2600;if(!raf)raf=requestAnimationFrame(tick)}else{sls.forEach(read)}})
  .observe(sls[0].closest('.g4-it'),{attributes:true,attributeFilter:['class']})})();
+/* subtext placement: default 'in' shows the hover line at the bottom of the art inside the frame; ?sub=plate keeps it under the nameplate */
+(()=>{if(document.documentElement.dataset.sub!=='in')return;document.querySelectorAll('.g4-it').forEach(it=>{const c=it.querySelector('.g4-cap'),m=it.querySelector('.g4-mat');if(c&&m)m.appendChild(c)})})();
 </script></body></html>
