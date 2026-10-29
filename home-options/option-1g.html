@@ -261,9 +261,9 @@ html[data-grid="case"] .g4-it[data-c="db"] .f-gmi{opacity:.075}
 @media(max-width:700px){.g4-it+.g4-it{margin-top:76px}}
 /* r9: hover subtext inside the frame, at the bottom of the art (default); ?sub=plate restores the old place under the nameplate */
 html[data-sub=in] .g4-mat{position:relative}
-html[data-sub=in] .g4-mat>.g4-cap{top:calc(var(--fw)*.05 + var(--yc)*(100% - var(--fw)*.1));bottom:auto;left:50%;width:max-content;max-width:calc(100% - var(--fw)*.1 - 20px);z-index:3;
+html[data-sub=in] .g4-mat>.g4-cap{top:calc(var(--fw)*.05 + var(--yt)*(100% - var(--fw)*.1));bottom:auto;left:50%;width:max-content;max-width:calc(100% - var(--fw)*.1 - 20px);z-index:3;
  padding:0;background:none;box-shadow:none;border-radius:0;
- font-size:14px;font-weight:600;line-height:1.3;color:var(--cc);white-space:normal;transform:translate(-50%,calc(-50% + 6px));
+ font-size:14px;font-weight:600;line-height:1.3;color:var(--cc);white-space:normal;transform:translate(-50%,6px);
  text-shadow:0 0 1px #fff,0 0 3px #fff,0 0 6px #fff,0 0 12px #fff,0 0 20px rgba(255,255,255,.9)}
 html[data-sub=in] .g4-it.act .g4-mat>.g4-cap{transform:translate(-50%,-50%)}
 @media(max-width:1100px) and (min-width:701px){html[data-sub=in] .g4-mat>.g4-cap{font-size:12.5px}}
@@ -276,18 +276,25 @@ html[data-sub=in] .g4-it.act .g4-art svg{transform:translateY(-9%)}
 /* r10: hovering one frame fades the other frames and their nameplates back; the wall, the lights and the hovered frame stay as they are */
 .g4-fr{transition:box-shadow .5s,transform .5s cubic-bezier(.2,.7,.2,1),opacity .4s ease,filter .4s ease}
 .g4-pl{transition:opacity .4s ease,filter .4s ease}
-.g4-row.dim .g4-it:not(.act) .g4-fr,.g4-row.dim .g4-it:not(.act) .g4-pl{opacity:.5;filter:saturate(.3)}
+.g4-row.dim .g4-it:not(.act) .g4-fr,.g4-row.dim .g4-it:not(.act) .g4-pl{opacity:.6;filter:saturate(.3)}
 @media(prefers-reduced-motion:reduce){.g4-fr,.g4-pl{transition:none}}
 
-/* r11: the hover subtext sits centred in the empty paper under each graphic (after the lift), in a deep shade of the case colour.
-   --yc is that gap's centre as a fraction of the art height: (content bottom - lift + 320) / 2 / 320, content bottoms as 278, db 247, mk 272 */
-.g4-it[data-c=as]{--cc:#6e4a81;--yc:.869}.g4-it[data-c=db]{--cc:#085272;--yc:.841}.g4-it[data-c=mk]{--cc:#1f4fd8;--yc:.880}
-@media(max-width:1100px){.g4-it[data-c=as]{--yc:.859}.g4-it[data-c=db]{--yc:.826}.g4-it[data-c=mk]{--yc:.865}}
+/* r11: hover subtext in the case colour, in the empty paper under each graphic. All three share one top position
+   (--yt, a fraction of the art height); each graphic lifts just enough on hover to stay clear of it */
+.g4-it[data-c=as]{--cc:#0569c0}.g4-it[data-c=db]{--cc:#085272}.g4-it[data-c=mk]{--cc:#1f4fd8}
+.g4-row{--yt:.78}
+@media(max-width:1100px){.g4-row{--yt:.76}}
+html[data-sub=in] .g4-mat>.g4-cap{top:calc(var(--fw)*.05 + var(--yt)*(100% - var(--fw)*.1));transform:translate(-50%,6px)}
+html[data-sub=in] .g4-it.act .g4-mat>.g4-cap{transform:translate(-50%,0)}
 html:not([data-sub=in]) .g4-cap br{display:none}
 @media(max-width:700px){html[data-sub=in] .g4-mat>.g4-cap{font-size:13px}}
-/* Assurance has the tallest content, so it lifts a little further to give its two lines room */
-html[data-sub=in] .g4-it.act[data-c=as] .g4-art svg{transform:translateY(-13%)}
-@media(max-width:1100px){html[data-sub=in] .g4-it.act[data-c=as] .g4-art svg{transform:translateY(-15%)}}
+html[data-sub=in] .g4-it.act[data-c=as] .g4-art svg{transform:translateY(-15%)}
+html[data-sub=in] .g4-it.act[data-c=mk] .g4-art svg{transform:translateY(-13%)}
+@media(max-width:1100px){html[data-sub=in] .g4-it.act[data-c=as] .g4-art svg{transform:translateY(-16%)}html[data-sub=in] .g4-it.act[data-c=mk] .g4-art svg{transform:translateY(-14%)}}
+/* t187: the severity icons stay put; only the numbers under them pop in when the art plays */
+.g4-row .g4-it.play .cn{animation:none}
+.cn text{transform-box:fill-box;transform-origin:center}
+.g4-row .g4-it.play .cn text{animation:pl .5s cubic-bezier(.2,.8,.3,1.2) calc(900ms + var(--i)*90ms) both}
 
 .g4-art svg{position:absolute;inset:0;width:100%;height:100%;display:block}
 .wire{stroke:#c3d6df;stroke-width:1.8}
