@@ -167,14 +167,11 @@ html[data-grid="case"] .g4-it[data-c="db"] .f-gmi{opacity:.075}
 .f-cta svg{width:15px;height:15px;transition:transform .25s}
 .f-cta:hover{background:#0569c0}.f-cta:hover svg{transform:translateX(2px)}
 .f-cta:focus{outline:none}.f-cta:focus-visible{outline:2px solid #0569c0;outline-offset:3px}
-.f-tail{position:absolute;left:calc(100% - 1px);bottom:calc(var(--av,68px)/2 - 26px);width:21px;height:27px;overflow:visible;pointer-events:none;filter:drop-shadow(2px 5px 5px rgba(20,28,40,.16))}
-.f-tf{fill:#fff}.f-ts{fill:none;stroke:#e1e4e9;stroke-width:1.2;vector-effect:non-scaling-stroke}
 @media(min-width:701px){
  .f-bub{width:min(520px,calc(100vw - var(--av,68px) - 64px));padding:20px 24px 22px}
 }
 @media(max-width:700px){
  .f-h2{font-size:33px}.f-txt{font-size:14.5px}.f-cta{margin-top:14px}
- .f-tail{left:auto;right:calc(var(--av,60px)/2 - 1px);top:calc(100% - 1px);bottom:auto;transform-origin:0 0;transform:rotate(90deg) scaleY(-1) translate(0,-100%)}
 }
 @media(min-width:701px) and (max-height:820px){
  .f-bub{width:min(540px,calc(100vw - var(--av,68px) - 64px));padding:17px 22px 19px}
@@ -183,7 +180,33 @@ html[data-grid="case"] .g4-it[data-c="db"] .f-gmi{opacity:.075}
 @media(min-width:701px){
  .f-bub{right:calc(100% + 20px);transform-origin:calc(100% + 20px) calc(100% - 34px)}
  .f-bub::before{right:-22px;width:22px}
- .f-tail{bottom:calc(var(--av,68px)/2 - 28px);width:24px;height:30px}
+}
+/* ===== 1G round 4: pop-out avatar, seamless tail, calmer type ===== */
+.f-ch{--av:80px}
+@media(max-width:1100px) and (min-width:701px){.f-ch{--av:75px}}
+@media(max-width:700px){.f-ch{--av:70px}}
+/* the button is the blue disc with the white ring; the cut-out figure sits on it and its hair rises above the top edge */
+.f-av{background:#9db5cd;overflow:visible}
+.f-av img.f-pop{position:absolute;left:0;bottom:0;width:100%;height:auto;border-radius:0;object-fit:fill;pointer-events:none}
+.f-dot{z-index:1}
+/* bubble: one shadow for bubble and tail (drop-shadow follows the outline), tail is a rotated square that covers the border where they meet */
+.f-bub{box-shadow:none;filter:drop-shadow(0 18px 26px rgba(20,28,40,.2)) drop-shadow(0 4px 8px rgba(20,28,40,.1))}
+.f-bub::after{display:block;content:"";position:absolute;width:16px;height:16px;background:#fff;box-sizing:border-box;border:1px solid #e6e8ec;border-radius:0;
+ right:-8px;left:auto;top:auto;bottom:calc(var(--av,80px)/2 - 8px);transform:rotate(45deg);border-left-color:transparent;border-bottom-color:transparent;border-top-right-radius:4px}
+@media(max-width:700px){
+ .f-bub::after{right:calc(var(--av,70px)/2 - 8px);bottom:-8px;border:1px solid #e6e8ec;border-top-color:transparent;border-left-color:transparent;border-radius:0 0 4px 0}
+}
+/* type: Inter Tight throughout, matching the nameplates and the wordmark */
+.f-h1{font-size:18px;font-weight:300;letter-spacing:-.01em;color:#1d1d1f}
+.f-h2{margin-top:2px;font-size:30px;font-weight:700;letter-spacing:-.01em;line-height:1.08;color:#1d1d1f}
+.f-role{display:block;margin:6px 0 0;font-family:"Inter Tight",system-ui,sans-serif;font-size:15px;font-weight:500;letter-spacing:0;line-height:1.3;color:#3a3a3c}
+.f-role::before{content:none;display:none}
+@media(min-width:701px) and (max-height:820px){.f-h1{font-size:17px}.f-h2{font-size:28px}.f-role{margin-top:5px}}
+@media(max-width:700px){.f-h2{font-size:28px}}
+@media(min-width:701px){
+ .f-bub{right:calc(100% + 14px);transform-origin:calc(100% + 14px) calc(100% - 40px)}
+ .f-bub::before{right:-16px;width:16px}
+ .f-bub::after{width:18px;height:18px;right:-9px;bottom:calc(var(--av,80px)/2 - 9px)}
 }
 
 .g4-art svg{position:absolute;inset:0;width:100%;height:100%;display:block}
@@ -204,15 +227,13 @@ html[data-grid="case"] .g4-it[data-c="db"] .f-gmi{opacity:.075}
 @keyframes pl{from{transform:scale(.6);opacity:0}}
 @keyframes flow{to{stroke-dashoffset:-16}}
 .g4-it.play .sel{animation:sel 2.4s cubic-bezier(.6,0,.2,1) both}
-.g4-it.play .knob{animation:knob 2.4s cubic-bezier(.6,0,.2,1) both}
+.g4-it.play .sl1 .knob{animation:knob1 1.9s cubic-bezier(.5,0,.2,1) .15s both}.g4-it.play .sl2 .knob{animation:knob2 1.9s cubic-bezier(.5,0,.2,1) .45s both}
 .g4-it.play .ring{animation:ring 2.4s cubic-bezier(.6,0,.2,1) both}
-@keyframes sel{0%,20%{transform:translateX(-38px)}35%,60%{transform:translateX(76px)}75%,100%{transform:translateX(0)}}
-@keyframes knob{0%,10%{transform:translateX(-60px)}45%{transform:translateX(30px)}70%,100%{transform:translateX(0)}}
+@keyframes sel{0%,20%{transform:translateX(-50px)}35%,60%{transform:translateX(50px)}75%,100%{transform:translateX(0)}}
+@keyframes knob1{from{transform:translateX(-90px)}}@keyframes knob2{from{transform:translateX(-56px)}}
 .fill{transform-box:fill-box;transform-origin:left center}
-.g4-it.play .fill{animation:fil 2.4s cubic-bezier(.6,0,.2,1) both}
-@keyframes fil{0%,10%{transform:scaleX(.33)}45%{transform:scaleX(1.33)}70%,100%{transform:scaleX(1)}}
-.g4-it.play .rad{animation:rad 2.4s cubic-bezier(.6,0,.2,1) both}
-@keyframes rad{0%,15%{transform:translateY(-22px)}40%,60%{transform:translateY(22px)}80%,100%{transform:translateY(0)}}
+.g4-it.play .sl1 .fill{animation:fil1 1.9s cubic-bezier(.5,0,.2,1) .15s both}.g4-it.play .sl2 .fill{animation:fil2 1.9s cubic-bezier(.5,0,.2,1) .45s both}
+@keyframes fil1{from{transform:scaleX(0)}}@keyframes fil2{from{transform:scaleX(0)}}
 @keyframes ring{0%{stroke-dashoffset:var(--c)}35%{stroke-dashoffset:calc(var(--c)*.55)}60%{stroke-dashoffset:calc(var(--c)*.12)}100%{stroke-dashoffset:calc(var(--c)*.28)}}
 
 .f-pap{fill:color-mix(in srgb,var(--gc) 3%,#fbfcfe)}
@@ -231,9 +252,9 @@ html[data-grid="case"] .g4-it[data-c="db"] .f-gmi{opacity:.075}
 <rect width="400" height="320" class="f-pap"/>
 <rect width="400" height="320" fill="url(#f-mi-as)" class="f-gmi"/><rect width="400" height="320" fill="url(#f-ma-as)" class="f-gma"/>
 <g stroke="#b9c3d3" stroke-width="1.2" opacity=".55"><line x1="20.0" y1="72" x2="20.0" y2="82"/><line x1="27.5" y1="72" x2="27.5" y2="75.5"/><line x1="35.0" y1="72" x2="35.0" y2="75.5"/><line x1="42.5" y1="72" x2="42.5" y2="75.5"/><line x1="50.0" y1="72" x2="50.0" y2="78"/><line x1="57.5" y1="72" x2="57.5" y2="75.5"/><line x1="65.0" y1="72" x2="65.0" y2="75.5"/><line x1="72.5" y1="72" x2="72.5" y2="75.5"/><line x1="80.0" y1="72" x2="80.0" y2="82"/><line x1="87.5" y1="72" x2="87.5" y2="75.5"/><line x1="95.0" y1="72" x2="95.0" y2="75.5"/><line x1="102.5" y1="72" x2="102.5" y2="75.5"/><line x1="110.0" y1="72" x2="110.0" y2="78"/><line x1="117.5" y1="72" x2="117.5" y2="75.5"/><line x1="125.0" y1="72" x2="125.0" y2="75.5"/><line x1="132.5" y1="72" x2="132.5" y2="75.5"/><line x1="140.0" y1="72" x2="140.0" y2="82"/><line x1="147.5" y1="72" x2="147.5" y2="75.5"/><line x1="155.0" y1="72" x2="155.0" y2="75.5"/><line x1="162.5" y1="72" x2="162.5" y2="75.5"/><line x1="170.0" y1="72" x2="170.0" y2="78"/><line x1="177.5" y1="72" x2="177.5" y2="75.5"/><line x1="185.0" y1="72" x2="185.0" y2="75.5"/><line x1="192.5" y1="72" x2="192.5" y2="75.5"/><line x1="200.0" y1="72" x2="200.0" y2="82"/><line x1="207.5" y1="72" x2="207.5" y2="75.5"/><line x1="215.0" y1="72" x2="215.0" y2="75.5"/><line x1="222.5" y1="72" x2="222.5" y2="75.5"/><line x1="230.0" y1="72" x2="230.0" y2="78"/><line x1="237.5" y1="72" x2="237.5" y2="75.5"/><line x1="245.0" y1="72" x2="245.0" y2="75.5"/><line x1="252.5" y1="72" x2="252.5" y2="75.5"/><line x1="260.0" y1="72" x2="260.0" y2="82"/><line x1="267.5" y1="72" x2="267.5" y2="75.5"/><line x1="275.0" y1="72" x2="275.0" y2="75.5"/><line x1="282.5" y1="72" x2="282.5" y2="75.5"/><line x1="290.0" y1="72" x2="290.0" y2="78"/><line x1="297.5" y1="72" x2="297.5" y2="75.5"/><line x1="305.0" y1="72" x2="305.0" y2="75.5"/><line x1="312.5" y1="72" x2="312.5" y2="75.5"/><line x1="320.0" y1="72" x2="320.0" y2="82"/><line x1="327.5" y1="72" x2="327.5" y2="75.5"/><line x1="335.0" y1="72" x2="335.0" y2="75.5"/><line x1="342.5" y1="72" x2="342.5" y2="75.5"/><line x1="350.0" y1="72" x2="350.0" y2="78"/><line x1="357.5" y1="72" x2="357.5" y2="75.5"/><line x1="365.0" y1="72" x2="365.0" y2="75.5"/><line x1="372.5" y1="72" x2="372.5" y2="75.5"/><line x1="380.0" y1="72" x2="380.0" y2="82"/><line x1="20" y1="72" x2="380" y2="72" stroke-width="1"/></g><g stroke="#b9c3d3" stroke-width="1.2" opacity=".55"><line x1="20.0" y1="152" x2="20.0" y2="142"/><line x1="27.5" y1="152" x2="27.5" y2="148.5"/><line x1="35.0" y1="152" x2="35.0" y2="148.5"/><line x1="42.5" y1="152" x2="42.5" y2="148.5"/><line x1="50.0" y1="152" x2="50.0" y2="146"/><line x1="57.5" y1="152" x2="57.5" y2="148.5"/><line x1="65.0" y1="152" x2="65.0" y2="148.5"/><line x1="72.5" y1="152" x2="72.5" y2="148.5"/><line x1="80.0" y1="152" x2="80.0" y2="142"/><line x1="87.5" y1="152" x2="87.5" y2="148.5"/><line x1="95.0" y1="152" x2="95.0" y2="148.5"/><line x1="102.5" y1="152" x2="102.5" y2="148.5"/><line x1="110.0" y1="152" x2="110.0" y2="146"/><line x1="117.5" y1="152" x2="117.5" y2="148.5"/><line x1="125.0" y1="152" x2="125.0" y2="148.5"/><line x1="132.5" y1="152" x2="132.5" y2="148.5"/><line x1="140.0" y1="152" x2="140.0" y2="142"/><line x1="147.5" y1="152" x2="147.5" y2="148.5"/><line x1="155.0" y1="152" x2="155.0" y2="148.5"/><line x1="162.5" y1="152" x2="162.5" y2="148.5"/><line x1="170.0" y1="152" x2="170.0" y2="146"/><line x1="177.5" y1="152" x2="177.5" y2="148.5"/><line x1="185.0" y1="152" x2="185.0" y2="148.5"/><line x1="192.5" y1="152" x2="192.5" y2="148.5"/><line x1="200.0" y1="152" x2="200.0" y2="142"/><line x1="207.5" y1="152" x2="207.5" y2="148.5"/><line x1="215.0" y1="152" x2="215.0" y2="148.5"/><line x1="222.5" y1="152" x2="222.5" y2="148.5"/><line x1="230.0" y1="152" x2="230.0" y2="146"/><line x1="237.5" y1="152" x2="237.5" y2="148.5"/><line x1="245.0" y1="152" x2="245.0" y2="148.5"/><line x1="252.5" y1="152" x2="252.5" y2="148.5"/><line x1="260.0" y1="152" x2="260.0" y2="142"/><line x1="267.5" y1="152" x2="267.5" y2="148.5"/><line x1="275.0" y1="152" x2="275.0" y2="148.5"/><line x1="282.5" y1="152" x2="282.5" y2="148.5"/><line x1="290.0" y1="152" x2="290.0" y2="146"/><line x1="297.5" y1="152" x2="297.5" y2="148.5"/><line x1="305.0" y1="152" x2="305.0" y2="148.5"/><line x1="312.5" y1="152" x2="312.5" y2="148.5"/><line x1="320.0" y1="152" x2="320.0" y2="142"/><line x1="327.5" y1="152" x2="327.5" y2="148.5"/><line x1="335.0" y1="152" x2="335.0" y2="148.5"/><line x1="342.5" y1="152" x2="342.5" y2="148.5"/><line x1="350.0" y1="152" x2="350.0" y2="146"/><line x1="357.5" y1="152" x2="357.5" y2="148.5"/><line x1="365.0" y1="152" x2="365.0" y2="148.5"/><line x1="372.5" y1="152" x2="372.5" y2="148.5"/><line x1="380.0" y1="152" x2="380.0" y2="142"/><line x1="20" y1="152" x2="380" y2="152" stroke-width="1"/></g>
-<line x1="28" y1="112" x2="356" y2="112" stroke="#d9dfe8" stroke-width="3" stroke-linecap="round"/>
-<line class="prog" x1="28" y1="112" x2="356" y2="112" stroke="#aeb9cc" stroke-width="3" stroke-linecap="round" pathLength="100"/>
-<circle class="dot" style="--i:0" cx="40.0" cy="112" r="5.5" fill="#1fb36b"/><circle class="dot" style="--i:1" cx="60.0" cy="112" r="5.5" fill="#1fb36b"/><circle class="dot" style="--i:2" cx="80.0" cy="112" r="6.8" fill="#f2b705"/><circle class="dot" style="--i:3" cx="100.0" cy="112" r="5.5" fill="#1fb36b"/><circle class="dot" style="--i:4" cx="120.0" cy="112" r="8" fill="#ff7a1a"/><circle class="dot" style="--i:5" cx="140.0" cy="112" r="6.8" fill="#f2b705"/><circle class="dot" style="--i:6" cx="160.0" cy="112" r="5.5" fill="#1fb36b"/><circle class="dot" style="--i:7" cx="180.0" cy="112" r="9" fill="#ff2d4f"/><circle class="dot" style="--i:8" cx="200.0" cy="112" r="8" fill="#ff7a1a"/><circle class="dot" style="--i:9" cx="220.0" cy="112" r="5.5" fill="#1fb36b"/><circle class="dot" style="--i:10" cx="240.0" cy="112" r="6.8" fill="#f2b705"/><circle class="dot" style="--i:11" cx="260.0" cy="112" r="8" fill="#ff7a1a"/><circle class="dot" style="--i:12" cx="280.0" cy="112" r="5.5" fill="#1fb36b"/><circle class="dot" style="--i:13" cx="300.0" cy="112" r="6.8" fill="#f2b705"/><circle class="dot" style="--i:14" cx="320.0" cy="112" r="5.5" fill="#1fb36b"/><circle class="dot" style="--i:15" cx="340.0" cy="112" r="9" fill="#ff2d4f"/>
+<line x1="32" y1="112" x2="356" y2="112" stroke="#d9dfe8" stroke-width="3" stroke-linecap="round"/>
+<line class="prog" x1="32" y1="112" x2="356" y2="112" stroke="#aeb9cc" stroke-width="3" stroke-linecap="round" pathLength="100"/>
+<circle class="dot" style="--i:0" cx="44.0" cy="112" r="6.2" fill="#1fb36b"/><circle class="dot" style="--i:1" cx="83.0" cy="112" r="6.2" fill="#1fb36b"/><circle class="dot" style="--i:2" cx="122.0" cy="112" r="6.8" fill="#f2b705"/><circle class="dot" style="--i:3" cx="161.0" cy="112" r="6.2" fill="#1fb36b"/><circle class="dot" style="--i:4" cx="200.0" cy="112" r="7.6" fill="#ff2d4f"/><circle class="dot" style="--i:5" cx="239.0" cy="112" r="6.2" fill="#1fb36b"/><circle class="dot" style="--i:6" cx="278.0" cy="112" r="7.2" fill="#ff7a1a"/><circle class="dot" style="--i:7" cx="317.0" cy="112" r="6.2" fill="#1fb36b"/>
 <circle class="ping" cx="356" cy="112" r="13" fill="none" stroke="#ff2d4f" stroke-width="2"/>
 <circle cx="356" cy="112" r="12.5" fill="none" stroke="#1d3a8a" stroke-width="2"/><circle cx="356" cy="112" r="8.5" fill="#ff2d4f"/>
 <rect x="30" y="182" width="340" height="96" rx="10" fill="#fff" stroke="#e3e8f0"/>
@@ -277,22 +298,24 @@ html[data-grid="case"] .g4-it[data-c="db"] .f-gmi{opacity:.075}
 <rect width="400" height="320" class="f-pap"/>
 <rect width="400" height="320" fill="url(#f-mi-mk)" class="f-gmi"/><rect width="400" height="320" fill="url(#f-ma-mk)" class="f-gma"/>
 <rect x="34" y="56" width="332" height="216" rx="14" fill="#fff" fill-opacity=".9" stroke="#dfe5f0"/>
-<circle cx="64" cy="84" r="6.5" fill="#fff" stroke="#c3cbd9" stroke-width="1.6"/><path d="M80 84h64" stroke="#cfd6e2" stroke-width="2.4" stroke-linecap="round"/><circle cx="64" cy="106" r="6.5" fill="#fff" stroke="#3b82f6" stroke-width="1.6"/><path d="M80 106h88" stroke="#cfd6e2" stroke-width="2.4" stroke-linecap="round"/><circle cx="64" cy="128" r="6.5" fill="#fff" stroke="#c3cbd9" stroke-width="1.6"/><path d="M80 128h52" stroke="#cfd6e2" stroke-width="2.4" stroke-linecap="round"/><circle class="rad" cx="64" cy="106" r="3.2" fill="#3b82f6"/><rect x="56" y="152" width="30" height="30" rx="6" fill="#fff" stroke="#dde3ee"/><rect x="65" y="174" width="12" height="3" rx="1" fill="#c5cee0"/><rect x="94" y="152" width="30" height="30" rx="6" fill="#fff" stroke="#dde3ee"/><rect x="103" y="174" width="12" height="3" rx="1" fill="#c5cee0"/><rect x="103" y="169" width="12" height="3" rx="1" fill="#c5cee0"/><rect x="132" y="152" width="30" height="30" rx="6" fill="#fff" stroke="#dde3ee"/><rect x="141" y="174" width="12" height="3" rx="1" fill="#c5cee0"/><rect x="141" y="169" width="12" height="3" rx="1" fill="#c5cee0"/><rect x="141" y="164" width="12" height="3" rx="1" fill="#c5cee0"/><rect x="170" y="152" width="30" height="30" rx="6" fill="#fff" stroke="#dde3ee"/><rect x="179" y="174" width="12" height="3" rx="1" fill="#c5cee0"/><rect x="179" y="169" width="12" height="3" rx="1" fill="#c5cee0"/><rect x="179" y="164" width="12" height="3" rx="1" fill="#c5cee0"/><rect x="179" y="159" width="12" height="3" rx="1" fill="#c5cee0"/><g class="sel"><rect x="94" y="152" width="30" height="30" rx="6" fill="none" stroke="#3b82f6" stroke-width="2"/><circle cx="122" cy="154" r="5.5" fill="#3b82f6"/><path d="M119.6 154l1.6 1.6 3-3.2" stroke="#fff" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g><path d="M56 205H206" stroke="#e6eaf2" stroke-width="3" stroke-linecap="round"/>
-<path class="fill" d="M56 205H146" stroke="#3b82f6" stroke-width="3" stroke-linecap="round"/><path d="M56 214v4" stroke="#d3d9e4" stroke-width="1.2"/><path d="M86 214v4" stroke="#d3d9e4" stroke-width="1.2"/><path d="M116 214v4" stroke="#d3d9e4" stroke-width="1.2"/><path d="M146 214v4" stroke="#d3d9e4" stroke-width="1.2"/><path d="M176 214v4" stroke="#d3d9e4" stroke-width="1.2"/><path d="M206 214v4" stroke="#d3d9e4" stroke-width="1.2"/>
-<circle class="knob" cx="146" cy="205" r="7.5" fill="#fff" stroke="#3b82f6" stroke-width="2"/><rect x="56" y="230" width="84" height="26" rx="6" fill="#fff" stroke="#dde3ee"/>
-<path d="M62.5 236.5h13v13h-13z" fill="#f1f4f9"/><path d="M65.5 243h7" stroke="#8b96aa" stroke-width="1.6" stroke-linecap="round"/>
-<path d="M120.5 236.5h13v13h-13z" fill="#eaf0fe"/><path d="M123.5 243h7M127 239.5v7" stroke="#3b82f6" stroke-width="1.6" stroke-linecap="round"/>
-<text x="98" y="248" text-anchor="middle" font-size="13" font-weight="650" fill="#141821" font-family="Geist,system-ui,sans-serif">3</text>
-<text x="206" y="248" text-anchor="end" font-size="13" font-weight="600" fill="#141821" font-family="Geist,system-ui,sans-serif">36</text>
-<circle cx="300" cy="164" r="42" fill="none" stroke="#e3ebfd" stroke-width="11"/>
-<circle class="ring" style="--c:263.9" cx="300" cy="164" r="42" fill="none" stroke="#3b82f6" stroke-width="11" stroke-linecap="round" stroke-dasharray="263.9" stroke-dashoffset="73.9" transform="rotate(-90 300 164)"/>
-<text x="300" y="170" text-anchor="middle" font-size="14" font-weight="650" fill="#141821" font-family="Geist,system-ui,sans-serif">$20,000</text>
+<rect x="56" y="76" width="112" height="24" rx="12" fill="#f1f4f9" stroke="#e1e6ef"/>
+<rect x="59" y="79" width="53" height="18" rx="9" fill="#fff" stroke="#d6deea"/>
+<path d="M74 88h23" stroke="#3b82f6" stroke-width="2.6" stroke-linecap="round"/><path d="M129 88h23" stroke="#c3cbd9" stroke-width="2.6" stroke-linecap="round"/><rect x="56" y="114" width="42" height="42" rx="8" fill="#fff" stroke="#dde3ee"/><rect x="68" y="144" width="18" height="4" rx="1.5" fill="#c5cee0"/><rect x="106" y="114" width="42" height="42" rx="8" fill="#fff" stroke="#dde3ee"/><rect x="118" y="144" width="18" height="4" rx="1.5" fill="#c5cee0"/><rect x="118" y="137" width="18" height="4" rx="1.5" fill="#c5cee0"/><rect x="156" y="114" width="42" height="42" rx="8" fill="#fff" stroke="#dde3ee"/><rect x="168" y="144" width="18" height="4" rx="1.5" fill="#c5cee0"/><rect x="168" y="137" width="18" height="4" rx="1.5" fill="#c5cee0"/><rect x="168" y="130" width="18" height="4" rx="1.5" fill="#c5cee0"/><g class="sel"><rect x="106" y="114" width="42" height="42" rx="8" fill="none" stroke="#3b82f6" stroke-width="2"/><circle cx="146" cy="116" r="6.5" fill="#3b82f6"/><path d="M143.2 116.2l1.9 1.9 3.5-3.8" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g><g class="sl sl1" data-x0="56" data-x1="196" data-max="56"><path d="M56 186H196" stroke="#e6eaf2" stroke-width="3.5" stroke-linecap="round"/>
+<path class="fill" d="M56 186H146" stroke="#3b82f6" stroke-width="3.5" stroke-linecap="round"/>
+<circle class="knob" cx="146" cy="186" r="8" fill="#fff" stroke="#3b82f6" stroke-width="2"/>
+<text class="num" x="230" y="191" text-anchor="end" font-size="14" font-family="Geist,system-ui,sans-serif" fill="#141821" font-weight="650">36</text></g><g class="sl sl2" data-x0="56" data-x1="196" data-max="30"><path d="M56 228H196" stroke="#e6eaf2" stroke-width="3.5" stroke-linecap="round"/>
+<path class="fill" d="M56 228H112" stroke="#3b82f6" stroke-width="3.5" stroke-linecap="round"/>
+<circle class="knob" cx="112" cy="228" r="8" fill="#fff" stroke="#3b82f6" stroke-width="2"/>
+<text class="num" x="230" y="233" text-anchor="end" font-size="14" font-family="Geist,system-ui,sans-serif" fill="#141821" font-weight="650">12</text></g>
+<circle cx="304" cy="164" r="42" fill="none" stroke="#e3ebfd" stroke-width="11"/>
+<circle class="ring" style="--c:263.9" cx="304" cy="164" r="42" fill="none" stroke="#3b82f6" stroke-width="11" stroke-linecap="round" stroke-dasharray="263.9" stroke-dashoffset="73.9" transform="rotate(-90 304 164)"/>
+<text x="304" y="170" text-anchor="middle" font-size="14" font-family="Geist,system-ui,sans-serif" fill="#141821" font-weight="650">$20,000</text>
 </svg></span></span></span>
 <span class="g4-pl"><span class="g4-nm">Intercloud Marketplace</span></span><span class="g4-cap" id="g4-s-mk">Cloud Marketplace &amp; Configuration Frameworks</span>
 </a></li></ul>
 
 </main>
-<div class="f-ch" id="f-ch"><button class="f-av" type="button" aria-expanded="false" aria-controls="f-bub" aria-label="About Bill Chen"><img src="assets/avatar/bill-avatar-flat-144.webp" srcset="assets/avatar/bill-avatar-flat-144.webp 1x, assets/avatar/bill-avatar-flat-288.webp 2x" width="72" height="72" alt="" decoding="async"><span class="f-dot" aria-hidden="true"></span></button><div class="f-bub" id="f-bub"><span class="f-hi"><span class="f-h1">Hi, I&rsquo;m</span><span class="f-h2">Bill Chen</span></span><span class="f-role">Product Design Leader</span><span class="f-txt">I design scalable enterprise software ecosystems and transform dense, technical data into minimalist user experiences. Specializing in data visualization and complex SaaS platforms, my work directly bridges the gap between deep infrastructure constraints and critical product&nbsp;execution.</span><a class="f-cta" href="#contact" data-contact>Contact me<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a><svg class="f-tail" viewBox="0 0 20 22" preserveAspectRatio="none" aria-hidden="true"><path class="f-tf" d="M0 0C2 8 8 16 20 21C11 21.6 4 19.5 0 15.5Z"/><path class="f-ts" d="M0 0C2 8 8 16 20 21C11 21.6 4 19.5 0 15.5"/></svg></div></div>
+<div class="f-ch" id="f-ch"><button class="f-av" type="button" aria-expanded="false" aria-controls="f-bub" aria-label="About Bill Chen"><img class="f-pop" src="assets/avatar/bill-avatar-pop-80.webp" srcset="assets/avatar/bill-avatar-pop-80.webp 1x, assets/avatar/bill-avatar-pop-160.webp 2x, assets/avatar/bill-avatar-pop-240.webp 3x" width="80" height="92" alt="" decoding="async"><span class="f-dot" aria-hidden="true"></span></button><div class="f-bub" id="f-bub"><span class="f-hi"><span class="f-h1">Hi, I&rsquo;m</span><span class="f-h2">Bill Chen</span></span><span class="f-role">Product Design Leader</span><span class="f-txt">I design scalable enterprise software ecosystems and transform dense, technical data into minimalist user experiences. Specializing in data visualization and complex SaaS platforms, my work directly bridges the gap between deep infrastructure constraints and critical product&nbsp;execution.</span><a class="f-cta" href="#contact" data-contact>Contact me<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></div>
 <div class="cm" id="contact-modal" role="dialog" aria-modal="true" aria-labelledby="cm-t" hidden><div class="cm-bg" data-close></div><div class="cm-p">
 <button class="cm-x" type="button" aria-label="Close" data-close><svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true"><path d="M5 5l10 10M15 5 5 15" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
 <h2 id="cm-t">Send me a message</h2><p class="cm-s">Tell me a little about what you have in mind, and I’ll reply by&nbsp;email.</p>
@@ -339,4 +362,12 @@ w.addEventListener('focusout',e=>{if(!document.documentElement.classList.contain
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!e.defaultPrevented&&w.classList.contains('open')&&!document.documentElement.classList.contains('cm-on')){set(false);if(w.contains(document.activeElement)&&document.activeElement!==b){esc=1;b.focus({preventScroll:true})}}});
 document.addEventListener('pointerdown',e=>{if(!w.contains(e.target)&&!e.target.closest('#contact-modal'))set(false)});
 })();
+/* Marketplace sliders: while a knob animates, its total follows the knob's position (value = max * distance along the track) */
+(()=>{const sls=[...document.querySelectorAll('.g4-it .sl')];if(!sls.length)return;
+const read=s=>{const k=s.querySelector('.knob'),t=s.querySelector('.num'),x0=+s.dataset.x0,x1=+s.dataset.x1,mx=+s.dataset.max,cx=+k.getAttribute('cx');
+ const m=new DOMMatrixReadOnly(getComputedStyle(k).transform==='none'?undefined:getComputedStyle(k).transform);
+ t.textContent=Math.max(0,Math.round(mx*(cx+m.m41-x0)/(x1-x0)))};
+let raf=0,until=0;const tick=()=>{sls.forEach(read);raf=performance.now()<until?requestAnimationFrame(tick):0;if(!raf)sls.forEach(read)};
+new MutationObserver(()=>{const it=sls[0].closest('.g4-it');if(it.classList.contains('play')){until=performance.now()+2600;if(!raf)raf=requestAnimationFrame(tick)}else{sls.forEach(read)}})
+ .observe(sls[0].closest('.g4-it'),{attributes:true,attributeFilter:['class']})})();
 </script></body></html>
