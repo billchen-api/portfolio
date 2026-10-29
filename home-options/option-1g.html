@@ -281,7 +281,7 @@ html[data-sub=in] .g4-it.act .g4-art svg{transform:translateY(-9%)}
 
 /* r11: hover subtext in the case colour, in the empty paper under each graphic. All three share one top position
    (--yt, a fraction of the art height); each graphic lifts just enough on hover to stay clear of it */
-.g4-it[data-c=as]{--cc:#0569c0}.g4-it[data-c=db]{--cc:#085272}.g4-it[data-c=mk]{--cc:#1f4fd8}
+.g4-it[data-c=as]{--cc:#38a8f0}.g4-it[data-c=db]{--cc:#085272}.g4-it[data-c=mk]{--cc:#3b82f6}
 .g4-row{--yt:.78}
 @media(max-width:1100px){.g4-row{--yt:.76}}
 html[data-sub=in] .g4-mat>.g4-cap{top:calc(var(--fw)*.05 + var(--yt)*(100% - var(--fw)*.1));transform:translate(-50%,6px)}
@@ -289,8 +289,11 @@ html[data-sub=in] .g4-it.act .g4-mat>.g4-cap{transform:translate(-50%,0)}
 html:not([data-sub=in]) .g4-cap br{display:none}
 @media(max-width:700px){html[data-sub=in] .g4-mat>.g4-cap{font-size:13px}}
 html[data-sub=in] .g4-it.act[data-c=as] .g4-art svg{transform:translateY(-15%)}
-html[data-sub=in] .g4-it.act[data-c=mk] .g4-art svg{transform:translateY(-13%)}
-@media(max-width:1100px){html[data-sub=in] .g4-it.act[data-c=as] .g4-art svg{transform:translateY(-16%)}html[data-sub=in] .g4-it.act[data-c=mk] .g4-art svg{transform:translateY(-14%)}}
+/* t188: Data Broker and Marketplace centre their graphic in the paper above the shared subtext top:
+   lift = content centre (db 160, mk 164 of 320) minus --yt/2 */
+html[data-sub=in] .g4-it.act[data-c=db] .g4-art svg{transform:translateY(-11%)}
+html[data-sub=in] .g4-it.act[data-c=mk] .g4-art svg{transform:translateY(-12.25%)}
+@media(max-width:1100px){html[data-sub=in] .g4-it.act[data-c=as] .g4-art svg{transform:translateY(-16%)}html[data-sub=in] .g4-it.act[data-c=db] .g4-art svg{transform:translateY(-12%)}html[data-sub=in] .g4-it.act[data-c=mk] .g4-art svg{transform:translateY(-13.25%)}}
 /* t187: the severity icons stay put; only the numbers under them pop in when the art plays */
 .g4-row .g4-it.play .cn{animation:none}
 .cn text{transform-box:fill-box;transform-origin:center}
