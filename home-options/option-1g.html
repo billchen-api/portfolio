@@ -223,44 +223,42 @@ html[data-grid="case"] .g4-it[data-c="db"] .f-gmi{opacity:.075}
 .f-role{margin:5px 0 0;font-size:18.5px;font-weight:600;letter-spacing:-.015em;line-height:1.2;color:#1d1d1f}
 .f-txt{margin-top:14px}
 @media(min-width:701px) and (max-height:820px){.f-role{margin-top:4px;font-size:18px}.f-txt{margin-top:12px}}
-/* r7: gallery lights. Ceiling track with a spot over each frame. Off at rest; hover, focus or first tap turns the spot on:
-   cone, warm pool on the wall, a subtle vignette, a glare sweep across the glazing, a brighter frame top and a deeper shadow.
+/* r8: wall mounted picture lights. A brushed nickel bar on a short neck from a square wall plate, above each frame and
+   separate from it. Off at rest; hover, focus or first tap turns it on. Lighting only ever adds light: a soft glow on the wall,
+   a half dome wash down the wall and over the frame, a bright frame top edge, one glare sweep, slightly brighter art.
    The base wall colour is NOT touched here. */
 .g4-it{isolation:isolate}.g4-fr{isolation:isolate}.g4-mat{position:relative;z-index:1}
-.e-trk{position:absolute;left:0;right:0;top:64px;height:6px;z-index:1;background:linear-gradient(180deg,#f7f7f8,#d5d8dd);box-shadow:0 2px 5px rgba(30,30,35,.14)}
 .g4-lt{position:absolute;left:0;top:0;width:100%;height:0;pointer-events:none}
-.g4-lt>span{position:absolute;left:50%;transform:translateX(-50%);z-index:0;opacity:0;transition:opacity .26s cubic-bezier(.3,.6,.3,1)}
-.g4-lt .fx{opacity:1;z-index:3;top:-70px;width:26px;height:0}
+.g4-lt>span{position:absolute;left:50%;transform:translateX(-50%);opacity:0;transition:opacity .28s cubic-bezier(.3,.6,.3,1)}
+.g4-lt .lg{z-index:0;top:-104px;width:calc(var(--fw)*.9);height:110px;background:radial-gradient(closest-side,rgba(255,255,255,.95),rgba(255,255,255,.5) 45%,rgba(255,255,255,0))}
+.g4-lt .lc{z-index:0;top:-48px;width:calc(var(--fw)*1.5);height:calc(var(--fw)*.98);filter:blur(9px)}
+.g4-lt .lc::before{content:"";position:absolute;inset:0;clip-path:polygon(33% 0,67% 0,100% 100%,0 100%);
+ background:radial-gradient(ellipse 52% 100% at 50% 0,rgba(255,255,255,1) 0,rgba(255,255,255,.9) 25%,rgba(255,255,255,.55) 55%,rgba(255,255,255,.18) 80%,rgba(255,255,255,0) 100%)}
+.g4-lt .fx{opacity:1;z-index:3;top:-56px;width:calc(var(--fw)*.5);height:36px}
 .g4-lt .fx i{position:absolute;display:block}
-.g4-lt .st{left:50%;width:3px;margin-left:-1.5px;top:calc(-1*var(--up,14px));height:var(--up,14px);background:linear-gradient(90deg,#b7bcc4,#eceef1 50%,#a5abb4)}
-.g4-lt .hd{left:0;top:0;width:26px;height:38px;border-radius:7px 7px 11px 11px;background:linear-gradient(90deg,#c9cdd3,#fbfbfc 40%,#e6e8eb 62%,#b3b9c1);box-shadow:0 4px 8px -2px rgba(30,30,35,.3)}
-.g4-lt .hd::before{content:"";position:absolute;left:3px;right:3px;bottom:-1px;height:5px;border-radius:50%;background:#c4c8ce}
-.g4-lt .hd::after{content:"";position:absolute;left:3px;right:3px;bottom:-1px;height:5px;border-radius:50%;background:#fffdf7;box-shadow:0 3px 12px 5px rgba(255,247,230,.95),0 0 26px 10px rgba(255,249,236,.55);opacity:0}
-/* the cone, the pool and the vignette: behind the frame */
-.g4-lt .lv{top:calc(var(--fw)*-.9);width:calc(var(--fw)*2.6);height:calc(var(--fw)*2.4);
- background:radial-gradient(ellipse 34% 38% at 50% 42%,rgba(90,76,56,0) 45%,rgba(90,76,56,.07) 75%,rgba(90,76,56,.11) 100%)}
-.g4-lt .lw{top:calc(var(--fw)*-.42);width:calc(var(--fw)*1.7);height:calc(var(--fw)*1.5);
- background:radial-gradient(ellipse 46% 52% at 50% 33%,#fffefb 0%,rgba(255,253,247,.92) 26%,rgba(255,251,243,.5) 56%,rgba(255,251,243,.12) 80%,rgba(255,251,243,0) 100%)}
-.g4-lt .lc{top:-34px;width:calc(var(--fw)*1.3);height:calc(var(--fw)*.9 + 34px);clip-path:polygon(44% 0,56% 0,97% 100%,3% 100%);
- background:linear-gradient(180deg,#fffdf6,rgba(255,252,244,.75) 30%,rgba(255,251,242,.25) 75%,rgba(255,251,242,0));filter:blur(5px)}
-/* glare on the frame: top edge highlight, a deeper shadow, one specular sweep across the glazing */
-.g4-glow{position:absolute;inset:0;pointer-events:none;z-index:2;opacity:0;transition:opacity .26s;
- background:linear-gradient(180deg,rgba(255,255,255,.9) 0,rgba(255,253,248,.35) 1.6%,rgba(255,253,248,0) 7%),linear-gradient(180deg,rgba(255,252,244,.16) 0,rgba(255,252,244,0) 40%)}
+.g4-lt .pl{left:50%;top:8px;width:26px;height:28px;margin-left:-13px;border-radius:3px;
+ background:linear-gradient(90deg,#b9bdc3,#eef0f2 35%,#d4d7db 60%,#aeb3b9);box-shadow:0 0 0 .5px rgba(80,85,92,.35),0 3px 6px -2px rgba(40,40,45,.25)}
+.g4-lt .pl::after{content:"";position:absolute;left:50%;top:-6px;width:6px;height:8px;margin-left:-3px;border-radius:2px;background:linear-gradient(90deg,#a9aeb5,#e9ebee 50%,#a3a8b0)}
+.g4-lt .bar{left:0;right:0;top:0;height:9px;border-radius:2.5px;
+ background:linear-gradient(180deg,#f5f6f7 0,#dcdfe2 40%,#c3c7cc 75%,#a7acb3 100%);box-shadow:0 0 0 .5px rgba(80,85,92,.4),0 4px 7px -3px rgba(40,40,45,.3)}
+.g4-lt .bar::before{content:"";position:absolute;inset:1px 2px auto;height:2px;border-radius:2px;background:repeating-linear-gradient(90deg,rgba(255,255,255,.55) 0 1px,rgba(255,255,255,0) 1px 3px)}
+.g4-lt .bar::after{content:"";position:absolute;left:3px;right:3px;bottom:-1px;height:2.5px;border-radius:2px;background:#fffef9;opacity:0;
+ box-shadow:0 2px 8px 2px rgba(255,252,242,.95),0 6px 22px 6px rgba(255,252,244,.6)}
+/* on the frame: half dome wash from the top, bright top edge; the glazing gets one sweep */
+.g4-glow{position:absolute;inset:0;pointer-events:none;z-index:2;opacity:0;transition:opacity .28s;
+ background:linear-gradient(180deg,rgba(255,255,255,.95) 0,rgba(255,255,255,.5) 1.4%,rgba(255,255,255,0) 4.5%),
+ radial-gradient(ellipse 60% 62% at 50% 0,rgba(255,255,255,.3) 0,rgba(255,255,255,.12) 50%,rgba(255,255,255,0) 100%)}
 .g4-sh{position:absolute;inset:0;z-index:2;pointer-events:none;overflow:hidden;opacity:0;transition:opacity .2s}
 .g4-sh::before{content:"";position:absolute;top:-30%;bottom:-30%;left:-60%;width:46%;transform:translateX(0) skewX(-18deg);
- background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.42) 42%,rgba(255,255,255,.62) 50%,rgba(255,255,255,.42) 58%,rgba(255,255,255,0));mix-blend-mode:screen}
-.g4-sh::after{content:"";position:absolute;inset:0;background:linear-gradient(128deg,rgba(255,255,255,.22) 0,rgba(255,255,255,.07) 26%,rgba(255,255,255,0) 44%)}
-.g4-fr{transition:box-shadow .3s,transform .3s}
-.g4-it.act .g4-fr{box-shadow:0 1px 0 rgba(255,255,255,.95) inset,0 3px 6px rgba(60,45,20,.11),0 22px 32px -12px rgba(60,45,20,.3),0 52px 74px -30px rgba(60,45,20,.44)}
+ background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.7) 46%,rgba(255,255,255,.85) 50%,rgba(255,255,255,.7) 54%,rgba(255,255,255,0))}
+.g4-art{transition:filter .28s}.g4-it.act .g4-art{filter:brightness(1.05) saturate(1.04)}
 .g4-it.act .g4-lt>span,.g4-it.act .g4-glow,.g4-it.act .g4-sh{opacity:1}
-.g4-it.act .g4-lt .hd::after{animation:bulb .3s linear both}
+.g4-it.act .g4-lt .bar::after{animation:bulb .3s linear both}
 @keyframes bulb{0%{opacity:0}25%{opacity:.85}40%{opacity:.35}60%{opacity:1}75%{opacity:.8}100%{opacity:1}}
 .g4-it.act .g4-sh::before{animation:glare 1.15s cubic-bezier(.35,.1,.25,1) .12s both}
 @keyframes glare{from{transform:translateX(0) skewX(-18deg)}to{transform:translateX(420%) skewX(-18deg)}}
-@media(prefers-reduced-motion:reduce){.g4-lt>span,.g4-glow,.g4-sh,.g4-fr{transition:none!important}.g4-it.act .g4-lt .hd::after{animation:none;opacity:1}.g4-sh::before{display:none}}
-@media(max-width:700px){.g4{padding-top:calc(64px + 64px)}.e-trk{display:none}}
-.g4-lt .lv{background:radial-gradient(closest-side,rgba(90,76,56,0) 50%,rgba(90,76,56,.1) 72%,rgba(90,76,56,.055) 87%,rgba(90,76,56,0) 100%)}
-.g4-sh::before{background:linear-gradient(90deg,rgba(255,255,255,0),rgba(120,135,160,.05) 30%,rgba(255,255,255,.75) 46%,rgba(255,255,255,.9) 50%,rgba(255,255,255,.75) 54%,rgba(120,135,160,.05) 70%,rgba(255,255,255,0));mix-blend-mode:normal}
+@media(prefers-reduced-motion:reduce){.g4-lt>span,.g4-glow,.g4-sh,.g4-art{transition:none!important}.g4-it.act .g4-lt .bar::after{animation:none;opacity:1}.g4-sh::before{display:none}}
+@media(max-width:700px){.g4{padding-top:calc(64px + 64px)}}
 @media(max-width:700px){.g4-it+.g4-it{margin-top:76px}}
 
 .g4-art svg{position:absolute;inset:0;width:100%;height:100%;display:block}
@@ -297,11 +295,11 @@ html[data-grid="case"] .g4-it[data-c="db"] .f-gmi{opacity:.075}
 <div class="pt" aria-hidden="true"><canvas></canvas></div><nav><div class="w"><a class="brand wm" href="../index.html" data-label="Index">Bill Chen</a><div class="links"><a class="pf" href="#gallery" aria-current="page">Portfolio</a><a class="ic" href="#contact" data-contact aria-label="Contact" title="Contact"><svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="m4 7.5 8 6 8-6"/></svg></a><a class="ic" href="https://www.linkedin.com/in/billchenux" target="_blank" rel="noopener" aria-label="LinkedIn (opens in a new tab)" title="LinkedIn"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg></a></div></div></nav>
 <main class="g4" id="gallery">
 <h1 class="sr">Bill Chen, selected work</h1>
-<div class="e-wall" aria-hidden="true"></div><div class="e-trk" aria-hidden="true"></div><div class="e-floor" aria-hidden="true"></div>
+<div class="e-wall" aria-hidden="true"></div><div class="e-floor" aria-hidden="true"></div>
 <ul class="g4-row" aria-label="Case studies"><li class="g4-it" data-c="as">
 <a class="g4-a" href="../case-study-03.html" data-pt="pulse" data-label="Network Assurance Engine" aria-describedby="g4-s-as">
 <span class="g4-wash" aria-hidden="true"></span>
-<span class="g4-lt" aria-hidden="true"><span class="lv"></span><span class="lw"></span><span class="lc"></span><span class="fx"><i class="st"></i><i class="hd"></i></span></span>
+<span class="g4-lt" aria-hidden="true"><span class="lg"></span><span class="lc"></span><span class="fx"><i class="pl"></i><i class="bar"></i></span></span>
 <span class="g4-fr"><span class="g4-mat"><span class="g4-art" aria-hidden="true"><svg viewBox="0 0 400 320" aria-hidden="true">
 <defs><pattern id="f-mi-as" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M10 0H0V10" fill="none" stroke-width=".55" style="stroke:var(--gc)"/></pattern>
 <pattern id="f-ma-as" width="50" height="50" patternUnits="userSpaceOnUse" x="0" y="10"><path d="M50 0H0V50" fill="none" stroke-width="1" style="stroke:var(--gc)"/></pattern></defs>
@@ -320,7 +318,7 @@ html[data-grid="case"] .g4-it[data-c="db"] .f-gmi{opacity:.075}
 </a></li><li class="g4-it" data-c="db">
 <a class="g4-a" href="../case-study-02.html" data-pt="flow" data-label="Nexus Dashboard Data Broker" aria-describedby="g4-s-db">
 <span class="g4-wash" aria-hidden="true"></span>
-<span class="g4-lt" aria-hidden="true"><span class="lv"></span><span class="lw"></span><span class="lc"></span><span class="fx"><i class="st"></i><i class="hd"></i></span></span>
+<span class="g4-lt" aria-hidden="true"><span class="lg"></span><span class="lc"></span><span class="fx"><i class="pl"></i><i class="bar"></i></span></span>
 <span class="g4-fr"><span class="g4-mat"><span class="g4-art" aria-hidden="true"><svg viewBox="0 0 400 320" aria-hidden="true">
 <defs><pattern id="f-mi-db" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M10 0H0V10" fill="none" stroke-width=".55" style="stroke:var(--gc)"/></pattern>
 <pattern id="f-ma-db" width="50" height="50" patternUnits="userSpaceOnUse" x="0" y="10"><path d="M50 0H0V50" fill="none" stroke-width="1" style="stroke:var(--gc)"/></pattern></defs>
@@ -349,7 +347,7 @@ html[data-grid="case"] .g4-it[data-c="db"] .f-gmi{opacity:.075}
 </a></li><li class="g4-it" data-c="mk">
 <a class="g4-a" href="../case-study.html" data-pt="cart" data-label="Intercloud Marketplace" aria-describedby="g4-s-mk">
 <span class="g4-wash" aria-hidden="true"></span>
-<span class="g4-lt" aria-hidden="true"><span class="lv"></span><span class="lw"></span><span class="lc"></span><span class="fx"><i class="st"></i><i class="hd"></i></span></span>
+<span class="g4-lt" aria-hidden="true"><span class="lg"></span><span class="lc"></span><span class="fx"><i class="pl"></i><i class="bar"></i></span></span>
 <span class="g4-fr"><span class="g4-mat"><span class="g4-art" aria-hidden="true"><svg viewBox="0 0 400 320" aria-hidden="true">
 <defs><pattern id="f-mi-mk" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M10 0H0V10" fill="none" stroke-width=".55" style="stroke:var(--gc)"/></pattern>
 <pattern id="f-ma-mk" width="50" height="50" patternUnits="userSpaceOnUse" x="0" y="10"><path d="M50 0H0V50" fill="none" stroke-width="1" style="stroke:var(--gc)"/></pattern></defs>
@@ -428,10 +426,4 @@ const read=s=>{const k=s.querySelector('.knob'),t=s.querySelector('.num'),x0=+s.
 let raf=0,until=0;const tick=()=>{sls.forEach(read);raf=performance.now()<until?requestAnimationFrame(tick):0;if(!raf)sls.forEach(read)};
 new MutationObserver(()=>{const it=sls[0].closest('.g4-it');if(it.classList.contains('play')){until=performance.now()+2600;if(!raf)raf=requestAnimationFrame(tick)}else{sls.forEach(read)}})
  .observe(sls[0].closest('.g4-it'),{attributes:true,attributeFilter:['class']})})();
-;(()=>{/* each ceiling spot's stem reaches up to the track under the nav */
-const its=[...document.querySelectorAll('.g4-it')],trk=document.querySelector('.e-trk');
-const fit=()=>{const t=trk&&getComputedStyle(trk).display!=='none'?trk.getBoundingClientRect().bottom:null;
- its.forEach(it=>{const f=it.querySelector('.g4-fr').getBoundingClientRect();it.style.setProperty('--up',t==null?'14px':Math.max(8,Math.round(f.top-t-70))+'px')})};
-addEventListener('resize',fit);addEventListener('load',fit);fit();
-})();
 </script></body></html>
