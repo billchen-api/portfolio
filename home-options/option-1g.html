@@ -306,6 +306,7 @@ html[data-sub=in] .g4-it[data-c=as] .g4-cap{white-space:nowrap}
 /* Data Broker and Marketplace lift by --lift, set in sub1g.js so the graphic is centred in the paper above its subtext */
 html[data-sub=in] .g4-it.act[data-c=db][style*="--lift"] .g4-art svg,html[data-sub=in] .g4-it.act[data-c=mk][style*="--lift"] .g4-art svg{transform:translateY(calc(var(--lift)*-1))}
 html[data-sub=in] .g4-it[data-c=db] .g4-mat>.g4-cap,html[data-sub=in] .g4-it[data-c=mk] .g4-mat>.g4-cap{top:calc(var(--fw)*.05 + var(--yt)*(100% - var(--fw)*.1) + 1.3em + 4px)}
+.g4-row.dim .g4-it:not(.act) .g4-pl{opacity:.5}
 
 .g4-art svg{position:absolute;inset:0;width:100%;height:100%;display:block}
 .wire{stroke:#c3d6df;stroke-width:1.8}
@@ -431,7 +432,9 @@ html[data-sub=in] .g4-it[data-c=db] .g4-mat>.g4-cap,html[data-sub=in] .g4-it[dat
 
 <script src="../assets/js/main.js"></script><script>(()=>{const RM=window.RM,$$=(s,r=document)=>[...r.querySelectorAll(s)];
 const row=document.querySelector('.g4-row'),its=$$('.g4-it');
-const touch=matchMedia('(hover:none)');let lastPT='mouse';
+const touch=matchMedia('(hover:none)');
+/* phones: the frame nearest the middle of the screen lights on its own as you scroll, and one tap opens the case study */
+const FM=matchMedia('(max-width:700px) and (hover:none),(max-width:700px) and (pointer:coarse)');let lastPT='mouse';
 addEventListener('pointerdown',e=>{lastPT=e.pointerType},true);
 /* play restarts the piece's sequence; the still is its finished state */
 function play(it){if(RM)return;it.classList.remove('play');void it.offsetWidth;it.classList.add('play')}
@@ -441,12 +444,22 @@ function off(it){it.classList.remove('act','armed','play');dim()}
 its.forEach(it=>{const a=it.querySelector('.g4-a');
  a.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse')on(it)});
  a.addEventListener('pointerleave',e=>{if(e.pointerType==='mouse'&&!a.matches(':focus-visible'))off(it)});
- a.addEventListener('focus',()=>on(it));a.addEventListener('blur',()=>{if(!a.matches(':hover'))off(it)});
+ a.addEventListener('focus',()=>{if(!FM.matches)on(it)});a.addEventListener('blur',()=>{if(!FM.matches&&!a.matches(':hover'))off(it)});
  /* touch: first tap plays the piece and shows its line, second tap opens the case study */
- a.addEventListener('click',e=>{if(lastPT==='mouse'&&!touch.matches)return;if(e.detail===0)return;
+ a.addEventListener('click',e=>{if(FM.matches)return;if(lastPT==='mouse'&&!touch.matches)return;if(e.detail===0)return;
   if(!it.classList.contains('armed')){e.preventDefault();e.stopPropagation();its.forEach(o=>o!==it&&off(o));on(it);it.classList.add('armed')}})});
+{let lit=null,want=null,tm=0,raf=0;
+ const pick=()=>{const vh=innerHeight,mid=vh/2;let best=null,bd=1e9;
+  its.forEach(it=>{const r=it.querySelector('.g4-a').getBoundingClientRect(),h=r.height||1,vis=(Math.min(r.bottom,vh)-Math.max(r.top,0))/Math.min(h,vh),c=r.top+h/2,d=Math.abs(c-mid);
+   if(vis>=.6&&c>vh*.2&&c<vh*.8&&d<bd){bd=d;best=it}});return best};
+ const set=it=>{if(it===lit)return;if(lit)off(lit);lit=it;if(it)on(it)};
+ const check=()=>{raf=0;if(!FM.matches)return;const b=pick();if(b===want)return;want=b;clearTimeout(tm);tm=setTimeout(()=>set(want),160)};
+ const q=()=>{if(!raf)raf=requestAnimationFrame(check)};
+ addEventListener('scroll',q,{passive:true});addEventListener('resize',q);addEventListener('pageshow',()=>{want=undefined;q()});
+ FM.addEventListener&&FM.addEventListener('change',()=>{clearTimeout(tm);want=null;if(lit){off(lit);lit=null}q()});
+ if(document.readyState==='complete')q();else addEventListener('load',q);q()}
 const me=document.querySelector('.g4-me'),fb=me&&me.querySelector('.g4-fig');
-document.addEventListener('pointerdown',e=>{if(e.pointerType==='mouse')return;if(!e.target.closest('.g4-it'))its.forEach(off);if(me&&!e.target.closest('.g4-me')){me.classList.remove('open');fb.setAttribute('aria-expanded','false')}});
+document.addEventListener('pointerdown',e=>{if(e.pointerType==='mouse')return;if(!FM.matches&&!e.target.closest('.g4-it'))its.forEach(off);if(me&&!e.target.closest('.g4-me')){me.classList.remove('open');fb.setAttribute('aria-expanded','false')}});
 if(me){const sync=()=>fb.setAttribute('aria-expanded',String(me.matches(':hover')||me.matches(':focus-within')||me.classList.contains('open')));
  me.addEventListener('pointerenter',sync);me.addEventListener('pointerleave',()=>setTimeout(sync));me.addEventListener('focusin',sync);me.addEventListener('focusout',()=>setTimeout(sync));
  fb.addEventListener('click',()=>{me.classList.toggle('open');sync()});
