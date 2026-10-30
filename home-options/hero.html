@@ -28,7 +28,7 @@ html.simple .hero::before,html.simple .hero::after{display:none!important}
 </style>
 </head><body>
 <script>
-(async()=>{const U={as:'../case-study-03.html',db:'../case-study-02.html',mk:'../case-study.html'}[HC];if(!U)return;
+(async()=>{const U={as:'../case-study-03.html',db:'../ndb.html',mk:'../marketplace.html'}[HC];if(!U)return;
 const doc=new DOMParser().parseFromString(await (await fetch(U,{cache:'no-cache'})).text(),'text/html');
 document.body.className=doc.body.className;
 const hero=doc.querySelector('header.hero');if(!hero)return;
