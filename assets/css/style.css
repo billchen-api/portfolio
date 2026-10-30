@@ -1374,6 +1374,16 @@ body.cs2:not(.ptd) .db-fx,body.cs2:not(.ptd) .db-tr path,body.cs2:not(.ptd) .db-
 /* t257: on phones the setup Select Edge Port popup keeps the desktop layout (device list beside the port checkboxes), scaled down */
 @media(max-width:560px){.sw .sv-mc{grid-template-columns:minmax(0,1fr) minmax(0,1.2fr)}.sw .sv-dl{display:block}.sw .sv-dl li{padding:5px 10px;font-size:11px}.sw .sv-dl small{font-size:9px}.sw .sv-pl li{gap:6px;padding:5px 10px;font-size:11px}.sw .sv-tb{gap:12px;font-size:10.5px}}
 
+/* t274: Data Broker hero background placed like the Marketplace grid (same box, mask and opacity) */
+.db-bg.q2{top:84px;right:-30px;bottom:0;width:min(64%,900px);aspect-ratio:auto;-webkit-mask-image:radial-gradient(ellipse 70% 75% at 62% 42%,#000 35%,transparent 78%);mask-image:radial-gradient(ellipse 70% 75% at 62% 42%,#000 35%,transparent 78%);opacity:.75}
+@media(max-width:960px){.db-bg.q2{top:40%;bottom:0;right:-20%;width:100%;opacity:.5}}
+@media(max-width:720px){.db-bg.q2{display:none}}
+/* t274: Marketplace challenge and outcome icon tiles: white tiles with a quiet blue edge so they read on the blue band; catalog window fits its tile */
+body.cs-real:not(.cs2) :is(.cx-il,.cx-cat,.oi){background:#fff;border:1px solid rgba(0,114,163,.16);box-shadow:0 10px 24px -20px rgba(8,82,114,.35)}
+@media(min-width:961px){.cs-real:not(.cs2) .cx-cat{height:auto;padding:20px 0}}
+/* t274: Workflow outcome glyph matched to the other three so every tile keeps even padding */
+body.cs-real:not(.cs2) .oi1{width:44px;height:50px}
+
 /* ===== Case Study 03: Network Assurance Engine (product blue, epoch motif) ===== */
 body.cs2.cs3{--acc:#0569c0;--acc2:#3390ff;--bg:#fbfcfd;--vis:#e8f2fc}
 /* hero and odd sections: the Marketplace near white; even sections: the former hero blue */
