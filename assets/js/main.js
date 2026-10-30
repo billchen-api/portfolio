@@ -255,7 +255,7 @@ const rf=$('.rl-f');if(rf){const c=$('.rl-c',rf);let ty=0,y=0,user=false,raf=0,t
  rf.addEventListener('pointermove',e=>{user=true;at(e)});rf.addEventListener('pointerdown',e=>{user=true;at(e)});
  const io=new IntersectionObserver(es=>{es.forEach(e=>{cancelAnimationFrame(raf);if(e.isIntersecting&&!RM)raf=requestAnimationFrame(tick)})});io.observe(rf)}
 /* setup: open picker, choose, object lands on canvas, drag it to the filter */
-const sv=$('.sv'),rp=$('.su-rp');if(sv){const cur=$('.sv-cur',sv),F=['cur','pr','on','mo-e','mo-t','pk-e','pk-t','in-e','in-t','lf','lft','dg-e','dg-t','fh','ok-e','ok-t','cl'];let tm=[];
+const sv=$('.sv'),rp=$('.su-rp');if(sv&&!sv.classList.contains('sw')){const cur=$('.sv-cur',sv),F=['cur','pr','on','mo-e','mo-t','pk-e','pk-t','in-e','in-t','lf','lft','dg-e','dg-t','fh','ok-e','ok-t','cl'];let tm=[];
  const cls=(a,on=true)=>a.split(' ').forEach(k=>sv.classList.toggle(k,on));
  const to=(el,fx=.5,fy=.5)=>{if(!el)return;const s=sv.getBoundingClientRect(),r=el.getBoundingClientRect();cur.style.left=(r.left-s.left+r.width*fx-2)+'px';cur.style.top=(r.top-s.top+r.height*fy-2)+'px'};
  const fil=()=>$('.sv-n.f',sv);
@@ -280,6 +280,37 @@ const sv=$('.sv'),rp=$('.su-rp');if(sv){const cur=$('.sv-cur',sv),F=['cur','pr',
  const run=()=>{reset();let t=0;steps().forEach(([d,f])=>{t+=d;tm.push(setTimeout(f,t))})};
  if(RM){cls('in-e in-t ok-e ok-t cl')}else{once(sv,run,.4)}
  rp&&rp.addEventListener('click',()=>{if(RM){reset();cls('in-e in-t ok-e ok-t cl')}else run()})}
+})();
+/* Case Study 02 R14: topology rebuild and connect-by-drag setup */
+(()=>{const RM=window.RM,$=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const once=(el,fn,t)=>{const io=new IntersectionObserver(es=>{if(es.some(e=>e.isIntersecting)){fn();io.disconnect()}},{threshold:t});io.observe(el)};
+/* challenge: old topology moves into the clean map, then the new links draw in */
+const rb=$('.rbx');if(rb){if(RM)rb.classList.add('mv','ln');else once(rb,()=>{setTimeout(()=>rb.classList.add('mv'),900);setTimeout(()=>rb.classList.add('ln'),2300)},.5)}
+/* setup: place objects, then drag device to filter and filter to tool */
+const sw=$('.sv.sw'),rp=$('.su-rp');if(sw){const cv=$('.sw-cv',sw),svg=$('.sw-ln',sw),cur=$('.sw-cur',sw),N=id=>$('.sw-n[data-id="'+id+'"]',sw);
+ const C=[['e1','f1'],['f1','t1'],['e2','f1'],['e3','f2'],['f2','t2']];let done=[],live=null,tm=[],raf=0,run=0;
+ const pt=(id,side)=>{const c=cv.getBoundingClientRect(),r=N(id).getBoundingClientRect();return [side==='r'?r.right-c.left:r.left-c.left,r.top-c.top+r.height/2]};
+ const pth=(a,b)=>{const m=(a[0]+b[0])/2;return `M${a[0].toFixed(1)} ${a[1].toFixed(1)}C${m.toFixed(1)} ${a[1].toFixed(1)} ${m.toFixed(1)} ${b[1].toFixed(1)} ${b[0].toFixed(1)} ${b[1].toFixed(1)}`};
+ const draw=()=>{const c=cv.getBoundingClientRect();svg.setAttribute('viewBox',`0 0 ${c.width} ${c.height}`);
+  svg.innerHTML=done.map(([a,b])=>`<path d="${pth(pt(a,'r'),pt(b,'l'))}"/>`).join('')+(live?`<path class="dg" d="${pth(live[0],live[1])}"/>`:'')};
+ const hd=(id,s,on)=>{const h=$('.hd.'+s,N(id));h&&h.classList.toggle('on',on)};
+ const put=p=>{cur.style.left=(p[0]-2)+'px';cur.style.top=(p[1]-2)+'px'};
+ let cp=[0,0];const ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
+ const move=(to,ms,k,onf)=>new Promise(res=>{const fr=cp.slice(),t0=performance.now();const f=t=>{if(k!==run)return;const u=Math.min(1,(t-t0)/ms),e=ease(u);cp=[fr[0]+(to[0]-fr[0])*e,fr[1]+(to[1]-fr[1])*e];put(cp);onf&&onf(cp);u<1?raf=requestAnimationFrame(f):res()};raf=requestAnimationFrame(f)});
+ const wait=(ms,k)=>new Promise(res=>tm.push(setTimeout(()=>k===run&&res(),ms)));
+ const reset=()=>{run++;tm.forEach(clearTimeout);tm=[];cancelAnimationFrame(raf);done=[];live=null;sw.classList.add('rs');sw.classList.remove('cur','pr','ok');$$('.sw-n',sw).forEach(n=>n.classList.remove('in','hl'));$$('.hd',sw).forEach(h=>h.classList.remove('on'));draw();void sw.offsetWidth;sw.classList.remove('rs')};
+ const final=()=>{reset();$$('.sw-n',sw).forEach(n=>n.classList.add('in'));done=C.slice();C.forEach(([a,b])=>{hd(a,'r',1);hd(b,'l',1)});sw.classList.add('ok');draw()};
+ const play=async()=>{reset();const k=run,ns=$$('.sw-n',sw);
+  for(const n of ns){await wait(140,k);n.classList.add('in')}
+  await wait(500,k);const c=cv.getBoundingClientRect();cp=[c.width*.5,c.height*1.05];put(cp);sw.classList.add('cur');await wait(300,k);
+  for(const [a,b] of C){const A=pt(a,'r');await move(A,650,k);sw.classList.add('pr');hd(a,'r',1);await wait(220,k);
+   const B=pt(b,'l');live=[A,A];await move(B,850,k,p=>{live=[A,p];N(b).classList.toggle('hl',Math.hypot(p[0]-B[0],p[1]-B[1])<40);draw()});
+   live=null;done.push([a,b]);hd(b,'l',1);sw.classList.remove('pr');draw();await wait(260,k);N(b).classList.remove('hl');await wait(200,k)}
+  const bt=$('.sv-ft .cl',sw),s=cv.getBoundingClientRect(),r=bt.getBoundingClientRect();await move([r.left-s.left+r.width*.45,r.top-s.top+r.height*.6],700,k);
+  sw.classList.add('pr');await wait(200,k);sw.classList.remove('pr');sw.classList.add('ok');await wait(700,k);sw.classList.remove('cur')};
+ addEventListener('resize',()=>draw());
+ if(RM)final();else{reset();once(sw,play,.4)}
+ rp&&rp.addEventListener('click',()=>RM?final():play())}
 })();
 
 /* ===== Case Study 03: Network Assurance Engine ===== */

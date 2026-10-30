@@ -215,8 +215,9 @@ html.cm-on{overflow:hidden}
 .cm-bg{position:absolute;inset:0;background:rgba(15,22,34,.42);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);opacity:0;transition:opacity .22s}
 .cm-p{position:relative;width:min(520px,100%);max-height:calc(100vh - 40px);overflow:auto;background:#fff;border-radius:18px;padding:38px 38px 32px;box-shadow:0 30px 80px -20px rgba(15,22,34,.35);opacity:0;transform:translateY(12px) scale(.985);transition:opacity .22s,transform .3s cubic-bezier(.2,.7,.2,1)}
 .cm.on .cm-bg,.cm.on .cm-p{opacity:1}.cm.on .cm-p{transform:none}
-.cm-x{position:absolute;top:16px;right:16px;width:38px;height:38px;border-radius:50%;border:1px solid var(--line2);background:#fff;display:grid;place-items:center;color:var(--fg);cursor:pointer;transition:border-color .2s,color .2s}
-.cm-x:hover{border-color:var(--fg)}.cm-x:focus-visible{outline:2px solid var(--mkg,var(--acc));outline-offset:2px}
+.cm-x{position:absolute;top:16px;right:16px;width:40px;height:40px;padding:0;border-radius:50%;border:1px solid var(--line2);background:#fff;display:grid;place-items:center;color:var(--fg);cursor:pointer;transition:color .2s,border-color .2s,background .2s,transform .2s}
+.cm-x:hover{color:#1c79ba;border-color:#1c79ba;background:#fff;transform:translateY(-1px)}.cm-x:focus{outline:none}.cm-x:focus-visible{outline:2px solid #1c79ba;outline-offset:2px}
+@media(max-width:720px){.cm-x{width:38px;height:38px}}
 .cm h2{font-size:30px;font-weight:500;letter-spacing:-.04em;line-height:1.1;padding-right:40px}
 .cm-s{margin-top:10px;font-size:15.5px;line-height:1.55;color:var(--fg)}
 .cm-f{display:grid;gap:16px;margin-top:26px}
@@ -225,13 +226,20 @@ html.cm-on{overflow:hidden}
 .cm-f input:not(.hp),.cm-f textarea{font:inherit;font-weight:400;font-size:15.5px;color:var(--fg);background:#fff;border:1px solid var(--line2);border-radius:10px;padding:12px 14px;width:100%;transition:border-color .2s,box-shadow .2s}
 .cm-f textarea{resize:vertical;min-height:120px;line-height:1.5}
 .cm-f input:hover,.cm-f textarea:hover{border-color:#b7bfcc}
-.cm-f input:focus,.cm-f textarea:focus{outline:0;border-color:var(--mkg,var(--acc));box-shadow:0 0 0 3px rgba(var(--mkc,43,98,255),.14)}
+.cm-f input:focus,.cm-f textarea:focus{outline:0;border-color:#0569c0;box-shadow:0 0 0 3px rgba(5,105,192,.14)}
 .cm-f .bad input,.cm-f .bad textarea{border-color:#c2410c}
 .cm-f .er{font-style:normal;font-weight:400;font-size:13px;color:#b42318}.cm-f .er:empty{display:none}
 .cm-f .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
-.cm-a{margin-top:4px}.cm-a .btn{cursor:pointer;border:0;font:inherit;font-weight:500;font-size:15px}.cm-a .btn:disabled{opacity:.6;cursor:default}
+.cm-a{margin-top:4px}
+/* t249: one shared button (About me bubble, Send message, Close) */
+.ui-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 15px 10px 16px;border:0;border-radius:9px;background:#111317;color:#fff;font:inherit;font-size:14px;font-weight:600;letter-spacing:-.005em;line-height:1;text-decoration:none;cursor:pointer;transition:background .25s,transform .25s}
+.ui-btn svg{width:15px;height:15px;flex:none;transition:transform .25s}
+.ui-btn:hover{background:#0569c0;color:#fff}.ui-btn:hover svg{transform:translateX(2px)}
+.ui-btn:active{background:#04589f}
+.ui-btn:focus{outline:none}.ui-btn:focus-visible{outline:2px solid #0569c0;outline-offset:3px}
+.ui-btn:disabled{opacity:.6;cursor:default;background:#111317}.ui-btn:disabled svg{transform:none}
 .cm-st{font-size:14.5px;line-height:1.5;color:var(--fg)}.cm-st:empty{display:none}.cm-st.warn{color:#9a3412}.cm-st a{color:var(--acc);text-decoration:underline;text-underline-offset:3px}
-.cm-done{margin-top:24px}.cm-done h3{font-size:22px;font-weight:500;letter-spacing:-.03em;outline:0}.cm-done p{margin:8px 0 22px;font-size:15.5px}.cm-done .btn{cursor:pointer;font:inherit;font-weight:500}
+.cm-done{margin-top:24px}.cm-done h3{font-size:22px;font-weight:500;letter-spacing:-.03em;outline:0}.cm-done p{margin:8px 0 22px;font-size:15.5px}
 @media(max-width:560px){.cm-p{padding:30px 22px 24px;border-radius:16px}.cm h2{font-size:26px}}
 
 .caps b{margin-top:0}
@@ -891,7 +899,7 @@ html:not(.js) .cx path{stroke-dashoffset:0}html:not(.js) .cx-dn{clip-path:none}
 .cs2{--acc:#085272;--acc2:#1f7aa0;--vis:#eef4f7}
 .cs2 .frame.real,.cs2 .cmpw{background-image:radial-gradient(260px circle at var(--mx,-400px) var(--my,-400px),rgba(8,82,114,.08),transparent 70%),radial-gradient(120% 90% at 50% 0%,#fff 0%,var(--vis) 70%)}
 .cs2 .pn a::before{background:radial-gradient(circle at var(--ox,50%) 100%,rgba(8,82,114,.09),transparent 70%),var(--vis)}
-.cs2 .cm-f input:focus,.cs2 .cm-f textarea:focus{box-shadow:0 0 0 3px rgba(8,82,114,.16)}
+
 .pn.one a.pv{text-align:left;align-items:flex-start}
 /* hero background: routing lanes converging on a node */
 @keyframes flMv{to{stroke-dashoffset:-1500}}
@@ -1245,6 +1253,74 @@ body.cs2{--acc:#085272;--acc2:#1f7aa0;--bg:#fbfcfd;--vis:#eef4f7}
 @media(max-width:560px){.sv-md{width:92%}.sv-mc{grid-template-columns:minmax(0,1fr)}.sv-dl{display:none}.sv-mh{font-size:12px;padding:8px 10px}.sv-tb{padding:6px 10px 0}.sv-pl li{padding:5px 10px}.sv-mf{padding:8px 10px}
  .rl-d,.rl-c{font-size:10.5px;padding:0 14px}.rl-r{gap:4px}.rl-t{gap:4px}}
 @media(prefers-reduced-motion:reduce){.lyr .hr{animation:none;opacity:0}.sv-mo,.sv-md,.cb,.cb svg{transition:none!important}}
+/* Case Study 02 R14: hero ring, topology rebuild, Assurance style topology items, connect-by-drag setup */
+.db-bg{position:absolute;z-index:0;top:56px;right:-210px;width:min(50vw,700px);aspect-ratio:1;pointer-events:none;-webkit-mask-image:radial-gradient(circle at 62% 50%,#000 46%,transparent 72%);mask-image:radial-gradient(circle at 62% 50%,#000 46%,transparent 72%)}
+.db-rg{display:block;width:100%;height:100%;opacity:.3;animation:aeRg 1.2s cubic-bezier(.2,.7,.2,1) both .1s}
+.db-tk path{stroke:#8db4c6;stroke-width:1.2}
+.db-fl path{fill:none;stroke:#5aa3c2;stroke-width:1.6}
+.db-n{fill:#fff;stroke:#1f7aa0;stroke-width:1.6}.db-n.f{stroke:#085272}
+body.cs2:not(.ptd) .db-rg{animation-play-state:paused}
+@keyframes aeRg{from{opacity:0;transform:rotate(-8deg) scale(.96)}}
+@media(max-width:960px){.db-bg{top:auto;bottom:-60px;right:-240px;width:560px}}
+@media(max-width:560px){.db-bg{right:-300px;bottom:-40px;width:480px}}
+/* challenge: old topology rebuilt on the new platform */
+.rbx{margin:28px 0 0;max-width:520px}
+.rbx svg{display:block;width:100%;height:auto;font-size:12px;font-weight:500}
+.rbx .fr{fill:#fff;stroke:#c9dce5}
+.rbx text{fill:#2c3542}
+.rbx .hn{opacity:0;transition:opacity .6s ease .2s}
+.rbx .ols path{stroke:#b8c4ca;stroke-width:1.2;fill:none;transition:opacity .5s}
+.rbx .ols path:nth-child(3n){stroke-dasharray:3 3}
+.rbx .nl{fill:none;stroke:#1f7aa0;stroke-width:1.6;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .5s ease-out;transition-delay:calc(var(--j)*90ms)}
+.rbx .cn{transform:translate(var(--ox),var(--oy));transition:transform .9s cubic-bezier(.45,.05,.25,1);transition-delay:calc(var(--d)*70ms)}
+.rbx .cn .b{fill:#f3f5f6;stroke:#b8c4ca;stroke-width:1.4;transition:fill .5s,stroke .5s}
+.rbx .cn .g{fill:none;stroke:#93a3ab;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;transition:stroke .5s}
+.rbx .cn .lbl{fill:#dfe5e8;transition:fill .5s}
+.rbx .cn:nth-child(odd) .lbl{transform:translate(6px,-4px)}
+.rbx .cn .lbl{transition:fill .5s,transform .9s}
+.rbx.mv .ols path{opacity:0}
+.rbx.mv .ho{opacity:0;transition:opacity .6s}
+.rbx.mv .hn{opacity:1}
+.rbx.mv .cn{transform:translate(var(--nx),var(--ny))}
+.rbx.mv .cn .b{fill:#e1edf2;stroke:#1f7aa0}
+.rbx.mv .cn.s .b{fill:#085272;stroke:#085272}
+.rbx.mv .cn .g{stroke:#085272}
+.rbx.mv .cn.s .g{stroke:#fff}
+.rbx.mv .cn .lbl{fill:#c9dce5;transform:none}
+.rbx.ln .nl{stroke-dashoffset:0}
+/* topology items: same treatment as Assurance (.hzi) */
+.tpi{display:grid;grid-template-columns:40px minmax(0,1fr);gap:0 14px;align-items:center;align-content:start;padding:16px 18px;border-radius:14px;border:1px solid rgba(8,82,114,.18);background:#fff;box-shadow:none;transform:none;transition:border-color .2s,background .2s,box-shadow .2s}
+.tpi .cq-ic{grid-row:1;width:40px;height:40px;margin:0}
+.tpi .cq-ic svg{width:40px;height:40px}
+.tpi-h{grid-column:2;grid-row:1;font-weight:500;font-size:17px;letter-spacing:-.01em;line-height:1.3}
+.tpi-p{grid-column:1/-1;margin-top:10px;font-size:15px;line-height:1.5}
+.tpi:hover,.tpi.on{border-color:rgba(8,82,114,.4);background:#f2f7f9;box-shadow:0 10px 24px -18px rgba(4,46,64,.5);transform:none}
+.tpi:focus-visible{outline:2px solid var(--mkg,var(--acc));outline-offset:2px}
+/* setup: placed objects, connections dragged by the cursor */
+.sw-cv{position:relative;aspect-ratio:100/52;margin-top:8px}
+.sw-ln{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+.sw-ln path{fill:none;stroke:#085272;stroke-width:1.5}
+.sw-ln path.dg{stroke:#1f7aa0;stroke-dasharray:4 3}
+.sw-n{position:absolute;box-sizing:border-box;display:flex;align-items:center;gap:7px;height:40px;padding:0 10px;border:1px solid var(--mkg,var(--acc));border-radius:5px;background:#fff;font-size:11px;transform:translateY(-50%);width:27%;opacity:0;transition:opacity .35s,transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .25s}
+.sw-n.f{width:24%}
+.sw-n>span{min-width:0;flex:1}
+.sw-n b{display:block;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sw-n small{display:block;font-size:10px;color:#3b4850;white-space:nowrap}
+.sw .sw-n:not(.in){transform:translateY(calc(-50% - 8px)) scale(.96)}
+.sw-n.in{opacity:1}
+.sw-n.hl{box-shadow:0 0 0 3px rgba(8,82,114,.18)}
+.sw-it{flex:none;width:16px;height:16px;border-radius:50%;background:#1f7aa0;color:#fff;font-size:9px;font-style:normal;font-weight:600;display:grid;place-items:center}
+.sw-n .hd{position:absolute;top:50%;width:9px;height:9px;margin-top:-4.5px;border-radius:50%;background:#fff;border:1.5px solid var(--mkg,var(--acc));box-sizing:border-box;transition:background .2s}
+.sw-n .hd.l{left:-5px}.sw-n .hd.r{right:-5px}
+.sw-n .hd.on{background:var(--mkg,var(--acc))}
+.sw-cur{position:absolute;z-index:4;width:16px;height:19px;left:0;top:0;opacity:0;pointer-events:none;filter:drop-shadow(0 2px 3px rgba(4,46,64,.25));transition:opacity .3s,transform .15s;transform-origin:2px 2px}
+.sw.cur .sw-cur{opacity:1}
+.sw.pr .sw-cur{transform:scale(.86)}
+.sw .sv-ft .bt.cl{transition:background .4s,color .4s,border-color .4s}
+.sw.ok .sv-ft .bt.cl{background:var(--acc);border-color:var(--acc);color:#fff}
+.sw.rs *{transition:none!important}
+@media(max-width:560px){.sw-cv{aspect-ratio:100/72}.sw-n{height:34px;padding:0 6px;gap:4px;font-size:9.5px}.sw-n small{font-size:9px}.sw-n .sv-ie,.sw-n .sv-if,.sw-n .sw-it{display:none}}
+@media(prefers-reduced-motion:reduce){.db-rg{animation:none}.rbx *,.sw *{transition:none!important}}
 
 /* ===== Case Study 03: Network Assurance Engine (product blue, epoch motif) ===== */
 body.cs2.cs3{--acc:#0569c0;--acc2:#3390ff;--bg:#fbfcfd;--vis:#e8f2fc}

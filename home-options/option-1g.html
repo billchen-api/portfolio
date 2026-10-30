@@ -163,10 +163,7 @@ html[data-grid="case"] .g4-it[data-c="db"] .f-gmi{opacity:.075}
 .f-role{display:inline-flex;align-items:center;gap:8px;margin:11px 0 0;font-family:Geist,Inter,system-ui,sans-serif;font-size:15px;font-weight:500;letter-spacing:-.01em;line-height:1.2;color:#0569c0}
 .f-role::before{content:"";width:7px;height:7px;border-radius:2px;background:#0569c0;transform:rotate(45deg)}
 .f-txt{display:block;margin:12px 0 0;font-size:15px;line-height:1.55;color:#16181c;text-wrap:wrap}
-.f-cta{display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:10px 15px 10px 16px;border-radius:9px;background:#111317;color:#fff;font-size:14px;font-weight:600;letter-spacing:-.005em;line-height:1;text-decoration:none;transition:background .25s,transform .25s}
-.f-cta svg{width:15px;height:15px;transition:transform .25s}
-.f-cta:hover{background:#0569c0}.f-cta:hover svg{transform:translateX(2px)}
-.f-cta:focus{outline:none}.f-cta:focus-visible{outline:2px solid #0569c0;outline-offset:3px}
+.f-cta{margin-top:16px}
 @media(min-width:701px){
  .f-bub{width:min(520px,calc(100vw - var(--av,68px) - 64px));padding:20px 24px 22px}
 }
@@ -451,7 +448,7 @@ html.hb-in .g4-row{pointer-events:none}
 </a></li></ul>
 
 </main>
-<div class="f-ch" id="f-ch"><button class="f-av" type="button" aria-expanded="false" aria-controls="f-bub" aria-label="About Bill Chen"><img class="f-pop" src="assets/avatar/bill-avatar-pop-80.webp" srcset="assets/avatar/bill-avatar-pop-80.webp 1x, assets/avatar/bill-avatar-pop-160.webp 2x, assets/avatar/bill-avatar-pop-240.webp 3x" width="80" height="92" alt="" decoding="async"><span class="f-dot" aria-hidden="true"></span></button><div class="f-bub" id="f-bub"><svg class="f-tl" viewBox="0 0 19 22" aria-hidden="true" focusable="false"><path d="M0 .5C6 3.6 11.6 7.4 17.2 10.2Q18.6 11 17.2 11.8C11.6 14.6 6 18.4 0 21.5" fill="#fff" stroke="#e6e8ec" stroke-width="1"/></svg><span class="f-hi"><span class="f-h1">Hi, I&rsquo;m</span><span class="f-h2">Bill Chen</span></span><span class="f-role">Product Design Leader</span><span class="f-txt">I design scalable enterprise software ecosystems and transform dense, technical data into minimalist user experiences. Specializing in data visualization and complex SaaS platforms, my work directly bridges the gap between deep infrastructure constraints and critical product&nbsp;execution.</span><a class="f-cta" href="#contact" data-contact>Contact me<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></div>
+<div class="f-ch" id="f-ch"><button class="f-av" type="button" aria-expanded="false" aria-controls="f-bub" aria-label="About Bill Chen"><img class="f-pop" src="assets/avatar/bill-avatar-pop-80.webp" srcset="assets/avatar/bill-avatar-pop-80.webp 1x, assets/avatar/bill-avatar-pop-160.webp 2x, assets/avatar/bill-avatar-pop-240.webp 3x" width="80" height="92" alt="" decoding="async"><span class="f-dot" aria-hidden="true"></span></button><div class="f-bub" id="f-bub"><svg class="f-tl" viewBox="0 0 19 22" aria-hidden="true" focusable="false"><path d="M0 .5C6 3.6 11.6 7.4 17.2 10.2Q18.6 11 17.2 11.8C11.6 14.6 6 18.4 0 21.5" fill="#fff" stroke="#e6e8ec" stroke-width="1"/></svg><span class="f-hi"><span class="f-h1">Hi, I&rsquo;m</span><span class="f-h2">Bill Chen</span></span><span class="f-role">Product Design Leader</span><span class="f-txt">I design scalable enterprise software ecosystems and transform dense, technical data into minimalist user experiences. Specializing in data visualization and complex SaaS platforms, my work directly bridges the gap between deep infrastructure constraints and critical product&nbsp;execution.</span><a class="ui-btn f-cta" href="#contact" data-contact>Contact me<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></div>
 <div class="cm" id="contact-modal" role="dialog" aria-modal="true" aria-labelledby="cm-t" hidden><div class="cm-bg" data-close></div><div class="cm-p">
 <button class="cm-x" type="button" aria-label="Close" data-close><svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true"><path d="M5 5l10 10M15 5 5 15" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
 <h2 id="cm-t">Let’s build something great&nbsp;together.</h2><p class="cm-s">Have an exciting role, a tricky product challenge, or just want to talk design? I’d&nbsp;love to hear&nbsp;from&nbsp;you.</p>
@@ -459,8 +456,8 @@ html.hb-in .g4-row{pointer-events:none}
 <label><span>Name</span><input name="name" autocomplete="name" required><em class="er" aria-live="polite"></em></label>
 <label><span>Email</span><input type="email" name="email" autocomplete="email" required><em class="er" aria-live="polite"></em></label>
 <label><span>Message</span><textarea name="message" rows="5" required></textarea><em class="er" aria-live="polite"></em></label>
-<div class="cm-a"><button type="submit" class="btn b1">Send message <span aria-hidden="true">→</span></button></div><p class="cm-st" role="status" aria-live="polite"></p></form>
-<div class="cm-done" hidden><h3 tabindex="-1">Thanks, your message is on its&nbsp;way.</h3><p>I’ll get back to you&nbsp;soon.</p><button type="button" class="btn b2" data-close>Close</button></div>
+<div class="cm-a"><button type="submit" class="ui-btn">Send message<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div><p class="cm-st" role="status" aria-live="polite"></p></form>
+<div class="cm-done" hidden><h3 tabindex="-1">Thanks, your message is on its&nbsp;way.</h3><p>I’ll get back to you&nbsp;soon.</p><button type="button" class="ui-btn" data-close>Close</button></div>
 </div></div>
 
 <script src="../assets/js/main.js"></script><script>(()=>{const RM=window.RM,$$=(s,r=document)=>[...r.querySelectorAll(s)];
