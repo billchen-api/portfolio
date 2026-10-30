@@ -47,22 +47,20 @@ function runFlow(mode,ox,oy,dur,done){const c=COL.flow,cx=W/2,cy=H/2,R=Math.hypo
    if(r>0){px.strokeStyle=rgba(c,.35*(1-t));px.lineWidth=1.2;px.beginPath();px.arc(cx,cy,r,0,6.3);px.stroke()}
    const a=1-cl((t-.35)/.65);lanes(a,true,1);dots(1.1-eo(t)*1.1,a,true);hub(1,1-cl(t/.4));if(t>.1)pt.classList.remove('show')}
   if(t<1)requestAnimationFrame(f);else done&&done()})(t0)}
-function runPulse(mode,ox,oy,dur,done){const c=COL.pulse,cx=W/2,cy=H/2,R=Math.hypot(W,H)/2+20,t0=performance.now(),N=9,L=Math.min(560,W*.78),x0=cx-L/2;
- const sz=[.5,.8,.45,1,.6,.9,.5,.7,1],dx=k=>x0+L*k/(N-1);
- function strip(a,q){px.globalAlpha=a;px.strokeStyle=rgba(c,.22);px.lineWidth=1.4;px.beginPath();px.moveTo(x0-24,cy);px.lineTo(x0-24+(L+48)*eo(cl(q*1.6)),cy);px.stroke();
-  for(let k=0;k<N;k++){const u=cl((q-.12-k*.06)/.22);if(u<=0)continue;const last=k===N-1,r=(last?9:3+5*sz[k])*eo(u);
-   px.fillStyle=last?rgba(c,1):'rgba(225,45,85,'+(.55+.35*sz[k])+')';px.beginPath();px.arc(dx(k),cy,r,0,6.3);px.fill();
-   if(last){px.strokeStyle=rgba(c,.5*(1-cl((q-.75)/.25)));px.lineWidth=1.2;px.beginPath();px.arc(dx(k),cy,r+6+18*cl((q-.62)/.38),0,6.3);px.stroke();
-    const m=cl((q-.6)/.2);if(m>0){px.strokeStyle='#fff';px.lineWidth=2;px.lineCap='round';px.beginPath();px.moveTo(dx(k)-3.6,cy);const a1=Math.min(m*2,1);px.lineTo(dx(k)-3.6+2.6*a1,cy+2.6*a1);if(m>.5){const b=(m-.5)*2;px.lineTo(dx(k)-1+5*b,cy+2.6-6*b)}px.stroke()}}}
-  px.globalAlpha=1}
+/* NAE: timeline sweep. An Assurance-blue line draws across, severity events pop onto it and settle into circles, then the page fades in */
+let PP0=0;
+function runPulse(mode,ox,oy,dur,done){const c=[28,121,186],cx=W/2,cy=H/2,L=Math.min(520,W*.72),x0=cx-L/2,t0=performance.now(),p0=mode==='in'?0:PP0;PP0=0;
+ const EV=[[.14,'0,199,179'],[.33,'64,196,255'],[.52,'255,122,0'],[.69,'255,23,68'],[.86,'255,214,0']];
+ const bk=u=>{const s=1.9;u-=1;return 1+u*u*((s+1)*u+s)};
+ function scene(q){px.lineCap='round';const l=eo(cl(q/.42));
+  if(l>0){px.strokeStyle=rgba(c,1);px.lineWidth=2;px.beginPath();px.moveTo(x0,cy);px.lineTo(x0+L*l,cy);px.stroke()}
+  EV.forEach(([f,col],k)=>{const u=cl((q-.26-k*.06)/.2);if(u<=0)return;const st=eo(cl((q-.64-k*.035)/.2)),r=Math.max(0,7.5*bk(u)-1.5*st),x=x0+L*f;
+   px.fillStyle='#fff';px.beginPath();px.arc(x,cy,r,0,6.3);px.fill();
+   if(st<1){px.fillStyle=`rgba(${col},${1-st})`;px.beginPath();px.arc(x,cy,r,0,6.3);px.fill()}
+   px.strokeStyle=`rgba(${col},1)`;px.lineWidth=2;px.beginPath();px.arc(x,cy,Math.max(0,r-1),0,6.3);px.stroke()})}
  (function f(now){const t=cl((now-t0)/dur);px.clearRect(0,0,W,H);
-  if(mode==='in'){const a=eo(cl(t/.3));px.fillStyle=`rgba(251,252,253,${.6*a})`;px.fillRect(0,0,W,H);strip(a,cl(t/.7));
-   const r=R*eio(cl((t-.66)/.34));if(r>0){const ex=dx(N-1);px.fillStyle='#fbfcfd';px.beginPath();px.arc(ex,cy,r*1.4,0,6.3);px.fill();px.strokeStyle=rgba(c,.35*(1-t));px.lineWidth=1.2;px.stroke()}
-   if(t>.7)pt.classList.add('show');
-  }else{px.fillStyle='#fbfcfd';px.fillRect(0,0,W,H);const r=R*eio(cl((t-.15)/.85));
-   px.globalCompositeOperation='destination-out';px.beginPath();px.arc(cx,cy,r,0,6.3);px.fill();px.globalCompositeOperation='source-over';
-   if(r>0){px.strokeStyle=rgba(c,.35*(1-t));px.lineWidth=1.2;px.beginPath();px.arc(cx,cy,r,0,6.3);px.stroke()}
-   const a=1-cl(t/.4);if(a>0)strip(a,1);if(t>.1)pt.classList.remove('show')}
+  if(mode==='in'){const a=eo(cl(t/.35));px.fillStyle=`rgba(251,252,253,${a})`;px.fillRect(0,0,W,H);px.globalAlpha=a;scene(.5*t);px.globalAlpha=1;
+  }else{const q=p0+(1-p0)*cl(t/.74),a=1-eo(cl((t-.72)/.28));px.globalAlpha=a;px.fillStyle='#fbfcfd';px.fillRect(0,0,W,H);scene(q);px.globalAlpha=1;pt.classList.remove('show')}
   if(t<1)requestAnimationFrame(f);else done&&done()})(t0)}
 function run(mode,ox,oy,dur,done,kind){size();pt.classList.remove('off');pt.classList.add('run');
  if(kind==='cart')return runCart(mode,ox,oy,dur,done);if(kind==='flow')return runFlow(mode,ox,oy,dur,done);if(kind==='pulse')return runPulse(mode,ox,oy,dur,done);
@@ -90,13 +88,15 @@ function run(mode,ox,oy,dur,done,kind){size();pt.classList.remove('off');pt.clas
    if(t>.15)pt.classList.remove('show');
   }
   if(t<1)requestAnimationFrame(f);else done&&done()})(t0);}
-function enter(){if(!pt)return;if(RM){pt.classList.add('off');return}
+function ptDone(){if(window.PTDONE)return;window.PTDONE=1;document.body.classList.add('ptd');dispatchEvent(new Event('ptdone'))}
+function enter(){if(!pt||RM){pt&&pt.classList.add('off');ptDone();return}
  let s={};try{s=JSON.parse(sessionStorage.getItem('bc-pt')||'{}');sessionStorage.removeItem('bc-pt')}catch(e){}
+ const nae=document.body.classList.contains('cs3');if(nae){PP0=s.k==='pulse'?.5:0;s.k='pulse';s.l=''}
  if(lbl&&s.l){lbl.textContent=s.l;pt.classList.add('show')}
  const ox=(s.x??.5)*innerWidth,oy=(s.y??.5)*innerHeight;
- const k=s.k,D=k?540:(s.l?950:800);setTimeout(()=>run('out',ox,oy,D,()=>{pt.classList.add('off');pt.classList.remove('run','show')},k),k?60:(s.l?140:0))}
-enter();setTimeout(()=>pt&&pt.classList.contains('run')===false&&!pt.classList.contains('off')&&pt.classList.add('off'),2500);
-addEventListener('pageshow',e=>{if(e.persisted&&pt){pt.classList.add('off');pt.classList.remove('run','show')}});
+ const k=s.k,D=nae?(PP0?620:1000):k?540:(s.l?950:800);setTimeout(()=>run('out',ox,oy,D,()=>{pt.classList.add('off');pt.classList.remove('run','show');ptDone()},k),k?60:(s.l?140:0))}
+enter();setTimeout(()=>{if(pt&&pt.classList.contains('run')===false&&!pt.classList.contains('off'))pt.classList.add('off');ptDone()},2500);
+addEventListener('pageshow',e=>{if(e.persisted&&pt){pt.classList.add('off');pt.classList.remove('run','show');ptDone()}});
 document.addEventListener('click',e=>{const a=e.target.closest('a');if(!a||RM||!pt)return;const href=a.getAttribute('href');
  if(!href||href.startsWith('#')||a.hasAttribute('data-contact')||a.target==='_blank'||e.metaKey||e.ctrlKey||e.shiftKey||e.button||/^(mailto:|tel:|https?:)/.test(href))return;
  const cur=location.pathname.split('/').pop()||'index.html',dest=href.split('#')[0];if(dest===cur&&href.includes('#'))return;
@@ -283,7 +283,11 @@ const sv=$('.sv'),rp=$('.su-rp');if(sv){const cur=$('.sv-cur',sv),F=['cur','pr',
 /* ===== Case Study 03: Network Assurance Engine ===== */
 (()=>{const RM=window.RM,$=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
 if(!document.body.classList.contains('cs3'))return;
+const ptd=f=>{window.PTDONE?f():addEventListener('ptdone',f,{once:true})};
 const seen=(el,f,t=.4)=>{if(!('IntersectionObserver' in window)){f();return}const io=new IntersectionObserver(es=>{if(es.some(e=>e.isIntersecting)){io.disconnect();f()}},{threshold:t});io.observe(el)};
+/* below the fold: start only once the user has scrolled and the element is meaningfully in view, so only the hero plays on load */
+const scr=()=>scrollY>0||document.documentElement.scrollTop>0;
+const seenS=(el,f,t=.5)=>{if(!('IntersectionObserver' in window)){f();return}let inV=false,done=false;const go=()=>{if(done||!inV||!scr())return;done=true;io.disconnect();removeEventListener('scroll',go);f()};const io=new IntersectionObserver(es=>{inV=es[es.length-1].isIntersecting;go()},{threshold:t});io.observe(el);addEventListener('scroll',go,{passive:true})};
 const fmt=n=>Math.round(n).toLocaleString('en-US');
 /* hero: epoch timeline drives the Smart Events dashlet; circle colour = highest severity in that epoch */
 const ae=$('.aew');if(ae&&window.AE_EP){const EP=AE_EP,T=AE_T,N=EP.length,tr=$('.ae-tr',ae),dots=$$('.ae-e',ae),ns=$$('.ae-n',ae),tm2=$('.ae-tm2',ae);
@@ -298,40 +302,41 @@ const ae=$('.aew');if(ae&&window.AE_EP){const EP=AE_EP,T=AE_T,N=EP.length,tr=$('
  tr.addEventListener('keydown',e=>{const k={ArrowLeft:-1,ArrowDown:-1,ArrowRight:1,ArrowUp:1}[e.key];let i=null;if(k)i=cur+k;else if(e.key==='Home')i=0;else if(e.key==='End')i=N-1;if(i===null)return;e.preventDefault();stop();sel(i);dots[cur].focus()});
  dots.forEach((d,k)=>d.addEventListener('click',()=>{stop();sel(k)}));
  sel(N-1);
- if(!RM)seen(ae,()=>{if(user)return;let i=0;sel(0);tmr=setInterval(()=>{if(user){clearInterval(tmr);return}i++;sel(i);if(i>=N-1)clearInterval(tmr)},260)},.5)}
+ if(!RM)seen(ae,()=>ptd(()=>{if(user)return;let i=0;sel(0);tmr=setInterval(()=>{if(user){clearInterval(tmr);return}i++;sel(i);if(i>=N-1)clearInterval(tmr)},260)}),.5)}
 /* challenge: scattered events of every severity settle onto the timeline; each epoch circle grows per event and takes the highest severity */
 const nz=$('.nz');if(nz){const sl=$$('.nz-s',nz),ds=$$('.nz-d',nz),SC=['#ff1744','#ff7a00','#ffd600','#40c4ff','#00c7b3'],mx=Math.max(...sl.map(s=>+s.dataset.n));let tm=[];
  const reset=()=>{tm.forEach(clearTimeout);tm=[];nz.classList.remove('nz-done');sl.forEach(s=>{s.style.setProperty('--sc',0);s.dataset.c=0;s.dataset.v=9})};
  const go=()=>{nz.classList.add('nz-go');if(RM){nz.classList.add('nz-done');sl.forEach(s=>{s.style.removeProperty('--sc');s.style.removeProperty('--sf')});return}
   const last=Math.max(...ds.map(d=>+getComputedStyle(d).getPropertyValue('--j')))*34+930;tm.push(setTimeout(()=>nz.classList.add('nz-done'),last+450));
   ds.forEach(d=>{tm.push(setTimeout(()=>{const s=sl[+d.dataset.k],c=+s.dataset.c+1,v=Math.min(+s.dataset.v,+d.dataset.v);s.dataset.c=c;s.dataset.v=v;s.style.setProperty('--sc',Math.sqrt(c/mx).toFixed(3));s.style.setProperty('--sf',SC[v])},+getComputedStyle(d).getPropertyValue('--j')*34+930))})};
- if(!RM)reset();if(RM)go();else seen(nz,go,.45);
+ if(!RM)reset();if(RM)go();else seenS(nz,go,.5);
  const rp=$('.nz-rp',nz);rp&&rp.addEventListener('click',()=>{reset();nz.classList.remove('nz-go');void nz.offsetWidth;requestAnimationFrame(()=>requestAnimationFrame(go))})}
 /* shared: a pointer that moves to an element and clicks it */
 const curTo=(st,cur,el,dy=.5)=>{const a=st.getBoundingClientRect(),r=el.getBoundingClientRect();cur.style.setProperty('--cx',(r.left-a.left+r.width*.5-4)+'px');cur.style.setProperty('--cy',(r.top-a.top+r.height*dy-3)+'px')};
 const press=cur=>{cur.classList.add('dn');setTimeout(()=>cur.classList.remove('dn'),180)};
-const vis=(el,on,off)=>{if(!('IntersectionObserver' in window)){on();return}new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting?on():off()),{threshold:.35}).observe(el)};
+const vis=(el,on,off)=>{if(!('IntersectionObserver' in window)){on();return}let inV=false;const chk=()=>{if(inV&&scr()){removeEventListener('scroll',chk);on()}};new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting){inV=false;off();return}inV=e.intersectionRatio>=.35||e.intersectionRect.height>=innerHeight*.45;chk()}),{threshold:[0,.1,.2,.3,.35,.5]}).observe(el);addEventListener('scroll',chk,{passive:true})};
 /* key screens: hover a detail, a spotlight finds it on the screen */
 $$('.hz').forEach(hz=>{const its=$$('.hzi',hz),rs=$$('.hz-r',hz),sp=$('.hz-sp',hz);let pin=-1;
  const show=k=>{if(k>=0){const r=rs[k].style;['left','top','width','height'].forEach(p=>sp.style[p]=r[p])}sp.classList.toggle('on',k>=0);its.forEach(b=>b.classList.toggle('hl',+b.dataset.k===k))};
  its.forEach(b=>{const k=+b.dataset.k;b.addEventListener('mouseenter',()=>show(k));b.addEventListener('mouseleave',()=>show(pin));b.addEventListener('focus',()=>show(k));b.addEventListener('blur',()=>show(pin));
   b.addEventListener('click',()=>{pin=pin===k?-1:k;its.forEach(x=>x.setAttribute('aria-pressed',+x.dataset.k===pin));show(pin)})})});
-/* relationships: one panel. Step 1 the chart; step 2 a path is clicked and the details replace the chart, violated contract on top; step 3 it expands; the X closes back to the chart */
+/* relationships: one panel. Step 1 the chart alone; step 2 the cursor moves to a path, the path lights up on hover, the click opens the details with the violated contract on top; step 3 it expands; the X closes back to the chart. Hovering a step card plays that step. */
 const dyw=$('.dy');if(dyw){const st=$('.dy-s',dyw),cur=$('.cur',dyw),tg=$('.dy-tg',dyw),ck=$('.dy-ck',dyw),bk=$('.dy-bk',dyw),cr=$('.dy-c.cr .dy-ch',dyw),its=$$('.hzi',dyw),cs=$$('.dy-c',dyw),BX=[0,2,3];let tm=[],user=false,on=false;
  const hl=k=>its.forEach(x=>x.classList.toggle('hl',+x.dataset.k===k));
  const set=(n,h)=>{const b=cs.map(c=>c.getBoundingClientRect().top);dyw.dataset.st=n;if(h!==undefined)hl(h);if(RM||n<2)return;
   cs.forEach((c,i)=>{const d=b[i]-c.getBoundingClientRect().top;if(Math.abs(d)<1)return;c.style.transition='none';c.style.transform=`translateY(${d}px)`;void c.offsetWidth;c.style.transition='';c.style.transform=''})};
  const clr=()=>{tm.forEach(clearTimeout);tm=[]};const at=(t,f)=>tm.push(setTimeout(f,t));
  const ring=()=>{const a=st.getBoundingClientRect(),r=tg.getBoundingClientRect();ck.style.left=(r.left-a.left)+'px';ck.style.top=(r.top-a.top)+'px';dyw.classList.remove('clk');void ck.offsetWidth;dyw.classList.add('clk')};
- const loop=()=>{clr();if(user||!on)return;set(0,0);dyw.classList.remove('cv','clk','bk');curTo(st,cur,st,.85);
-  at(2400,()=>{hl(1);dyw.classList.add('cv');curTo(st,cur,tg,0)});at(3300,()=>{press(cur);ring()});at(3600,()=>set(1));
-  at(4600,()=>set(2));at(6600,()=>{hl(2);curTo(st,cur,cr)});at(7500,()=>{press(cur);set(3)});
-  at(11000,()=>curTo(st,cur,bk));at(11900,()=>{press(cur);dyw.classList.add('bk')});at(12200,()=>{dyw.classList.remove('bk');set(0,0)});
-  at(13000,()=>dyw.classList.remove('cv'));at(13600,loop)};
- const stop=()=>{user=true;clr();dyw.classList.remove('cv','bk')};
- its.forEach(b=>{const k=+b.dataset.k;b.addEventListener('mouseenter',()=>{stop();set(BX[k],k)});b.addEventListener('focus',()=>{stop();set(BX[k],k)});
-  b.addEventListener('click',()=>{stop();its.forEach(x=>x.setAttribute('aria-pressed',x===b));set(BX[k],k)})});
- if(!RM){set(0,0);vis(dyw,()=>{if(!on){on=true;loop()}},()=>{on=false;clr();dyw.classList.remove('cv')})}}
+ const C=dyw.classList,home=()=>{C.remove('cv','clk','bk','hv');curTo(st,cur,st,.85)};
+ const s0=()=>{set(0,0);home()};
+ const s1=o=>{at(o,()=>{set(0,1);C.remove('bk','hv');C.add('cv');curTo(st,cur,tg)});at(o+850,()=>C.add('hv'));at(o+1450,()=>{press(cur);ring()});at(o+1750,()=>set(1));at(o+2750,()=>set(2));return o+2750};
+ const s2=o=>{at(o,()=>{if(+dyw.dataset.st<2)set(2);hl(2)});at(o+200,()=>{C.add('cv');curTo(st,cur,cr)});at(o+1100,()=>{press(cur);set(3)});return o+1100};
+ const cls=o=>{at(o,()=>curTo(st,cur,bk));at(o+900,()=>{press(cur);C.add('bk')});at(o+1200,()=>{C.remove('bk','hv');set(0,0)});at(o+2000,()=>C.remove('cv'));return o+2000};
+ const loop=()=>{clr();if(user||!on)return;s0();const t=cls(s2(s1(2400)+1900)+3500);at(t+600,loop)};
+ const play=k=>{user=true;clr();if(RM){set(BX[k],k);return}if(k===0)s0();else if(k===1){s0();s1(250)}else s2(0)};
+ its.forEach(b=>{const k=+b.dataset.k;b.addEventListener('mouseenter',()=>play(k));b.addEventListener('focus',()=>play(k));
+  b.addEventListener('click',()=>{its.forEach(x=>x.setAttribute('aria-pressed',x===b));play(k)})});
+ if(!RM){set(0,0);vis(dyw,()=>{if(!on){on=true;loop()}},()=>{on=false;if(!user){clr();dyw.classList.remove('cv','hv')}})}}
 /* natural language query: tabs, then the intent, then the full query types out */
 const nq=$('.nq');if(nq){const tabs=$$('[role=tab]',nq),ims=$$('.nq-im',nq),cap=$('.nq-c',nq),q=$('.nq-q',nq),tx=$('.nq-tx',nq),pn=$('.nq-p',nq);let tt=null,auto=null,user=false,cur=0;
  const type=w=>{clearInterval(tt);q.classList.add('ty');if(RM){tx.textContent=w;return}tx.textContent='';let i=0;tt=setInterval(()=>{tx.textContent=w.slice(0,++i);if(i>=w.length)clearInterval(tt)},45)};
@@ -339,7 +344,7 @@ const nq=$('.nq');if(nq){const tabs=$$('[role=tab]',nq),ims=$$('.nq-im',nq),cap=
  const stop=()=>{user=true;clearInterval(auto)};
  tabs.forEach((t,k)=>{t.addEventListener('click',()=>{stop();sel(k)});t.addEventListener('keydown',e=>{const d={ArrowRight:1,ArrowLeft:-1}[e.key];if(!d)return;e.preventDefault();stop();sel((cur+d+tabs.length)%tabs.length,true)})});
  q.classList.remove('ty');tx.textContent='';
- if(RM)sel(0);else seen(nq,()=>{sel(0);auto=setInterval(()=>{if(user){clearInterval(auto);return}sel((cur+1)%tabs.length)},5600)},.5)}
+ if(RM)sel(0);else seenS(nq,()=>{sel(0);auto=setInterval(()=>{if(user){clearInterval(auto);return}sel((cur+1)%tabs.length)},5600)},.5)}
 /* filtering: pick the busiest leaf, then pick any column; it moves up next to the filters already applied and every column not yet filtered re-sorts while its counts tick down */
 const fa=$('.fa');if(fa){const cur=$('.cur',fa),pp=$('.fa-pp'),ST=['s1','s2','s3','s4','s5'],D=JSON.parse(fa.dataset.st),cols=$$('.fa-col',fa),box=$('.fa-cols',fa);let tm=[],on=false,paused=false,k0=-1;
  const clr=()=>{tm.forEach(clearTimeout);tm=[]};const at=(t,f)=>tm.push(setTimeout(f,t));
