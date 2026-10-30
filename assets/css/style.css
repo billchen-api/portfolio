@@ -599,7 +599,9 @@ nav.hide~.ctabs{top:0}
 @media(prefers-reduced-motion:reduce){.jr::after,.jr li,.jr .ck,.tl2 a.anc i{transition:none!important}}
 .cs-real main .idx.m,.cs-real main .ol .m,.cs-real main .ft .m{color:var(--acc)}
 .cs-real .shot .bb{font:400 11px Geist,Inter,system-ui,sans-serif;letter-spacing:0}
-.cs-real main>section.band{background:#f4f6f9}
+.cs-real main>section.band{background:#dce4fc}
+.cs-real:not(.cs2) main>section:nth-of-type(n){background:transparent}.cs-real:not(.cs2) main>section:nth-of-type(odd){background:#dce4fc}
+.cs-real:not(.cs2) .pn a::before{background:radial-gradient(circle at var(--ox,50%) 100%,rgba(43,98,255,.08),transparent 70%),#dce4fc}
 .cs-real .hero h1 .mu{color:var(--mute)}
 /* v6.1: hero meta row spans the stepper track */
 .cs-real .hero.mk .overview,.cs-real .hero.mk .overview.wide{max-width:none;margin-left:calc(100%/14);margin-right:calc(100%/14);grid-template-columns:auto auto minmax(0,max-content) auto;justify-content:space-between;column-gap:32px;row-gap:24px}
@@ -941,11 +943,13 @@ html:not(.js) .cx path{stroke-dashoffset:0}html:not(.js) .cx-dn{clip-path:none}
 @media(prefers-reduced-motion:reduce){.fl-bg path.mv{animation:none}.nd,.nx-s path,.nx-s .pk,.c2c .ch{transition:none!important}}
 
 /* ===== R10: Data Broker polish ===== */
-body.cs2{--bg:#f5f9fa;--vis:#eef4f7}
-.cs2.cs-real main>section.band{background:#ecf3f6}
-.cs2 .c2h{background:linear-gradient(180deg,#e3eef3 0%,#eef4f7 55%,var(--bg) 100%)}
+body.cs2{--bg:#fbfcfd;--vis:#eef4f7}
+.cs2.cs-real main>section.band{background:#dcf2fc}
+.cs2:not(.cs3).cs-real main>section:nth-of-type(n){background:transparent}.cs2:not(.cs3).cs-real main>section:nth-of-type(odd){background:#dcf2fc}
+.cs2:not(.cs3) .pn,.cs2:not(.cs3) footer.m{background:#dcf2fc}
+.cs2 .c2h{background:#fbfcfd}
 .cs2 .frame.real{background-image:radial-gradient(260px circle at var(--mx,-400px) var(--my,-400px),rgba(8,82,114,.08),transparent 70%),radial-gradient(120% 90% at 50% 0%,#fff 0%,#f3f7f9 70%)}
-.cs2 .pn a::before{background:radial-gradient(circle at var(--ox,50%) 100%,rgba(8,82,114,.1),transparent 70%),#ecf3f6}
+.cs2 .pn a::before{background:radial-gradient(circle at var(--ox,50%) 100%,rgba(8,82,114,.1),transparent 70%),#fbfcfd}
 /* hero: topology canvas stage */
 .cs2 .nxw{position:relative;padding:clamp(16px,2.2vw,28px);border-radius:24px;border:1px solid rgba(8,82,114,.16);background:radial-gradient(circle at 1px 1px,rgba(8,82,114,.2) 1px,transparent 1.5px) 0 0/16px 16px,linear-gradient(155deg,#dde9ef,#eef4f7)}
 .cs2 .nxa{border:1px solid rgba(8,82,114,.2);border-radius:16px;box-shadow:0 18px 40px -30px rgba(4,46,64,.45)}
@@ -993,7 +997,7 @@ body.cs2{--bg:#f5f9fa;--vis:#eef4f7}
 /* ===== R11: Data Broker #085272 palette, layout and motion; site header ===== */
 nav,body.cs2 nav{background:#fff;-webkit-backdrop-filter:none;backdrop-filter:none}
 .ctabs,body.cs2 .ctabs{background:#fff;-webkit-backdrop-filter:none;backdrop-filter:none}
-body.cs2{--acc:#085272;--acc2:#1f7aa0;--bg:#f5f9fa;--vis:#eef4f7}
+body.cs2{--acc:#085272;--acc2:#1f7aa0;--bg:#fbfcfd;--vis:#eef4f7}
 /* hero: free-standing graphic */
 .cs2 .nxw{padding:0;border:0;border-radius:0;background:none}
 .cs2 .nxa{background:none;border:0;border-radius:0;box-shadow:none;overflow:visible}
@@ -1247,8 +1251,10 @@ body.cs2.cs3{--acc:#0569c0;--acc2:#3390ff;--bg:#fbfcfd;--vis:#e8f2fc}
 /* hero and odd sections: the Marketplace near white; even sections: the former hero blue */
 .cs3 .c2h{background:#fbfcfd}
 .cs3.cs-real main>section.band{background:#dcebfc}
+.cs3.cs-real main>section:nth-of-type(n){background:transparent}.cs3.cs-real main>section:nth-of-type(odd){background:#dcebfc}
+.cs3 .pn,.cs3 footer.m{background:#dcebfc}
 .cs3 .frame.real{background-image:radial-gradient(260px circle at var(--mx,-400px) var(--my,-400px),rgba(5,105,192,.08),transparent 70%),radial-gradient(120% 90% at 50% 0%,#fff 0%,#f1f7fe 70%)}
-.cs3 .pn a::before{background:radial-gradient(circle at var(--ox,50%) 100%,rgba(5,105,192,.1),transparent 70%),#e8f2fc}
+.cs3 .pn a::before{background:radial-gradient(circle at var(--ox,50%) 100%,rgba(5,105,192,.1),transparent 70%),#fbfcfd}
 .cs3 .c2c .cmp,.cs3.cs2 .c2c .cmp{aspect-ratio:1400/1032;border-color:rgba(5,105,192,.18)}
 .cs3 .c2c .cmp .cl{border-color:rgba(5,105,192,.18)}
 .cs3 .c2c .cmp .ch i{box-shadow:0 8px 20px -8px rgba(10,50,100,.5)}
