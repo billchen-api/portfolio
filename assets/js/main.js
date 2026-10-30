@@ -89,7 +89,7 @@ function run(mode,ox,oy,dur,done,kind){size();pt.classList.remove('off');pt.clas
   }
   if(t<1)requestAnimationFrame(f);else done&&done()})(t0);}
 function ptDone(){if(window.PTDONE)return;window.PTDONE=1;document.body.classList.add('ptd');dispatchEvent(new Event('ptdone'))}
-function enter(){if(!pt||RM){pt&&pt.classList.add('off');ptDone();return}
+function enter(){if(!pt||RM||document.body.classList.contains('g4b')){pt&&pt.classList.add('off');ptDone();return} /* t248: the home (g4b) arrives with transition B, not the shooting line; its .pt stays for themed exits */
  let s={};try{s=JSON.parse(sessionStorage.getItem('bc-pt')||'{}');sessionStorage.removeItem('bc-pt')}catch(e){}
  const nae=document.body.classList.contains('cs3');if(nae){PP0=s.k==='pulse'?.5:0;s.k='pulse';s.l=''}
  if(lbl&&s.l){lbl.textContent=s.l;pt.classList.add('show')}
