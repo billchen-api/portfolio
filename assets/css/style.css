@@ -1354,18 +1354,23 @@ body.cs2:not(.ptd) .db-fx,body.cs2:not(.ptd) .db-tr path,body.cs2:not(.ptd) .db-
 .sw .sv-mo{z-index:3}.sw .sw-cur{z-index:5}
 @media(max-width:560px){.sw-cv{aspect-ratio:100/72}.sw-n{height:34px;padding:0 6px;gap:4px;font-size:9.5px}.sw-n small{font-size:9px}.sw-n .sv-ie,.sw-n .sv-if,.sw-n .sw-it{display:none}.sw-add{height:24px;padding:0 7px;font-size:9px}.sw-th>span:last-child{justify-self:end;width:max-content;text-align:center}}
 @media(prefers-reduced-motion:reduce){.db-fx,.db-dr{animation:none}.db-tr path,.db-hp{animation:none}.db-tr path{stroke-dasharray:none;opacity:.35}.db-hp{opacity:0}.rbx *,.sw *{transition:none!important}}
-.db-dg .z{fill:#085272;fill-opacity:.012;stroke:#085272;stroke-opacity:.12;stroke-width:1;stroke-dasharray:4 6}
+.db-dg .z{fill:#085272;fill-opacity:.018;stroke:#085272;stroke-opacity:.22;stroke-width:1.2;stroke-dasharray:4 5}
 .db-dg .pl{fill:none;stroke:#085272;stroke-opacity:.2;stroke-width:1.2}
-.db-dg .ln path,.db-dg .ln1{fill:none;stroke:#085272;stroke-opacity:.2;stroke-width:.9}
+.db-dg .ln path,.db-dg .ln1{fill:none;stroke:#085272;stroke-opacity:.16;stroke-width:1}
 .db-dg .u,.db-dg .n,.db-dg .t,.db-dg .c{fill:#fff;fill-opacity:.6;stroke:#085272;stroke-opacity:.26;stroke-width:1.2}
 .db-dg .n{stroke-opacity:.34}
 .db-dg .ul{stroke:#085272;stroke-opacity:.2;stroke-width:1.2;stroke-linecap:round}
 /* t257: broker diagram sits top right and bleeds off the top and right edges, like the Marketplace hero grid */
-.db-bg.q2{top:14px;right:0;bottom:auto;width:min(29vw,420px);-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 90%,transparent),linear-gradient(#000 80%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 90%,transparent),linear-gradient(#000 80%,transparent);mask-composite:intersect;opacity:.95}
-@media(max-width:960px){.db-bg.q2{top:158px;bottom:auto;right:0;width:30vw;opacity:.9}}
+.db-bg.q2{top:20px;right:-120px;width:min(50vw,720px);-webkit-mask-image:radial-gradient(ellipse 80% 70% at 80% 12%,#000 28%,transparent 72%);mask-image:radial-gradient(ellipse 80% 70% at 80% 12%,#000 28%,transparent 72%);opacity:.85}
+@media(max-width:960px){.db-bg.q2{top:0;bottom:auto;right:-14vw;width:62vw;opacity:.7}}
 @media(max-width:720px){.db-bg.q2{display:none}}
 /* t257: on two columns the challenge text starts level with the top of the animation */
-@media(min-width:961px){.cs2 .c2i{grid-template-rows:auto auto;row-gap:0}.cs2 .c2i>.rv:first-child{grid-row:1/3;display:grid;grid-template-rows:subgrid}.cs2 .c2i>.c2i-t{grid-column:2;grid-row:2;margin-top:28px}}
+@media(min-width:961px){.cs2:not(.cs3) #challenge .c2i{grid-template-rows:auto auto;row-gap:0}.cs2:not(.cs3) #challenge .c2i>.rv:first-child{grid-row:1/3;display:grid;grid-template-rows:subgrid}.cs2:not(.cs3) #challenge .c2i>.c2i-t{grid-column:2;grid-row:2;margin-top:28px}}
+/* t261: Discovery, Ideation, Built on the Platform and the Topology block stack the title and subheader above the text, the same way Assurance does (no title column with the text off to the right) */
+.cs2:not(.cs3) :is(#discovery,#ideation,#platform) .c2i,.cs2:not(.cs3) .tp .f2-t{display:block}
+.cs2:not(.cs3) :is(#discovery,#ideation,#platform) .c2i-t,.cs2:not(.cs3) .tp .f2-t>div+div{margin-top:clamp(18px,2vw,26px);max-width:700px}
+.cs2:not(.cs3) :is(#discovery,#ideation,#platform) .c2i-t p,.cs2:not(.cs3) .tp .f2-t p{max-width:none}
+.cs2:not(.cs3) .tp .f2-t h3{margin-bottom:0}
 /* t257: on phones the setup Select Edge Port popup keeps the desktop layout (device list beside the port checkboxes), scaled down */
 @media(max-width:560px){.sw .sv-mc{grid-template-columns:minmax(0,1fr) minmax(0,1.2fr)}.sw .sv-dl{display:block}.sw .sv-dl li{padding:5px 10px;font-size:11px}.sw .sv-dl small{font-size:9px}.sw .sv-pl li{gap:6px;padding:5px 10px;font-size:11px}.sw .sv-tb{gap:12px;font-size:10.5px}}
 
