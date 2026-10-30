@@ -1436,7 +1436,7 @@ html.js .nz:not(.nz-go) .nz-l.a{opacity:1}html.js .nz:not(.nz-go) .nz-l.b{opacit
 .pat .cq-ic{width:32px;height:32px;margin:0}.pat .cq-ic svg{width:32px;height:32px}
 .pat h4{font-size:16px;font-weight:500;line-height:1.35;margin:0}.pat p{font-size:14.5px;margin:2px 0 0;font-variant-numeric:tabular-nums}
 .cs3 .refl .frame{max-width:none}
-@media(prefers-reduced-motion:reduce){.nq-cr{animation:none}.nz-d,.nz-s,.nz-t,.nz-l,.hz-sp,.nq-im,.ae-e i,.dy *,.fa *{transition:none!important;animation:none!important}}
+@media(prefers-reduced-motion:reduce){.nq-cr{animation:none}.nz-d,.nz-s,.nz-ru,.nz-l,.hz-sp,.nq-im,.ae-e i,.dy *,.fa *{transition:none!important;animation:none!important}}
 .cs3 .hero.mk h1{text-wrap:balance}
 @media(max-width:600px){.cs-real.cs3 .hero.mk h1{font-size:clamp(32px,10.6vw,40px)}}
 @media(max-width:960px){.cs3 .hb-v{padding:44px 0 56px}}
@@ -1446,23 +1446,16 @@ html.js .nz:not(.nz-go) .nz-l.a{opacity:1}html.js .nz:not(.nz-go) .nz-l.b{opacit
 .cs3 .c2h{position:relative;overflow:hidden}
 .cs3 .c2h>.w{position:relative;z-index:1}
 .ae-bg{position:absolute;z-index:0;top:56px;right:-210px;width:min(50vw,700px);aspect-ratio:1;pointer-events:none;-webkit-mask-image:radial-gradient(circle at 62% 50%,#000 46%,transparent 72%);mask-image:radial-gradient(circle at 62% 50%,#000 46%,transparent 72%)}
-.ae-rg{display:block;width:100%;height:100%;opacity:.42;animation:aeRg 1.2s cubic-bezier(.2,.7,.2,1) both .1s}
-.ae-tk path{stroke:#9fb6d2;stroke-width:1.2}
+.ae-rg{display:block;width:100%;height:100%;opacity:.3;animation:aeRg 1.2s cubic-bezier(.2,.7,.2,1) both .1s}
+.ae-tk path{stroke:#78AAFF;stroke-width:1.2}
 @keyframes aeRg{from{opacity:0;transform:rotate(-8deg) scale(.96)}}
-.ae-gc{position:absolute;display:flex;flex-direction:column;gap:8px;padding:14px;width:150px;border-radius:12px;background:#fff;border:1px solid rgba(5,105,192,.12);box-shadow:0 10px 24px -22px rgba(20,40,90,.4);opacity:.8}
-.ae-gc b{height:7px;width:60%;border-radius:4px;background:#e3ecf6}.ae-gc i{height:6px;border-radius:4px;background:#eef3f9}.ae-gc i+i{width:70%}
-.ae-gc.g1{top:4%;left:30%}.ae-gc.g2{bottom:10%;left:4%}.ae-gc.g3{top:56%;right:30%}
 .cs3 .hb-v{position:relative}
 .aew{position:relative;z-index:1;color:var(--fg)}
-.ae-win{background:#fff;border:1px solid rgba(5,105,192,.16);border-radius:16px;box-shadow:0 30px 60px -36px rgba(10,50,100,.45),0 2px 6px -2px rgba(10,50,100,.06);overflow:hidden}
-.ae-wb{display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:1px solid #e6eef7;background:#f7fafe;font-size:13.5px}
-.ae-wb b{font-weight:600}
-.ae-mk{display:flex;width:22px;height:22px;border-radius:6px;background:var(--acc)}.ae-mk svg{width:100%;height:100%}
-.ae-mn{display:flex;gap:6px;margin-left:auto}.ae-mn i{display:block;width:34px;height:7px;border-radius:4px;background:#e1eaf4}.ae-mn i:first-child{width:22px;background:#cfe0f3}
-.ae-in{padding:16px 18px 18px}
-.ae-in .ae-sv{margin-top:16px;border:0;background:#f5f9fd;border-radius:12px}
-@media(max-width:960px){.ae-bg{top:auto;bottom:-60px;right:-240px;width:560px}.ae-gc{display:none}}
-@media(max-width:560px){.ae-in{padding:14px 12px 14px}.ae-wb{padding:9px 12px}.ae-mn i{width:24px}.ae-bg{right:-300px;bottom:-40px;width:480px}}
+.ae-win{background:rgba(255,255,255,.72);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);border:1px solid rgba(26,92,205,.08);border-radius:16px}
+.ae-in{padding:18px 20px 20px}
+.ae-in .ae-sv{margin-top:18px;padding:18px 0 0;border:0;border-top:1px solid #e3eaf3;border-radius:0;background:none}
+@media(max-width:960px){.ae-bg{top:auto;bottom:-60px;right:-240px;width:560px}}
+@media(max-width:560px){.ae-in{padding:14px 12px 14px}.ae-bg{right:-300px;bottom:-40px;width:480px}}
 /* text beside its visual; stacks on narrow screens */
 .ae-sp{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.12fr);gap:clamp(32px,5vw,72px);align-items:center}
 .ae-sp>figure,.ae-sp>.frame,.ae-sp>.sl3{margin:0}
@@ -1475,9 +1468,9 @@ html.js .nz:not(.nz-go) .nz-l.a{opacity:1}html.js .nz:not(.nz-go) .nz-l.b{opacit
 /* challenge: events converge on a line through the middle; ticks arrive once all are sorted */
 .nz{margin:0}
 .nz-f{padding:30px 14px 10px}
-.nz-t{opacity:0;transform-box:fill-box;transform-origin:center;transform:scaleY(0);transition:opacity .3s calc(var(--t)*45ms),transform .45s cubic-bezier(.3,1.5,.5,1) calc(var(--t)*45ms)}
-.nz.nz-done .nz-t,html:not(.js) .nz-t{opacity:1;transform:none}
-.nz-t{stroke:#9fb6d2;stroke-width:1.5}
+.nz-ru{fill:none;stroke:#b9c3d3;stroke-width:1.2;opacity:0;transition:opacity .5s,transform .7s cubic-bezier(.2,.7,.2,1)}
+.nz-ru.t{transform:translateY(-10px)}.nz-ru.b{transform:translateY(10px)}.nz-ru.b{transition-delay:.12s}
+.nz.nz-done .nz-ru,html:not(.js) .nz-ru{opacity:.75;transform:none}
 /* solution: three steps as one small illustrated flow */
 .sl3{list-style:none;padding:8px 26px;background:#fff;border:1px solid rgba(5,105,192,.16);border-radius:18px;box-shadow:0 24px 50px -40px rgba(10,50,100,.4);position:relative}
 .sl3-i{position:relative;display:grid;grid-template-columns:120px minmax(0,1fr);gap:22px;align-items:center;padding:20px 0}
@@ -1499,12 +1492,13 @@ html.js .nz:not(.nz-go) .nz-l.a{opacity:1}html.js .nz:not(.nz-go) .nz-l.b{opacit
 .ae-g3w .shot .cr img{transform:none}
 .ae-g3w .gc{display:block;margin-top:10px;font-size:14px;color:#2c3542}
 .cs3 #ideation .ia .shot.bare{max-width:none;margin:0}
-.cs3 .cmpw.c2c,.cs3.cs2 .cmpw.c2c{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(28px,4vw,56px);align-items:center;margin-top:clamp(36px,4vw,52px)}
-.cs3 .cmp-t h3{margin:0}
+.cs3 .cmpw.c2c,.cs3.cs2 .cmpw.c2c{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:18px;align-items:start;margin-top:clamp(36px,4vw,52px)}
+.cs3 .cmp-t h3{margin:0;font-size:clamp(22px,2.1vw,28px);line-height:1.2}.cs3 .cmp-t p{margin-top:14px;font-size:16px;line-height:1.6;max-width:30ch}
 @media(max-width:960px){.cs3 .cmpw.c2c,.cs3.cs2 .cmpw.c2c{grid-template-columns:minmax(0,1fr);gap:16px}}
 @media(max-width:760px){.ae-g3w{gap:10px}.ae-g3w .gc{font-size:12.5px}}
 /* relationships: one panel. The chart gives way to the details, then comes back */
-.dy{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,4vw,56px);align-items:center}
+.dy{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,4vw,56px);align-items:stretch}
+.dy-b{display:flex;flex-direction:column}.dy-b>.dy-s{flex:1}
 .dy .hzl{grid-template-columns:minmax(0,1fr);gap:10px}
 .dy .hzi{padding:13px 16px}.dy .hzi-p{margin-top:6px}
 .dy-b{position:relative}
@@ -1516,7 +1510,7 @@ html.js .nz:not(.nz-go) .nz-l.a{opacity:1}html.js .nz:not(.nz-go) .nz-l.b{opacit
 .dy[data-st="0"] .dy-l{opacity:1;transform:none;transition-delay:.2s}
 .dy-r{position:absolute;inset:0;padding:16px 20px 18px;background:#fcfdff;font-size:13.5px;color:#1d2533;transition:opacity .45s .2s,transform .5s cubic-bezier(.2,.7,.2,1) .2s}
 .dy[data-st="0"] .dy-r{opacity:0;transform:translateX(24px);pointer-events:none;transition-delay:0s}
-.dy-bk{display:inline-flex;align-items:center;gap:4px;margin:0 0 12px -4px;padding:3px 8px 3px 4px;border-radius:6px;font-size:13px;font-weight:500;color:var(--acc);transition:background .2s}
+.dy-bk{display:flex;align-items:center;justify-content:center;width:28px;height:28px;margin:-4px -8px 6px auto;border-radius:7px;color:#3d4a5c;transition:background .2s,color .2s}
 .dy-bk svg{width:16px;height:16px}
 .dy.bk .dy-bk{background:#e2f0ff}
 .dy-ck{position:absolute;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;border:2px solid #ff7a00;opacity:0;pointer-events:none;z-index:4}
@@ -1554,9 +1548,8 @@ html.js .nz:not(.nz-go) .nz-l.a{opacity:1}html.js .nz:not(.nz-go) .nz-l.b{opacit
 @media(max-width:960px){.ae-vd{grid-template-columns:minmax(0,1fr);gap:20px}.ae-vdt{order:-1}}
 /* reflection: patents under the photo, the text gets the other half */
 .cs3 .refl{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start;gap:clamp(32px,5vw,72px)}
-.cs3 .refl .pat{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:22px}
+.cs3 .refl .pat{grid-template-columns:minmax(0,1fr);gap:18px;margin-top:22px}
 @media(max-width:960px){.cs3 .refl{grid-template-columns:minmax(0,1fr)}}
-@media(max-width:560px){.cs3 .refl .pat{grid-template-columns:minmax(0,1fr)}}
 @media(prefers-reduced-motion:reduce){.ae-rg,.fa-it small.up{animation:none}.dy-ck{display:none}}
 
 /* brand: V2e logo in the nav, sized like 1G; header button hover/focus in the logo blue */

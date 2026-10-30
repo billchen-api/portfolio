@@ -316,21 +316,22 @@ $$('.hz').forEach(hz=>{const its=$$('.hzi',hz),rs=$$('.hz-r',hz),sp=$('.hz-sp',h
  const show=k=>{if(k>=0){const r=rs[k].style;['left','top','width','height'].forEach(p=>sp.style[p]=r[p])}sp.classList.toggle('on',k>=0);its.forEach(b=>b.classList.toggle('hl',+b.dataset.k===k))};
  its.forEach(b=>{const k=+b.dataset.k;b.addEventListener('mouseenter',()=>show(k));b.addEventListener('mouseleave',()=>show(pin));b.addEventListener('focus',()=>show(k));b.addEventListener('blur',()=>show(pin));
   b.addEventListener('click',()=>{pin=pin===k?-1:k;its.forEach(x=>x.setAttribute('aria-pressed',+x.dataset.k===pin));show(pin)})})});
-/* relationships: one panel. Click a path and the chart gives way to the details; the steps follow the boxes, then back to the chart */
-const dyw=$('.dy');if(dyw){const st=$('.dy-s',dyw),cur=$('.cur',dyw),tg=$('.dy-tg',dyw),ck=$('.dy-ck',dyw),bk=$('.dy-bk',dyw),cr=$('.dy-c.cr .dy-ch',dyw),its=$$('.hzi',dyw),cs=$$('.dy-c',dyw),HL=[0,0,1,2],BX=[0,2,3];let tm=[],user=false,on=false;
- const set=n=>{const b=cs.map(c=>c.getBoundingClientRect().top);dyw.dataset.st=n;its.forEach(x=>x.classList.toggle('hl',+x.dataset.k===HL[n]));if(RM||n<2)return;
+/* relationships: one panel. Step 1 the chart; step 2 a path is clicked and the details replace the chart, violated contract on top; step 3 it expands; the X closes back to the chart */
+const dyw=$('.dy');if(dyw){const st=$('.dy-s',dyw),cur=$('.cur',dyw),tg=$('.dy-tg',dyw),ck=$('.dy-ck',dyw),bk=$('.dy-bk',dyw),cr=$('.dy-c.cr .dy-ch',dyw),its=$$('.hzi',dyw),cs=$$('.dy-c',dyw),BX=[0,2,3];let tm=[],user=false,on=false;
+ const hl=k=>its.forEach(x=>x.classList.toggle('hl',+x.dataset.k===k));
+ const set=(n,h)=>{const b=cs.map(c=>c.getBoundingClientRect().top);dyw.dataset.st=n;if(h!==undefined)hl(h);if(RM||n<2)return;
   cs.forEach((c,i)=>{const d=b[i]-c.getBoundingClientRect().top;if(Math.abs(d)<1)return;c.style.transition='none';c.style.transform=`translateY(${d}px)`;void c.offsetWidth;c.style.transition='';c.style.transform=''})};
  const clr=()=>{tm.forEach(clearTimeout);tm=[]};const at=(t,f)=>tm.push(setTimeout(f,t));
  const ring=()=>{const a=st.getBoundingClientRect(),r=tg.getBoundingClientRect();ck.style.left=(r.left-a.left)+'px';ck.style.top=(r.top-a.top)+'px';dyw.classList.remove('clk');void ck.offsetWidth;dyw.classList.add('clk')};
- const loop=()=>{clr();if(user||!on)return;set(0);dyw.classList.remove('cv','clk','bk');curTo(st,cur,st,.85);
-  at(300,()=>{dyw.classList.add('cv');curTo(st,cur,tg,0)});at(1200,()=>{press(cur);ring()});at(1500,()=>set(1));
-  at(3500,()=>set(2));at(4800,()=>curTo(st,cur,cr));at(5700,()=>{press(cur);set(3)});
-  at(9300,()=>curTo(st,cur,bk));at(10200,()=>{press(cur);dyw.classList.add('bk')});at(10500,()=>{dyw.classList.remove('bk');set(0)});
-  at(11600,()=>dyw.classList.remove('cv'));at(12200,loop)};
+ const loop=()=>{clr();if(user||!on)return;set(0,0);dyw.classList.remove('cv','clk','bk');curTo(st,cur,st,.85);
+  at(2400,()=>{hl(1);dyw.classList.add('cv');curTo(st,cur,tg,0)});at(3300,()=>{press(cur);ring()});at(3600,()=>set(1));
+  at(4600,()=>set(2));at(6600,()=>{hl(2);curTo(st,cur,cr)});at(7500,()=>{press(cur);set(3)});
+  at(11000,()=>curTo(st,cur,bk));at(11900,()=>{press(cur);dyw.classList.add('bk')});at(12200,()=>{dyw.classList.remove('bk');set(0,0)});
+  at(13000,()=>dyw.classList.remove('cv'));at(13600,loop)};
  const stop=()=>{user=true;clr();dyw.classList.remove('cv','bk')};
- its.forEach(b=>{const k=+b.dataset.k;b.addEventListener('mouseenter',()=>{stop();set(BX[k])});b.addEventListener('focus',()=>{stop();set(BX[k])});
-  b.addEventListener('click',()=>{stop();its.forEach(x=>x.setAttribute('aria-pressed',x===b));set(BX[k])})});
- if(!RM){set(0);vis(dyw,()=>{if(!on){on=true;loop()}},()=>{on=false;clr();dyw.classList.remove('cv')})}}
+ its.forEach(b=>{const k=+b.dataset.k;b.addEventListener('mouseenter',()=>{stop();set(BX[k],k)});b.addEventListener('focus',()=>{stop();set(BX[k],k)});
+  b.addEventListener('click',()=>{stop();its.forEach(x=>x.setAttribute('aria-pressed',x===b));set(BX[k],k)})});
+ if(!RM){set(0,0);vis(dyw,()=>{if(!on){on=true;loop()}},()=>{on=false;clr();dyw.classList.remove('cv')})}}
 /* natural language query: tabs, then the intent, then the full query types out */
 const nq=$('.nq');if(nq){const tabs=$$('[role=tab]',nq),ims=$$('.nq-im',nq),cap=$('.nq-c',nq),q=$('.nq-q',nq),tx=$('.nq-tx',nq),pn=$('.nq-p',nq);let tt=null,auto=null,user=false,cur=0;
  const type=w=>{clearInterval(tt);q.classList.add('ty');if(RM){tx.textContent=w;return}tx.textContent='';let i=0;tt=setInterval(()=>{tx.textContent=w.slice(0,++i);if(i>=w.length)clearInterval(tt)},45)};
@@ -339,13 +340,15 @@ const nq=$('.nq');if(nq){const tabs=$$('[role=tab]',nq),ims=$$('.nq-im',nq),cap=
  tabs.forEach((t,k)=>{t.addEventListener('click',()=>{stop();sel(k)});t.addEventListener('keydown',e=>{const d={ArrowRight:1,ArrowLeft:-1}[e.key];if(!d)return;e.preventDefault();stop();sel((cur+d+tabs.length)%tabs.length,true)})});
  q.classList.remove('ty');tx.textContent='';
  if(RM)sel(0);else seen(nq,()=>{sel(0);auto=setInterval(()=>{if(user){clearInterval(auto);return}sel((cur+1)%tabs.length)},5600)},.5)}
-/* filtering: pick the busiest leaf, then pick any column; it moves up next to the filters already applied and every column after it re-sorts */
+/* filtering: pick the busiest leaf, then pick any column; it moves up next to the filters already applied and every column not yet filtered re-sorts while its counts tick down */
 const fa=$('.fa');if(fa){const cur=$('.cur',fa),pp=$('.fa-pp'),ST=['s1','s2','s3','s4','s5'],D=JSON.parse(fa.dataset.st),cols=$$('.fa-col',fa),box=$('.fa-cols',fa);let tm=[],on=false,paused=false,k0=-1;
  const clr=()=>{tm.forEach(clearTimeout);tm=[]};const at=(t,f)=>tm.push(setTimeout(f,t));
- const add=c=>fa.classList.add(c);const to=s=>curTo(fa,cur,$(s,fa));
+ const add=c=>fa.classList.add(c);
+ const num=t=>t.split(' / ').map(x=>+x.replace(/,/g,''));
+ const tick=(sm,to)=>{const a=num(sm.textContent),b=num(to);sm._t=to;if(RM||a.length<2){sm.textContent=to;return}const t0=performance.now();const f=t=>{if(sm._t!==to)return;const p=Math.min(1,(t-t0)/900),e=1-Math.pow(1-p,3);sm.textContent=fmt(a[0]+(b[0]-a[0])*e)+' / '+fmt(a[1]+(b[1]-a[1])*e);if(p<1)requestAnimationFrame(f);else sm.textContent=to};requestAnimationFrame(f)};const to=s=>curTo(fa,cur,$(s,fa));
  const place=()=>{const n=+getComputedStyle(box).getPropertyValue('--n')||6;cols.forEach(c=>{const o=+c.dataset.o;c.style.setProperty('--ox',o%n);c.style.setProperty('--oy',Math.floor(o/n))})};
  const apply=(k,fl)=>{const S=D[k];k0=k;cols.forEach(c=>{const i=+c.dataset.c,sl=S.s[i];c.dataset.o=S.o[i];c.style.setProperty('--o',S.o[i]);c.classList.toggle('s',sl>=0);
-   const its=$$('.fa-it',c);its.forEach(it=>{const j=+it.dataset.i,sm=$('small',it);it.style.setProperty('--r',S.r[i].indexOf(j));it.classList.toggle('pk',sl===j);if(sm.textContent!==S.n[i][j]){sm.textContent=S.n[i][j];if(fl&&!RM){sm.classList.remove('up');void sm.offsetWidth;sm.classList.add('up')}}});
+   const its=$$('.fa-it',c);its.forEach(it=>{const j=+it.dataset.i,sm=$('small',it);it.style.setProperty('--r',S.r[i].indexOf(j));it.classList.toggle('pk',sl===j);if((sm._t||sm.textContent)!==S.n[i][j]){if(fl&&!RM){tick(sm,S.n[i][j]);sm.classList.remove('up');void sm.offsetWidth;sm.classList.add('up')}else{sm._t=S.n[i][j];sm.textContent=S.n[i][j]}}});
    $('.fa-sl',c).innerHTML=sl>=0?`<b>${$('b',its[sl]).textContent}</b><small>${S.n[i][sl]}</small>`:''});place()};
  const pick=(c,j)=>{const it=$(`[data-c="${c}"] [data-i="${j}"]`,fa);it.classList.add('pk')};
  const loop=()=>{clr();if(!on||paused)return;fa.classList.remove(...ST,'tp','cv');add('run');apply(0);curTo(fa,cur,fa,.95);
