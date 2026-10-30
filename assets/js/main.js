@@ -346,7 +346,7 @@ const nq=$('.nq');if(nq){const tabs=$$('[role=tab]',nq),ims=$$('.nq-im',nq),cap=
  q.classList.remove('ty');tx.textContent='';
  if(RM)sel(0);else seenS(nq,()=>{sel(0);auto=setInterval(()=>{if(user){clearInterval(auto);return}sel((cur+1)%tabs.length)},5600)},.5)}
 /* filtering: pick the busiest leaf, then pick any column; it moves up next to the filters already applied and every column not yet filtered re-sorts while its counts tick down */
-const fa=$('.fa');if(fa){const cur=$('.cur',fa),pp=$('.fa-pp'),ST=['s1','s2','s3','s4','s5'],D=JSON.parse(fa.dataset.st),cols=$$('.fa-col',fa),box=$('.fa-cols',fa);let tm=[],on=false,paused=false,k0=-1;
+const fa=$('.fa');if(fa){const cur=$('.cur',fa),pp=$('.fa-pp'),ST=['s1','s2','s3','s4'],D=JSON.parse(fa.dataset.st),cols=$$('.fa-col',fa),box=$('.fa-cols',fa);let tm=[],on=false,paused=false,k0=-1;
  const clr=()=>{tm.forEach(clearTimeout);tm=[]};const at=(t,f)=>tm.push(setTimeout(f,t));
  const add=c=>fa.classList.add(c);
  const num=t=>t.split(' / ').map(x=>+x.replace(/,/g,''));
@@ -356,14 +356,19 @@ const fa=$('.fa');if(fa){const cur=$('.cur',fa),pp=$('.fa-pp'),ST=['s1','s2','s3
    const its=$$('.fa-it',c);its.forEach(it=>{const j=+it.dataset.i,sm=$('small',it);it.style.setProperty('--r',S.r[i].indexOf(j));it.classList.toggle('pk',sl===j);if((sm._t||sm.textContent)!==S.n[i][j]){if(fl&&!RM){tick(sm,S.n[i][j]);sm.classList.remove('up');void sm.offsetWidth;sm.classList.add('up')}else{sm._t=S.n[i][j];sm.textContent=S.n[i][j]}}});
    $('.fa-sl',c).innerHTML=sl>=0?`<b>${$('b',its[sl]).textContent}</b><small>${S.n[i][sl]}</small>`:''});place()};
  const pick=(c,j)=>{const it=$(`[data-c="${c}"] [data-i="${j}"]`,fa);it.classList.add('pk')};
- const loop=()=>{clr();if(!on||paused)return;fa.classList.remove(...ST,'tp','cv');add('run');apply(0);curTo(fa,cur,fa,.95);
-  at(300,()=>{add('cv');to('.fa-b:first-child i')});at(1300,()=>{press(cur);add('s1')});
-  at(2300,()=>to('[data-c="4"] [data-i="1"]'));at(3100,()=>{press(cur);pick(4,1);add('s2')});at(3500,()=>apply(1,1));
-  at(5300,()=>to('[data-c="3"] [data-i="1"]'));at(6100,()=>{press(cur);pick(3,1);add('s3')});at(6500,()=>apply(2,1));
-  at(8300,()=>to('[data-c="1"] [data-i="2"]'));at(9100,()=>{press(cur);pick(1,2);add('s4')});at(9500,()=>apply(3,1));
-  at(11300,()=>{add('s5');curTo(fa,cur,fa,.95)});at(12300,()=>to('.fa-b:nth-child(3) i'));at(13100,()=>add('tp'));
-  at(16300,()=>fa.classList.remove('cv'));at(16900,loop)};
- place();addEventListener('resize',place);
+ const bars=$$('.fa-b',fa),ptl=$('.fa-pt',fa),k1=$('.fa-chp.k1',fa),LN=b=>$('.fa-tp b',b).textContent;
+ const flip=()=>{const C=$('.fa-ch',fa).getBoundingClientRect();bars.forEach(b=>{b.style.removeProperty('--tl');const t=$('.fa-tp',b),br=b.getBoundingClientRect(),w=t.offsetWidth,c=br.left+br.width/2;let x=c+20;if(x+w>C.right-4)x=c-20-w;if(x<C.left+4)x=Math.max(C.left+4,Math.min(c+20,C.right-4-w));b.style.setProperty('--tl',(x-br.left)+'px')})};
+ const selB=b=>{bars.forEach(x=>x.classList.toggle('sel',x===b));if(b){ptl.textContent='Associated Policies for '+LN(b);k1.textContent='Leaf: '+LN(b).split('-').pop()}};
+ const hov=b=>{bars.forEach(x=>x.classList.toggle('hv',x===b));fa.classList.toggle('hp',!!b)};
+ const toB=b=>curTo(fa,cur,$('i',b),.3);
+ const loop=()=>{clr();if(!on||paused)return;fa.classList.remove(...ST,'cv');hov(null);selB(null);add('run');apply(0);curTo(fa,cur,fa,.95);const A=bars[0],B=bars[2];
+  at(300,()=>{add('cv');toB(A)});at(1100,()=>hov(A));at(2300,()=>{press(cur);selB(A);add('s1')});
+  at(3000,()=>{hov(null);to('[data-c="4"] [data-i="1"]')});at(3800,()=>{press(cur);pick(4,1);add('s2')});at(4200,()=>apply(1,1));
+  at(6000,()=>to('[data-c="3"] [data-i="1"]'));at(6800,()=>{press(cur);pick(3,1);add('s3')});at(7200,()=>apply(2,1));
+  at(9000,()=>to('[data-c="1"] [data-i="2"]'));at(9800,()=>{press(cur);pick(1,2);add('s4')});at(10200,()=>apply(3,1));
+  at(12000,()=>toB(B));at(12800,()=>hov(B));at(14000,()=>{press(cur);selB(B);fa.classList.remove('s2','s3','s4');apply(4,1)});
+  at(15600,()=>{hov(null);curTo(fa,cur,fa,.95)});at(17600,()=>fa.classList.remove('cv'));at(18200,loop)};
+ place();flip();addEventListener('resize',()=>{place();flip()});
  if(RM){pp&&(pp.hidden=true);apply(3)}else{fa.classList.remove(...ST);add('run');apply(0);
   vis(fa,()=>{if(!on){on=true;loop()}},()=>{on=false;clr()});
   pp&&pp.addEventListener('click',()=>{paused=!paused;pp.setAttribute('aria-pressed',paused);pp.lastChild.textContent=paused?'Play':'Pause';if(paused){clr();fa.classList.remove('cv')}else loop()})}}
