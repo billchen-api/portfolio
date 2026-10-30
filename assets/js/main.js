@@ -100,6 +100,8 @@ addEventListener('pageshow',e=>{if(e.persisted&&pt){pt.classList.add('off');pt.c
 document.addEventListener('click',e=>{const a=e.target.closest('a');if(!a||RM||!pt)return;const href=a.getAttribute('href');
  if(!href||href.startsWith('#')||a.hasAttribute('data-contact')||a.target==='_blank'||e.metaKey||e.ctrlKey||e.shiftKey||e.button||/^(mailto:|tel:|https?:)/.test(href))return;
  const cur=location.pathname.split('/').pop()||'index.html',dest=href.split('#')[0];if(dest===cur&&href.includes('#'))return;
+ /* t246: going home (logo, Portfolio) skips the shooting line; the home plays transition B on arrival */
+ try{const u=new URL(href,location.href);if(u.origin===location.origin&&/^\/(index\.html)?$/.test(u.pathname))return}catch(_){}
  e.preventDefault();const ox=e.clientX||innerWidth/2,oy=e.clientY||innerHeight/2,l=a.dataset.label||'Loading',k=a.dataset.pt||'';
  if(lbl)lbl.textContent=l;try{sessionStorage.setItem('bc-pt',JSON.stringify({x:ox/innerWidth,y:oy/innerHeight,l,k}))}catch(_){}
  run('in',ox,oy,k?660:820,()=>location.href=href,k)});
