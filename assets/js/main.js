@@ -290,68 +290,75 @@ const scr=()=>scrollY>0||document.documentElement.scrollTop>0;
 const seen=(el,f,t=.5)=>{if(!('IntersectionObserver' in window)){f();return}let inV=false,done=false;const go=()=>{if(done||!inV||!scr())return;done=true;io.disconnect();removeEventListener('scroll',go);f()};const io=new IntersectionObserver(es=>{inV=es[es.length-1].isIntersecting;go()},{threshold:t});io.observe(el);addEventListener('scroll',go,{passive:true})};
 const ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
 /* challenge: the old topology moves into the clean map and the new links draw in; then a user clicks a switch,
-   picks Add Tool from its menu, and the new tool appears linked, gets its name and carries traffic */
-const rb=$('.rbx');if(rb){const cur=$('.tb-c',rb),nm=$('.tb-nm',rb),pk=$('.tb-pk',rb),NAME='Tool';let cp=[500,320];
+   picks Add Tool from its menu, and the new tool appears linked with its name and carries traffic */
+const rb=$('.rbx');if(rb){const cur=$('.tb-c',rb),pk=$('.tb-pk',rb);let cp=[500,320];
  const c=(k,on=true)=>rb.classList.toggle('q-'+k,on);
  const tr=p=>cur.setAttribute('transform',`translate(${p[0].toFixed(1)} ${p[1].toFixed(1)})`);
  const move=(to,ms)=>new Promise(res=>{const fr=cp.slice(),t0=performance.now();const f=t=>{const u=Math.min(1,(t-t0)/ms),e=ease(u);cp=[fr[0]+(to[0]-fr[0])*e,fr[1]+(to[1]-fr[1])*e];tr(cp);u<1?requestAnimationFrame(f):res()};requestAnimationFrame(f)});
  const wait=ms=>new Promise(r=>setTimeout(r,ms));
  const along=(pts,ms)=>new Promise(res=>{const L=[];let tot=0;for(let i=1;i<pts.length;i++){const d=Math.hypot(pts[i][0]-pts[i-1][0],pts[i][1]-pts[i-1][1]);L.push(d);tot+=d}const t0=performance.now();pk.style.opacity=1;
   const f=t=>{let u=Math.min(1,(t-t0)/ms)*tot,i=0;while(i<L.length-1&&u>L[i]){u-=L[i];i++}const q=Math.min(1,u/L[i]),a=pts[i],b=pts[i+1];pk.setAttribute('cx',a[0]+(b[0]-a[0])*q);pk.setAttribute('cy',a[1]+(b[1]-a[1])*q);(t-t0)<ms?requestAnimationFrame(f):(pk.style.opacity=0,res())};requestAnimationFrame(f)});
- const final=()=>{rb.classList.add('mv','ln');nm.textContent=NAME;c('dr');c('lk')};
- const play=async()=>{await wait(500);rb.classList.add('mv');await wait(1400);rb.classList.add('ln');await wait(1500);
+ const final=()=>{rb.classList.add('mv','ln');c('dr');c('lk')};
+ const play=async()=>{await wait(2300);rb.classList.add('mv');await wait(1400);rb.classList.add('ln');await wait(1500);
   tr(cp);c('cur');await move([339,183],750);c('pr');await wait(130);c('pr',false);c('sl');c('mn');await wait(250);
   await move([392,136],420);c('mt');c('pr');await wait(140);c('pr',false);c('mn',false);c('mt',false);await wait(120);
-  c('dr');c('lk');await wait(250);for(const ch of NAME){nm.textContent+=ch;await wait(70)}
+  c('dr');c('lk');await wait(550);
   c('sl',false);move([495,290],600).then(()=>c('cur',false));
   await along([[315,258],[335,178],[456,178]],750);await along([[425,258],[335,178],[456,178]],700)};
  if(RM)final();else seen(rb,play,.5)}
-/* setup: two devices, filters and tools are already linked. Add Edge Port brings in a third device, the cursor links it
-   to a filter, then grabs the end of an existing link at Tool 1 and re-drops it on Tool 2; traffic pulses through */
+/* setup: two devices, filters and tools are already linked. Add Edge Port brings in a third device and the cursor links it
+   to Filter B; on the monitoring side it moves the Filter A link from Tool 1 to Tool 2 and draws a new link from Filter B
+   to Tool 1, then traffic pulses through. Every line end is read from the live position of its connector dot each frame,
+   so the lines stay on the dots while nodes animate and at any width */
 const sw=$('.sv.sw'),rp=$('.su-rp');if(sw){const cv=$('.sw-cv',sw),svg=$('.sw-ln',sw),cur=$('.sw-cur',sw),ae=$('.sw-add.ae',sw),N=id=>$('.sw-n[data-id="'+id+'"]',sw);
- const START=[['e1','f1'],['e2','f2'],['f1','t1'],['f2','t2']],FINAL=[['e1','f1'],['e2','f2'],['e3','f2'],['f1','t2'],['f2','t2']];let P={},tm=[],raf=0,run=0,cp=[0,0];
- const R=el=>{const c=cv.getBoundingClientRect(),r=el.getBoundingClientRect();return {x:r.left-c.left,y:r.top-c.top,w:r.width,h:r.height}};
- const pt=(id,side)=>{const r=R(N(id));return [side==='r'?r.x+r.w:r.x,r.y+r.h/2]};
- const at=(el,fx=.5,fy=.5)=>{const r=R(el);return [r.x+r.w*fx,r.y+r.h*fy]};
- const pth=(a,b)=>{const m=(a[0]+b[0])/2;return `M${a[0].toFixed(1)} ${a[1].toFixed(1)}C${m.toFixed(1)} ${a[1].toFixed(1)} ${m.toFixed(1)} ${b[1].toFixed(1)} ${b[0].toFixed(1)} ${b[1].toFixed(1)}`};
- const NS='http://www.w3.org/2000/svg';
- const size=()=>{const c=cv.getBoundingClientRect();svg.setAttribute('viewBox',`0 0 ${c.width} ${c.height}`)};
+ const START=[['e1','f1'],['e2','f2'],['f1','t1'],['f2','t2']],FINAL=[['e1','f1'],['e2','f2'],['e3','f2'],['f1','t2'],['f2','t2'],['f2','t1']];
+ const NS='http://www.w3.org/2000/svg';let L=[],tm=[],raf=0,loop=0,run=0,cp=[0,0];
+ /* centre of a connector dot, in svg/canvas pixels */
+ const dot=(id,side)=>{const s=svg.getBoundingClientRect(),r=$('.hd.'+side,N(id)).getBoundingClientRect();return [r.left+r.width/2-s.left,r.top+r.height/2-s.top]};
+ const at=(el,fx=.5,fy=.5)=>{const s=svg.getBoundingClientRect(),r=el.getBoundingClientRect();return [r.left-s.left+r.width*fx,r.top-s.top+r.height*fy]};
+ const pth=(a,b)=>{const m=(a[0]+b[0])/2;return `M${a[0].toFixed(2)} ${a[1].toFixed(2)}C${m.toFixed(2)} ${a[1].toFixed(2)} ${m.toFixed(2)} ${b[1].toFixed(2)} ${b[0].toFixed(2)} ${b[1].toFixed(2)}`};
  const hd=(id,s,on)=>{const h=$('.hd.'+s,N(id));h&&h.classList.toggle('on',on)};
- const link=(a,b)=>{const p=document.createElementNS(NS,'path');p.setAttribute('d',pth(pt(a,'r'),pt(b,'l')));svg.appendChild(p);P[a+b]=p;hd(a,'r',1);hd(b,'l',1);return p};
- const redraw=()=>{size();Object.keys(P).forEach(k=>P[k].setAttribute('d',pth(pt(k.slice(0,2),'r'),pt(k.slice(2),'l'))))};
+ /* a link runs from a's right dot to b's left dot; while dragged, its loose end follows the cursor */
+ const sync=()=>{const s=svg.getBoundingClientRect();svg.setAttribute('viewBox',`0 0 ${s.width.toFixed(2)} ${s.height.toFixed(2)}`);
+  L.forEach(l=>l.p.setAttribute('d',pth(l.a?dot(l.a,'r'):cp,l.b?dot(l.b,'l'):cp)))};
+ const add=(a,b,cls)=>{const p=document.createElementNS(NS,'path');cls&&p.classList.add(cls);svg.appendChild(p);const l={a,b,p};L.push(l);a&&hd(a,'r',1);b&&hd(b,'l',1);sync();return l};
+ const drop=l=>{l.p.remove();L=L.filter(x=>x!==l)};
+ const find=(a,b)=>L.find(l=>l.a===a&&l.b===b);
+ const tick=()=>{sync();loop=requestAnimationFrame(tick)};
  const put=p=>{cur.style.left=(p[0]-2)+'px';cur.style.top=(p[1]-2)+'px'};
- const move=(to,ms,k,onf)=>new Promise(res=>{const fr=cp.slice(),t0=performance.now();const f=t=>{if(k!==run)return;const u=Math.min(1,(t-t0)/ms),e=ease(u);cp=[fr[0]+(to[0]-fr[0])*e,fr[1]+(to[1]-fr[1])*e];put(cp);onf&&onf(cp);u<1?raf=requestAnimationFrame(f):res()};raf=requestAnimationFrame(f)});
+ const move=(to,ms,k)=>new Promise(res=>{const fr=cp.slice(),t0=performance.now();const f=t=>{if(k!==run)return;const u=Math.min(1,(t-t0)/ms),e=ease(u);cp=[fr[0]+(to[0]-fr[0])*e,fr[1]+(to[1]-fr[1])*e];put(cp);u<1?raf=requestAnimationFrame(f):res()};raf=requestAnimationFrame(f)});
  const wait=(ms,k)=>new Promise(res=>tm.push(setTimeout(()=>k===run&&res(),ms)));
  const cl=(a,on=true)=>a.split(' ').forEach(x=>sw.classList.toggle(x,on));
- const click=async(k,ms=120)=>{cl('pr');await wait(ms,k);cl('pr',false)};
- const pulse=(pairs,ms,k)=>Promise.all(pairs.map(([a,b])=>new Promise(res=>{const p=P[a+b];if(!p)return res();const c=document.createElementNS(NS,'circle');c.setAttribute('r','3.5');svg.appendChild(c);const L=p.getTotalLength(),t0=performance.now();
-  const f=t=>{if(k!==run){c.remove();return}const u=Math.min(1,(t-t0)/ms),q=p.getPointAtLength(L*ease(u));c.setAttribute('cx',q.x);c.setAttribute('cy',q.y);u<1?requestAnimationFrame(f):(c.remove(),res())};requestAnimationFrame(f)})));
- const base=()=>{run++;tm.forEach(clearTimeout);tm=[];cancelAnimationFrame(raf);P={};svg.innerHTML='';sw.classList.add('rs');cl('cur pr mo-e pk-e',false);
-  $$('.sw-n',sw).forEach(n=>n.classList.remove('in','hl','e3new'));ae.classList.remove('on');$$('.hd',sw).forEach(h=>h.classList.remove('on'));$$('.sv-md .sel',sw).forEach(b=>b.classList.remove('on'));size();void sw.offsetWidth;sw.classList.remove('rs')};
- const start=()=>{base();$$('.sw-n',sw).forEach(n=>n.dataset.id!=='e3'&&n.classList.add('in'));START.forEach(([a,b])=>link(a,b))};
- const final=()=>{base();$$('.sw-n',sw).forEach(n=>n.classList.add('in'));FINAL.forEach(([a,b])=>link(a,b))};
- const drag=async(A,B,to,k,live)=>{await move(B,ms(A,B),k,p=>{live.setAttribute('d',pth(A,p));N(to).classList.toggle('hl',Math.hypot(p[0]-B[0],p[1]-B[1])<36)})};
- const ms=(A,B)=>Math.max(560,Math.min(820,Math.hypot(B[0]-A[0],B[1]-A[1])*2));
- const play=async()=>{start();const k=run;
-  await wait(400,k);const c=cv.getBoundingClientRect();cp=[c.width*.5,c.height*1.02];put(cp);cl('cur');
-  /* add the third device from the edge port picker */
-  await move(at(ae,.6,.6),520,k);ae.classList.add('on');await click(k);ae.classList.remove('on');cl('mo-e');await wait(250,k);
-  await move(at($('.sv-md.e .p1 .cb',sw)),420,k);await click(k);cl('pk-e');await wait(100,k);
+ const click=async k=>{cl('pr');await wait(130,k);cl('pr',false)};
+ const near=(id,on)=>N(id).classList.toggle('hl',on);
+ /* drag from a dot: the cursor carries the loose end and it snaps onto the target dot */
+ const drag=async(l,to,ms,k)=>{const B=dot(to,'l');const t0=Date.now();const w=setInterval(()=>near(to,Math.hypot(cp[0]-B[0],cp[1]-B[1])<40),40);
+  await move(B,ms,k);clearInterval(w);l.b=to;l.p.classList.remove('dg');hd(to,'l',1);cl('pr',false);sync();await wait(200,k);near(to,false)};
+ const pulse=(pairs,ms,k)=>Promise.all(pairs.map(([a,b])=>new Promise(res=>{const l=find(a,b);if(!l)return res();const c=document.createElementNS(NS,'circle');c.setAttribute('r','3.5');svg.appendChild(c);const t0=performance.now();
+  const f=t=>{if(k!==run){c.remove();return}const u=Math.min(1,(t-t0)/ms),P=l.p,q=P.getPointAtLength(P.getTotalLength()*ease(u));c.setAttribute('cx',q.x);c.setAttribute('cy',q.y);u<1?requestAnimationFrame(f):(c.remove(),res())};requestAnimationFrame(f)})));
+ const base=()=>{run++;tm.forEach(clearTimeout);tm=[];cancelAnimationFrame(raf);cancelAnimationFrame(loop);L=[];svg.innerHTML='';sw.classList.add('rs');cl('cur pr mo-e pk-e',false);
+  $$('.sw-n',sw).forEach(n=>n.classList.remove('in','hl','e3new'));ae.classList.remove('on');$$('.hd',sw).forEach(h=>h.classList.remove('on'));$$('.sv-md .sel',sw).forEach(b=>b.classList.remove('on'))};
+ /* resting states are placed with transitions off, so the pre-drawn lines are on their dots from the first frame */
+ const settle=(ids,links)=>{base();$$('.sw-n',sw).forEach(n=>ids(n.dataset.id)&&n.classList.add('in'));links.forEach(([a,b])=>add(a,b));void sw.offsetWidth;sync();sw.classList.remove('rs')};
+ const start=()=>settle(id=>id!=='e3',START),final=()=>settle(()=>true,FINAL);
+ const play=async()=>{start();const k=run;loop=requestAnimationFrame(tick);
+  await wait(300,k);const s=svg.getBoundingClientRect();cp=[s.width*.5,s.height*1.04];put(cp);cl('cur');
+  /* 1. add the third device from the edge port picker */
+  await move(at(ae,.6,.6),520,k);ae.classList.add('on');await click(k);ae.classList.remove('on');cl('mo-e');await wait(300,k);
+  await move(at($('.sv-md.e .p1 .cb',sw)),420,k);await click(k);cl('pk-e');await wait(150,k);
   const sel=$('.sv-md.e .sel',sw);await move(at(sel,.4,.55),360,k);sel.classList.add('on');await click(k);
-  cl('mo-e',false);sel.classList.remove('on');cl('pk-e',false);N('e3').classList.add('in','e3new');await wait(520,k);N('e3').classList.remove('e3new');
-  /* link it to Filter B by hand */
-  let A=pt('e3','r'),B=pt('f2','l');await move(A,380,k);cl('pr');hd('e3','r',1);await wait(80,k);
-  let live=document.createElementNS(NS,'path');live.classList.add('dg');svg.appendChild(live);await drag(A,B,'f2',k,live);
-  live.remove();link('e3','f2');cl('pr',false);await wait(380,k);N('f2').classList.remove('hl');
-  /* reconfigure: pick up the end of Filter A to Tool 1 and drop it on Tool 2 */
-  A=pt('f1','r');const T1=pt('t1','l');B=pt('t2','l');await move(T1,620,k);cl('pr');await wait(90,k);
-  P.f1t1.remove();delete P.f1t1;hd('t1','l',0);live=document.createElementNS(NS,'path');live.classList.add('dg');live.setAttribute('d',pth(A,T1));svg.appendChild(live);
-  await move(B,760,k,p=>{live.setAttribute('d',pth(A,p));N('t2').classList.toggle('hl',Math.hypot(p[0]-B[0],p[1]-B[1])<36)});
-  live.remove();link('f1','t2');cl('pr',false);await wait(300,k);N('t2').classList.remove('hl');
-  /* traffic runs through the new layout */
-  move([c.width*.5,c.height*1.04],700,k).then(()=>cl('cur',false));await wait(200,k);
-  await pulse(FINAL.filter(([a])=>a[0]==='e'),600,k);await pulse(FINAL.filter(([a])=>a[0]==='f'),560,k)};
- addEventListener('resize',redraw);
+  cl('mo-e',false);sel.classList.remove('on');cl('pk-e',false);N('e3').classList.add('in','e3new');await wait(420,k);N('e3').classList.remove('e3new');
+  /* 2. link it to Filter B */
+  await move(dot('e3','r'),420,k);cl('pr');await wait(90,k);let l=add('e3',null,'dg');await drag(l,'f2',560,k);
+  /* 3. move the Filter A link from Tool 1 to Tool 2 */
+  await move(dot('t1','l'),480,k);cl('pr');await wait(90,k);l=find('f1','t1');l.b=null;l.p.classList.add('dg');hd('t1','l',0);await drag(l,'t2',560,k);
+  /* 4. draw a new link from Filter B to Tool 1 */
+  await move(dot('f2','r'),440,k);cl('pr');await wait(90,k);l=add('f2',null,'dg');await drag(l,'t1',560,k);
+  /* 5. traffic runs through the new layout */
+  move([s.width*.5,s.height*1.04],700,k).then(()=>cl('cur',false));await wait(150,k);
+  await pulse(FINAL.filter(([a])=>a[0]==='e'),540,k);await pulse(FINAL.filter(([a])=>a[0]==='f'),540,k);
+  await wait(400,k);cancelAnimationFrame(loop);sync()};
+ new ResizeObserver(()=>sync()).observe(cv);
  if(RM)final();else{start();seen(sw,play,.4)}
  rp&&rp.addEventListener('click',()=>RM?final():play())}
 })();
