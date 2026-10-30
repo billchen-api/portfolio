@@ -290,7 +290,7 @@ const ae=$('.aew');if(ae&&window.AE_EP){const EP=AE_EP,T=AE_T,N=EP.length,tr=$('
  let cur=-1,user=false,tmr=null;const val=ns.map(n=>+n.textContent.replace(/,/g,''));
  const tween=(k,to)=>{const n=ns[k],from=val[k];val[k]=to;if(RM){n.textContent=fmt(to);return}const t0=performance.now();const st=t=>{const p=Math.min(1,(t-t0)/320),e=1-Math.pow(1-p,3);n.textContent=fmt(from+(to-from)*e);if(p<1&&val[k]===to)requestAnimationFrame(st)};requestAnimationFrame(st)};
  const sel=i=>{i=Math.max(0,Math.min(N-1,i));if(i===cur)return;cur=i;dots.forEach((d,k)=>{const on=k===i;d.classList.toggle('on',on);d.setAttribute('aria-checked',on);d.tabIndex=on?0:-1});
-  const e=EP[i],v=[...e,e.reduce((a,b)=>a+b,0)];ns.forEach(n=>tween(+n.dataset.k,v[+n.dataset.k]));tm2.textContent=T[i]};
+  const e=EP[i],v=[...e];ns.forEach(n=>tween(+n.dataset.k,v[+n.dataset.k]));tm2.textContent=T[i]};
  const stop=()=>{user=true;clearInterval(tmr)};
  const near=x=>{const r=tr.getBoundingClientRect();return Math.round((x-r.left)/r.width*(N-1))};
  tr.addEventListener('pointermove',e=>{if(e.pointerType==='mouse'||e.buttons){stop();sel(near(e.clientX))}});
@@ -299,22 +299,58 @@ const ae=$('.aew');if(ae&&window.AE_EP){const EP=AE_EP,T=AE_T,N=EP.length,tr=$('
  dots.forEach((d,k)=>d.addEventListener('click',()=>{stop();sel(k)}));
  sel(N-1);
  if(!RM)seen(ae,()=>{if(user)return;let i=0;sel(0);tmr=setInterval(()=>{if(user){clearInterval(tmr);return}i++;sel(i);if(i>=N-1)clearInterval(tmr)},260)},.5)}
-/* challenge: scattered events settle into epochs */
-const nz=$('.nz');if(nz){const go=()=>nz.classList.add('nz-go');if(RM)go();else seen(nz,go,.45);
- const rp=$('.nz-rp',nz);rp&&rp.addEventListener('click',()=>{nz.classList.remove('nz-go');void nz.offsetWidth;requestAnimationFrame(()=>requestAnimationFrame(go))})}
-/* key screens: hover a detail to light it up on the screen */
-$$('.hz').forEach(hz=>{const its=$$('.hzi',hz),rs=$$('.hz-r',hz);let pin=-1;
- const show=k=>{rs.forEach(r=>r.classList.toggle('on',+r.dataset.k===k));its.forEach(b=>b.classList.toggle('hl',+b.dataset.k===k))};
+/* challenge: scattered events of every severity settle onto the timeline; each epoch circle grows per event and takes the highest severity */
+const nz=$('.nz');if(nz){const sl=$$('.nz-s',nz),ds=$$('.nz-d',nz),SC=['#ff1744','#ff7a00','#ffd600','#40c4ff','#00c7b3'],mx=Math.max(...sl.map(s=>+s.dataset.n));let tm=[];
+ const reset=()=>{tm.forEach(clearTimeout);tm=[];sl.forEach(s=>{s.style.setProperty('--sc',0);s.dataset.c=0;s.dataset.v=9})};
+ const go=()=>{nz.classList.add('nz-go');if(RM){sl.forEach(s=>{s.style.removeProperty('--sc');s.style.removeProperty('--sf')});return}
+  ds.forEach(d=>{tm.push(setTimeout(()=>{const s=sl[+d.dataset.k],c=+s.dataset.c+1,v=Math.min(+s.dataset.v,+d.dataset.v);s.dataset.c=c;s.dataset.v=v;s.style.setProperty('--sc',Math.sqrt(c/mx).toFixed(3));s.style.setProperty('--sf',SC[v])},+getComputedStyle(d).getPropertyValue('--j')*34+930))})};
+ if(!RM)reset();if(RM)go();else seen(nz,go,.45);
+ const rp=$('.nz-rp',nz);rp&&rp.addEventListener('click',()=>{reset();nz.classList.remove('nz-go');void nz.offsetWidth;requestAnimationFrame(()=>requestAnimationFrame(go))})}
+/* shared: a pointer that moves to an element and clicks it */
+const curTo=(st,cur,el,dy=.5)=>{const a=st.getBoundingClientRect(),r=el.getBoundingClientRect();cur.style.setProperty('--cx',(r.left-a.left+r.width*.5-4)+'px');cur.style.setProperty('--cy',(r.top-a.top+r.height*dy-3)+'px')};
+const press=cur=>{cur.classList.add('dn');setTimeout(()=>cur.classList.remove('dn'),180)};
+const vis=(el,on,off)=>{if(!('IntersectionObserver' in window)){on();return}new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting?on():off()),{threshold:.35}).observe(el)};
+/* key screens: hover a detail, a spotlight finds it on the screen */
+$$('.hz').forEach(hz=>{const its=$$('.hzi',hz),rs=$$('.hz-r',hz),sp=$('.hz-sp',hz);let pin=-1;
+ const show=k=>{if(k>=0){const r=rs[k].style;['left','top','width','height'].forEach(p=>sp.style[p]=r[p])}sp.classList.toggle('on',k>=0);its.forEach(b=>b.classList.toggle('hl',+b.dataset.k===k))};
  its.forEach(b=>{const k=+b.dataset.k;b.addEventListener('mouseenter',()=>show(k));b.addEventListener('mouseleave',()=>show(pin));b.addEventListener('focus',()=>show(k));b.addEventListener('blur',()=>show(pin));
   b.addEventListener('click',()=>{pin=pin===k?-1:k;its.forEach(x=>x.setAttribute('aria-pressed',+x.dataset.k===pin));show(pin)})})});
-/* natural language query: pick an intent, see its result */
+/* relationships: click a path in the radial chart, the contract panel opens in the order of the boxes */
+const dyw=$('.dy');if(dyw){const st=$('.dy-s',dyw),cur=$('.cur',dyw),rp=$('.dy-rp',dyw),cr=$('.dy-c.cr .dy-ch',dyw),its=$$('.hzi',dyw),cs=$$('.dy-c',dyw);let tm=[],user=false,on=false;
+ const set=n=>{const b=cs.map(c=>c.getBoundingClientRect().top);dyw.dataset.st=n;its.forEach(x=>x.classList.toggle('hl',+x.dataset.k===n-1));if(RM)return;
+  cs.forEach((c,i)=>{const d=b[i]-c.getBoundingClientRect().top;if(Math.abs(d)<1)return;c.style.transition='none';c.style.transform=`translateY(${d}px)`;void c.offsetWidth;c.style.transition='';c.style.transform=''})};
+ const clr=()=>{tm.forEach(clearTimeout);tm=[]};const at=(t,f)=>tm.push(setTimeout(f,t));
+ const loop=()=>{clr();if(user||!on)return;set(0);dyw.classList.remove('cv','clk');curTo(st,cur,st,.85);
+  at(300,()=>{dyw.classList.add('cv');curTo(st,cur,rp)});at(1150,()=>{press(cur);dyw.classList.add('clk');set(1)});
+  at(3750,()=>set(2));at(5000,()=>curTo(st,cur,cr));at(5900,()=>{press(cur);set(3)});at(9900,()=>dyw.classList.remove('cv'));at(10400,loop)};
+ const stop=()=>{user=true;clr();dyw.classList.remove('cv')};
+ its.forEach(b=>{const k=+b.dataset.k;b.addEventListener('mouseenter',()=>{stop();set(k+1)});b.addEventListener('focus',()=>{stop();set(k+1)});
+  b.addEventListener('click',()=>{stop();its.forEach(x=>x.setAttribute('aria-pressed',x===b));set(k+1)})});
+ if(!RM){set(0);vis(dyw,()=>{if(!on){on=true;loop()}},()=>{on=false;clr();dyw.classList.remove('cv')})}}
+/* natural language query: tabs, then the intent, then the full query types out */
 const nq=$('.nq');if(nq){const tabs=$$('[role=tab]',nq),ims=$$('.nq-im',nq),cap=$('.nq-c',nq),q=$('.nq-q',nq),tx=$('.nq-tx',nq),pn=$('.nq-p',nq);let tt=null,auto=null,user=false,cur=0;
- const type=w=>{clearInterval(tt);q.classList.add('ty');if(RM){tx.textContent=w;return}tx.textContent='';let i=0;tt=setInterval(()=>{tx.textContent=w.slice(0,++i);if(i>=w.length)clearInterval(tt)},80)};
+ const type=w=>{clearInterval(tt);q.classList.add('ty');if(RM){tx.textContent=w;return}tx.textContent='';let i=0;tt=setInterval(()=>{tx.textContent=w.slice(0,++i);if(i>=w.length)clearInterval(tt)},45)};
  const sel=(k,foc)=>{cur=k;tabs.forEach((t,j)=>{const on=j===k;t.setAttribute('aria-selected',on);t.tabIndex=on?0:-1});pn.setAttribute('aria-labelledby',tabs[k].id);ims.forEach((im,j)=>im.classList.toggle('on',j===k));cap.textContent=tabs[k].dataset.c;type(tabs[k].dataset.q);if(foc)tabs[k].focus()};
  const stop=()=>{user=true;clearInterval(auto)};
  tabs.forEach((t,k)=>{t.addEventListener('click',()=>{stop();sel(k)});t.addEventListener('keydown',e=>{const d={ArrowRight:1,ArrowLeft:-1}[e.key];if(!d)return;e.preventDefault();stop();sel((cur+d+tabs.length)%tabs.length,true)})});
  q.classList.remove('ty');tx.textContent='';
- if(RM)sel(0);else seen(nq,()=>{sel(0);let k=0;auto=setInterval(()=>{if(user){clearInterval(auto);return}k++;sel(k);if(k>=tabs.length-1)clearInterval(auto)},3600)},.5)}
+ if(RM)sel(0);else seen(nq,()=>{sel(0);auto=setInterval(()=>{if(user){clearInterval(auto);return}sel((cur+1)%tabs.length)},5600)},.5)}
+/* filtering: pick the busiest leaf, narrow its policies column by column, then see where they live */
+const fa=$('.fa');if(fa){const cur=$('.cur',fa),pp=$('.fa-pp'),ST=['s1','s2','s3','s4','s5'];let tm=[],on=false,paused=false;
+ const clr=()=>{tm.forEach(clearTimeout);tm=[]};const at=(t,f)=>tm.push(setTimeout(f,t));
+ const add=c=>fa.classList.add(c);const to=s=>curTo(fa,cur,$(s,fa));
+ const loop=()=>{clr();if(!on||paused)return;fa.classList.remove(...ST,'tp','cv');add('run');curTo(fa,cur,fa,.95);
+  at(300,()=>{add('cv');to('.fa-b:first-child i')});at(1300,()=>{press(cur);add('s1')});
+  at(2200,()=>to('[data-c="0"] [data-i="0"]'));at(3000,()=>{press(cur);add('s2')});
+  at(3700,()=>to('[data-c="1"] [data-i="2"]'));at(4500,()=>{press(cur);add('s3')});
+  at(5200,()=>to('[data-c="2"] [data-i="3"]'));at(6000,()=>{press(cur);add('s4')});
+  at(6900,()=>{add('s5');curTo(fa,cur,fa,.95)});at(7900,()=>to('.fa-b:nth-child(3) i'));at(8700,()=>add('tp'));
+  at(12000,()=>fa.classList.remove('cv'));at(12600,loop)};
+ if(RM){pp&&(pp.hidden=true)}else{fa.classList.remove(...ST);add('run');
+  vis(fa,()=>{if(!on){on=true;loop()}},()=>{on=false;clr()});
+  pp&&pp.addEventListener('click',()=>{paused=!paused;pp.setAttribute('aria-pressed',paused);pp.lastChild.textContent=paused?'Play':'Pause';if(paused){clr();fa.classList.remove('cv')}else loop()})}}
+/* video: load the player only when asked */
+$$('.yt[data-yt]').forEach(a=>a.addEventListener('click',e=>{if(e.metaKey||e.ctrlKey||e.shiftKey)return;e.preventDefault();const f=document.createElement('div');f.className='yt-f';f.innerHTML=`<iframe src="https://www.youtube-nocookie.com/embed/${a.dataset.yt}?autoplay=1&rel=0" title="${a.getAttribute('aria-label').replace(/^Play video: /,'')}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;a.replaceWith(f);f.querySelector('iframe').focus()}));
 /* all final screens */
 const g=$('.c3g'),gb=$('.c3g-x');if(g&&gb)gb.addEventListener('click',()=>{const all=g.classList.toggle('all');gb.setAttribute('aria-expanded',all);gb.firstChild.textContent=all?'Show fewer screens ':'Show all 17 screens ';if(!all)g.scrollIntoView({behavior:RM?'auto':'smooth',block:'start'});else{const f=$$('.si.more .cr',g)[0];f&&f.focus({preventScroll:true})}});
 })();
