@@ -301,8 +301,9 @@ const ae=$('.aew');if(ae&&window.AE_EP){const EP=AE_EP,T=AE_T,N=EP.length,tr=$('
  if(!RM)seen(ae,()=>{if(user)return;let i=0;sel(0);tmr=setInterval(()=>{if(user){clearInterval(tmr);return}i++;sel(i);if(i>=N-1)clearInterval(tmr)},260)},.5)}
 /* challenge: scattered events of every severity settle onto the timeline; each epoch circle grows per event and takes the highest severity */
 const nz=$('.nz');if(nz){const sl=$$('.nz-s',nz),ds=$$('.nz-d',nz),SC=['#ff1744','#ff7a00','#ffd600','#40c4ff','#00c7b3'],mx=Math.max(...sl.map(s=>+s.dataset.n));let tm=[];
- const reset=()=>{tm.forEach(clearTimeout);tm=[];sl.forEach(s=>{s.style.setProperty('--sc',0);s.dataset.c=0;s.dataset.v=9})};
- const go=()=>{nz.classList.add('nz-go');if(RM){sl.forEach(s=>{s.style.removeProperty('--sc');s.style.removeProperty('--sf')});return}
+ const reset=()=>{tm.forEach(clearTimeout);tm=[];nz.classList.remove('nz-done');sl.forEach(s=>{s.style.setProperty('--sc',0);s.dataset.c=0;s.dataset.v=9})};
+ const go=()=>{nz.classList.add('nz-go');if(RM){nz.classList.add('nz-done');sl.forEach(s=>{s.style.removeProperty('--sc');s.style.removeProperty('--sf')});return}
+  const last=Math.max(...ds.map(d=>+getComputedStyle(d).getPropertyValue('--j')))*34+930;tm.push(setTimeout(()=>nz.classList.add('nz-done'),last+450));
   ds.forEach(d=>{tm.push(setTimeout(()=>{const s=sl[+d.dataset.k],c=+s.dataset.c+1,v=Math.min(+s.dataset.v,+d.dataset.v);s.dataset.c=c;s.dataset.v=v;s.style.setProperty('--sc',Math.sqrt(c/mx).toFixed(3));s.style.setProperty('--sf',SC[v])},+getComputedStyle(d).getPropertyValue('--j')*34+930))})};
  if(!RM)reset();if(RM)go();else seen(nz,go,.45);
  const rp=$('.nz-rp',nz);rp&&rp.addEventListener('click',()=>{reset();nz.classList.remove('nz-go');void nz.offsetWidth;requestAnimationFrame(()=>requestAnimationFrame(go))})}
@@ -315,17 +316,20 @@ $$('.hz').forEach(hz=>{const its=$$('.hzi',hz),rs=$$('.hz-r',hz),sp=$('.hz-sp',h
  const show=k=>{if(k>=0){const r=rs[k].style;['left','top','width','height'].forEach(p=>sp.style[p]=r[p])}sp.classList.toggle('on',k>=0);its.forEach(b=>b.classList.toggle('hl',+b.dataset.k===k))};
  its.forEach(b=>{const k=+b.dataset.k;b.addEventListener('mouseenter',()=>show(k));b.addEventListener('mouseleave',()=>show(pin));b.addEventListener('focus',()=>show(k));b.addEventListener('blur',()=>show(pin));
   b.addEventListener('click',()=>{pin=pin===k?-1:k;its.forEach(x=>x.setAttribute('aria-pressed',+x.dataset.k===pin));show(pin)})})});
-/* relationships: click a path in the radial chart, the contract panel opens in the order of the boxes */
-const dyw=$('.dy');if(dyw){const st=$('.dy-s',dyw),cur=$('.cur',dyw),rp=$('.dy-rp',dyw),cr=$('.dy-c.cr .dy-ch',dyw),its=$$('.hzi',dyw),cs=$$('.dy-c',dyw);let tm=[],user=false,on=false;
- const set=n=>{const b=cs.map(c=>c.getBoundingClientRect().top);dyw.dataset.st=n;its.forEach(x=>x.classList.toggle('hl',+x.dataset.k===n-1));if(RM)return;
+/* relationships: one panel. Click a path and the chart gives way to the details; the steps follow the boxes, then back to the chart */
+const dyw=$('.dy');if(dyw){const st=$('.dy-s',dyw),cur=$('.cur',dyw),tg=$('.dy-tg',dyw),ck=$('.dy-ck',dyw),bk=$('.dy-bk',dyw),cr=$('.dy-c.cr .dy-ch',dyw),its=$$('.hzi',dyw),cs=$$('.dy-c',dyw),HL=[0,0,1,2],BX=[0,2,3];let tm=[],user=false,on=false;
+ const set=n=>{const b=cs.map(c=>c.getBoundingClientRect().top);dyw.dataset.st=n;its.forEach(x=>x.classList.toggle('hl',+x.dataset.k===HL[n]));if(RM||n<2)return;
   cs.forEach((c,i)=>{const d=b[i]-c.getBoundingClientRect().top;if(Math.abs(d)<1)return;c.style.transition='none';c.style.transform=`translateY(${d}px)`;void c.offsetWidth;c.style.transition='';c.style.transform=''})};
  const clr=()=>{tm.forEach(clearTimeout);tm=[]};const at=(t,f)=>tm.push(setTimeout(f,t));
- const loop=()=>{clr();if(user||!on)return;set(0);dyw.classList.remove('cv','clk');curTo(st,cur,st,.85);
-  at(300,()=>{dyw.classList.add('cv');curTo(st,cur,rp)});at(1150,()=>{press(cur);dyw.classList.add('clk');set(1)});
-  at(3750,()=>set(2));at(5000,()=>curTo(st,cur,cr));at(5900,()=>{press(cur);set(3)});at(9900,()=>dyw.classList.remove('cv'));at(10400,loop)};
- const stop=()=>{user=true;clr();dyw.classList.remove('cv')};
- its.forEach(b=>{const k=+b.dataset.k;b.addEventListener('mouseenter',()=>{stop();set(k+1)});b.addEventListener('focus',()=>{stop();set(k+1)});
-  b.addEventListener('click',()=>{stop();its.forEach(x=>x.setAttribute('aria-pressed',x===b));set(k+1)})});
+ const ring=()=>{const a=st.getBoundingClientRect(),r=tg.getBoundingClientRect();ck.style.left=(r.left-a.left)+'px';ck.style.top=(r.top-a.top)+'px';dyw.classList.remove('clk');void ck.offsetWidth;dyw.classList.add('clk')};
+ const loop=()=>{clr();if(user||!on)return;set(0);dyw.classList.remove('cv','clk','bk');curTo(st,cur,st,.85);
+  at(300,()=>{dyw.classList.add('cv');curTo(st,cur,tg,0)});at(1200,()=>{press(cur);ring()});at(1500,()=>set(1));
+  at(3500,()=>set(2));at(4800,()=>curTo(st,cur,cr));at(5700,()=>{press(cur);set(3)});
+  at(9300,()=>curTo(st,cur,bk));at(10200,()=>{press(cur);dyw.classList.add('bk')});at(10500,()=>{dyw.classList.remove('bk');set(0)});
+  at(11600,()=>dyw.classList.remove('cv'));at(12200,loop)};
+ const stop=()=>{user=true;clr();dyw.classList.remove('cv','bk')};
+ its.forEach(b=>{const k=+b.dataset.k;b.addEventListener('mouseenter',()=>{stop();set(BX[k])});b.addEventListener('focus',()=>{stop();set(BX[k])});
+  b.addEventListener('click',()=>{stop();its.forEach(x=>x.setAttribute('aria-pressed',x===b));set(BX[k])})});
  if(!RM){set(0);vis(dyw,()=>{if(!on){on=true;loop()}},()=>{on=false;clr();dyw.classList.remove('cv')})}}
 /* natural language query: tabs, then the intent, then the full query types out */
 const nq=$('.nq');if(nq){const tabs=$$('[role=tab]',nq),ims=$$('.nq-im',nq),cap=$('.nq-c',nq),q=$('.nq-q',nq),tx=$('.nq-tx',nq),pn=$('.nq-p',nq);let tt=null,auto=null,user=false,cur=0;
@@ -335,18 +339,24 @@ const nq=$('.nq');if(nq){const tabs=$$('[role=tab]',nq),ims=$$('.nq-im',nq),cap=
  tabs.forEach((t,k)=>{t.addEventListener('click',()=>{stop();sel(k)});t.addEventListener('keydown',e=>{const d={ArrowRight:1,ArrowLeft:-1}[e.key];if(!d)return;e.preventDefault();stop();sel((cur+d+tabs.length)%tabs.length,true)})});
  q.classList.remove('ty');tx.textContent='';
  if(RM)sel(0);else seen(nq,()=>{sel(0);auto=setInterval(()=>{if(user){clearInterval(auto);return}sel((cur+1)%tabs.length)},5600)},.5)}
-/* filtering: pick the busiest leaf, narrow its policies column by column, then see where they live */
-const fa=$('.fa');if(fa){const cur=$('.cur',fa),pp=$('.fa-pp'),ST=['s1','s2','s3','s4','s5'];let tm=[],on=false,paused=false;
+/* filtering: pick the busiest leaf, then pick any column; it moves up next to the filters already applied and every column after it re-sorts */
+const fa=$('.fa');if(fa){const cur=$('.cur',fa),pp=$('.fa-pp'),ST=['s1','s2','s3','s4','s5'],D=JSON.parse(fa.dataset.st),cols=$$('.fa-col',fa),box=$('.fa-cols',fa);let tm=[],on=false,paused=false,k0=-1;
  const clr=()=>{tm.forEach(clearTimeout);tm=[]};const at=(t,f)=>tm.push(setTimeout(f,t));
  const add=c=>fa.classList.add(c);const to=s=>curTo(fa,cur,$(s,fa));
- const loop=()=>{clr();if(!on||paused)return;fa.classList.remove(...ST,'tp','cv');add('run');curTo(fa,cur,fa,.95);
+ const place=()=>{const n=+getComputedStyle(box).getPropertyValue('--n')||6;cols.forEach(c=>{const o=+c.dataset.o;c.style.setProperty('--ox',o%n);c.style.setProperty('--oy',Math.floor(o/n))})};
+ const apply=(k,fl)=>{const S=D[k];k0=k;cols.forEach(c=>{const i=+c.dataset.c,sl=S.s[i];c.dataset.o=S.o[i];c.style.setProperty('--o',S.o[i]);c.classList.toggle('s',sl>=0);
+   const its=$$('.fa-it',c);its.forEach(it=>{const j=+it.dataset.i,sm=$('small',it);it.style.setProperty('--r',S.r[i].indexOf(j));it.classList.toggle('pk',sl===j);if(sm.textContent!==S.n[i][j]){sm.textContent=S.n[i][j];if(fl&&!RM){sm.classList.remove('up');void sm.offsetWidth;sm.classList.add('up')}}});
+   $('.fa-sl',c).innerHTML=sl>=0?`<b>${$('b',its[sl]).textContent}</b><small>${S.n[i][sl]}</small>`:''});place()};
+ const pick=(c,j)=>{const it=$(`[data-c="${c}"] [data-i="${j}"]`,fa);it.classList.add('pk')};
+ const loop=()=>{clr();if(!on||paused)return;fa.classList.remove(...ST,'tp','cv');add('run');apply(0);curTo(fa,cur,fa,.95);
   at(300,()=>{add('cv');to('.fa-b:first-child i')});at(1300,()=>{press(cur);add('s1')});
-  at(2200,()=>to('[data-c="0"] [data-i="0"]'));at(3000,()=>{press(cur);add('s2')});
-  at(3700,()=>to('[data-c="1"] [data-i="2"]'));at(4500,()=>{press(cur);add('s3')});
-  at(5200,()=>to('[data-c="2"] [data-i="3"]'));at(6000,()=>{press(cur);add('s4')});
-  at(6900,()=>{add('s5');curTo(fa,cur,fa,.95)});at(7900,()=>to('.fa-b:nth-child(3) i'));at(8700,()=>add('tp'));
-  at(12000,()=>fa.classList.remove('cv'));at(12600,loop)};
- if(RM){pp&&(pp.hidden=true)}else{fa.classList.remove(...ST);add('run');
+  at(2300,()=>to('[data-c="4"] [data-i="1"]'));at(3100,()=>{press(cur);pick(4,1);add('s2')});at(3500,()=>apply(1,1));
+  at(5300,()=>to('[data-c="3"] [data-i="1"]'));at(6100,()=>{press(cur);pick(3,1);add('s3')});at(6500,()=>apply(2,1));
+  at(8300,()=>to('[data-c="1"] [data-i="2"]'));at(9100,()=>{press(cur);pick(1,2);add('s4')});at(9500,()=>apply(3,1));
+  at(11300,()=>{add('s5');curTo(fa,cur,fa,.95)});at(12300,()=>to('.fa-b:nth-child(3) i'));at(13100,()=>add('tp'));
+  at(16300,()=>fa.classList.remove('cv'));at(16900,loop)};
+ place();addEventListener('resize',place);
+ if(RM){pp&&(pp.hidden=true);apply(3)}else{fa.classList.remove(...ST);add('run');apply(0);
   vis(fa,()=>{if(!on){on=true;loop()}},()=>{on=false;clr()});
   pp&&pp.addEventListener('click',()=>{paused=!paused;pp.setAttribute('aria-pressed',paused);pp.lastChild.textContent=paused?'Play':'Pause';if(paused){clr();fa.classList.remove('cv')}else loop()})}}
 /* video: load the player only when asked */
