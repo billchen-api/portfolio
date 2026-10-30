@@ -220,6 +220,7 @@ html.cm-on{overflow:hidden}
 .cm h2{font-size:30px;font-weight:500;letter-spacing:-.04em;line-height:1.1;padding-right:40px}
 .cm-s{margin-top:10px;font-size:15.5px;line-height:1.55;color:var(--fg)}
 .cm-f{display:grid;gap:16px;margin-top:26px}
+.cm-f[hidden]{display:none}
 .cm-f label{display:grid;gap:7px;font-size:14px;font-weight:500}
 .cm-f input:not(.hp),.cm-f textarea{font:inherit;font-weight:400;font-size:15.5px;color:var(--fg);background:#fff;border:1px solid var(--line2);border-radius:10px;padding:12px 14px;width:100%;transition:border-color .2s,box-shadow .2s}
 .cm-f textarea{resize:vertical;min-height:120px;line-height:1.5}

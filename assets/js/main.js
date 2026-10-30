@@ -119,7 +119,7 @@ function sc(){const y=scrollY,vh=innerHeight;
 addEventListener('scroll',()=>{if(!tk){tk=true;requestAnimationFrame(sc)}},{passive:true});addEventListener('resize',sc);sc();
 /* ---------- contact modal (Web3Forms; no address in the page) ---------- */
 const cm=$('#contact-modal');
-if(cm){const f=$('form',cm),st=$('.cm-st',cm),done=$('.cm-done',cm),KEY=f.dataset.key||'';let last=null;
+if(cm){const f=$('form',cm),st=$('.cm-st',cm),done=$('.cm-done',cm),KEY=(f.elements.access_key&&f.elements.access_key.value)||f.dataset.key||'';let last=null;
  const foc=()=>$$('button,input:not([type=hidden]):not(.hp),textarea,a[href]',cm).filter(x=>x.offsetParent!==null);
  function open(e){if(e)e.preventDefault();last=document.activeElement;cm.hidden=false;document.documentElement.classList.add('cm-on');requestAnimationFrame(()=>cm.classList.add('on'));setTimeout(()=>{const x=$('input[name=name]',cm);x&&x.focus()},60)}
  function close(){cm.classList.remove('on');document.documentElement.classList.remove('cm-on');setTimeout(()=>{cm.hidden=true},RM?0:220);last&&last.focus&&last.focus()}
@@ -135,8 +135,8 @@ if(cm){const f=$('form',cm),st=$('.cm-st',cm),done=$('.cm-done',cm),KEY=f.datase
   if(!ok){const b=$('.bad input,.bad textarea',f);b&&b.focus();return}
   if(!KEY){st.className='cm-st warn';st.innerHTML='Sending isn’t connected yet, so this message wasn’t sent. Your text is still here. For now, please reach me on <a href="'+f.dataset.li+'" target="_blank" rel="noopener">LinkedIn</a>.';return}
   const btn=$('button[type=submit]',f);btn.disabled=true;st.className='cm-st';st.textContent='Sending…';
-  try{const r=await fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({access_key:KEY,subject:'New message from your portfolio',from_name:'Portfolio contact form',name:v('name'),email:v('email'),message:v('message'),botcheck:f.elements.botcheck.checked})});
-   const j=await r.json().catch(()=>({}));if(r.ok&&j.success!==false){f.hidden=true;done.hidden=false;$('h3',done).focus()}else throw 0}
+  try{const r=await fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({access_key:KEY,subject:(f.elements.subject&&f.elements.subject.value)||'New message from portfolio',from_name:(f.elements.from_name&&f.elements.from_name.value)||'Bill Chen Portfolio',name:v('name'),email:v('email'),message:v('message'),botcheck:f.elements.botcheck.checked})});
+   const j=await r.json().catch(()=>({}));if(r.ok&&j.success!==false){st.textContent='';f.hidden=true;done.hidden=false;$('h3',done).focus()}else throw 0}
   catch(_){st.className='cm-st warn';st.innerHTML='Something went wrong and the message didn’t send. Please try again, or reach me on <a href="'+f.dataset.li+'" target="_blank" rel="noopener">LinkedIn</a>.'}
   btn.disabled=false});
 }
